@@ -88,9 +88,6 @@ class SignupScreen extends GetView<SignupController> {
                 Obx(
                   () => CustomFormField(
                     showPassword: true,
-                    onPressed: () {
-                      controller.onChangePassword();
-                    },
                     obscureText: controller.password.value,
                     prefixIcon: Image.asset(
                       AppAssets.icPassword,
@@ -104,6 +101,16 @@ class SignupScreen extends GetView<SignupController> {
                     textInputAction: TextInputAction.done,
                     contentPadding: 20,
                     borderRadius: 18,
+                    suffixIcon: IconButton(
+                      highlightColor: Colors.transparent,
+                      padding: const EdgeInsets.only(right: 10),
+                      icon: const Icon(
+                        Icons.visibility,
+                        color: AppColors.greyColor,
+                        size: 20,
+                      ),
+                      onPressed: () {},
+                    ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter password";
@@ -118,9 +125,6 @@ class SignupScreen extends GetView<SignupController> {
                 Obx(
                   () => CustomFormField(
                     showPassword: true,
-                    onPressed: () {
-                      controller.onChangePasswordConfirm();
-                    },
                     obscureText: controller.passwordConfirm.value,
                     prefixIcon: Image.asset(
                       AppAssets.icPassword,
@@ -134,6 +138,16 @@ class SignupScreen extends GetView<SignupController> {
                     contentPadding: 20,
                     borderRadius: 18,
                     textInputAction: TextInputAction.done,
+                    suffixIcon: IconButton(
+                      highlightColor: Colors.transparent,
+                      padding: const EdgeInsets.only(right: 10),
+                      icon: const Icon(
+                        Icons.visibility,
+                        color: AppColors.greyColor,
+                        size: 20,
+                      ),
+                      onPressed: () {},
+                    ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter confirm password";

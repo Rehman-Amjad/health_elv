@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/widgets/custom_button.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -59,9 +58,6 @@ class LoginScreen extends GetView<LoginController> {
                 Obx(
                   () => CustomFormField(
                     showPassword: true,
-                    onPressed: () {
-                      controller.onChangePassword();
-                    },
                     obscureText: controller.password.value,
                     prefixIcon: Image.asset(
                       AppAssets.icPassword,
@@ -75,6 +71,16 @@ class LoginScreen extends GetView<LoginController> {
                     contentPadding: 20,
                     textInputAction: TextInputAction.done,
                     borderRadius: 18,
+                    suffixIcon: IconButton(
+                      highlightColor: Colors.transparent,
+                      padding: const EdgeInsets.only(right: 10),
+                      icon: const Icon(
+                        Icons.visibility,
+                        color: AppColors.greyColor,
+                        size: 20,
+                      ),
+                      onPressed: () {},
+                    ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter password";

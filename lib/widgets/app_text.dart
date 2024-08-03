@@ -9,6 +9,7 @@ class AppText extends StatelessWidget {
   final TextAlign textAlign;
   final bool softWrap;
   final Color color;
+  final Color decorationColor;
   final TextDecoration textDecoration;
 
   const AppText({
@@ -18,6 +19,7 @@ class AppText extends StatelessWidget {
     this.color = AppColors.blackColor,
     this.textAlign = TextAlign.center,
     this.textDecoration = TextDecoration.none,
+    this.decorationColor = AppColors.whiteColor,
     this.fontSize = 12,
     this.softWrap = false,
   });
@@ -30,7 +32,7 @@ class AppText extends StatelessWidget {
       softWrap: softWrap,
       style: GoogleFonts.inter(
         decoration: textDecoration,
-        decorationColor: AppColors.whiteColor,
+        decorationColor: decorationColor,
         fontWeight: fontWeight,
         fontSize: fontSize,
         color: color,

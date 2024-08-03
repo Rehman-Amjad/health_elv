@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/widgets/custom_button.dart';
 import 'package:sizer/sizer.dart';
 
 import '../blood_test_result/export.dart';
@@ -340,7 +339,7 @@ class HomeScreen extends GetView<HomeController> {
 
   _addNewTest(context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -377,8 +376,8 @@ class HomeScreen extends GetView<HomeController> {
               ),
             ),
             onTap: () {
-              // Handle order new blood test action
               Navigator.pop(context);
+              Get.toNamed(RoutesName.orderNewTest);
             },
           ),
           SizedBox(height: 04.h),

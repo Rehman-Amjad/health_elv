@@ -6,7 +6,7 @@ import 'package:health_elev8_app/path_file.dart';
 class CustomFormField extends StatelessWidget {
   final String? hint;
   final double? height;
-  final Color? suffixIcon;
+  final Color? fillColor;
   final double fontSize;
   final double contentPadding;
   final double? iconSize;
@@ -18,7 +18,6 @@ class CustomFormField extends StatelessWidget {
   final bool? showPassword;
   final bool? obscureText;
   final bool? readOnly;
-  final void Function()? onPressed;
   final void Function()? onFieldOnTap;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputAction? textInputAction;
@@ -26,6 +25,7 @@ class CustomFormField extends StatelessWidget {
   final int? lines;
   final Color? borderColor;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final double borderRadius;
 
   const CustomFormField({
@@ -43,15 +43,15 @@ class CustomFormField extends StatelessWidget {
     this.keyboardType,
     this.tec,
     this.readOnly,
-    this.onPressed,
     this.isSelected,
     this.inputFormatters,
     this.textInputAction,
     this.validator,
-    this.suffixIcon,
+    this.fillColor,
     this.lines,
     this.borderColor,
     this.prefixIcon,
+    this.suffixIcon,
     this.borderRadius = 8,
   });
 
@@ -74,7 +74,7 @@ class CustomFormField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.greyColor.withOpacity(0.1),
+        fillColor: fillColor?? AppColors.greyColor.withOpacity(0.1),
         contentPadding: EdgeInsets.symmetric(
           horizontal: contentPadding,
           vertical: contentPadding,
@@ -107,20 +107,7 @@ class CustomFormField extends StatelessWidget {
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
-        suffixIcon: (showPassword == true)
-            ? IconButton(
-                highlightColor: Colors.transparent,
-                padding: EdgeInsets.only(right: iconPaddingRight ?? 10),
-                icon: Icon(
-                  (obscureText == true)
-                      ? Icons.visibility
-                      : Icons.visibility_off,
-                  color: AppColors.greyColor,
-                  size: iconSize,
-                ),
-                onPressed: onPressed,
-              )
-            : null,
+        suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
       ),
       validator: validator,

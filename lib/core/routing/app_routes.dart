@@ -19,12 +19,12 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesName.signupScreen,
-      page: () => SignupScreen(),
+      page: () => const SignupScreen(),
       binding: AppBinding(),
     ),
     GetPage(
       name: RoutesName.loginScreen,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
       binding: AppBinding(),
     ),
     GetPage(
@@ -35,6 +35,11 @@ class AppRoutes {
     GetPage(
       name: RoutesName.dashboardBottomNav,
       page: () => const BottomNavScreen(),
+      binding: AppBinding(),
+    ),
+    GetPage(
+      name: RoutesName.orderNewTest,
+      page: () => const OrderNewTestView(),
       binding: AppBinding(),
     ),
     GetPage(

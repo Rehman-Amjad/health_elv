@@ -17,6 +17,9 @@ export 'screens/splash/splash_screen.dart';
 export 'screens/bottom_nav/export.dart';
 export 'screens/health_overview/export.dart';
 
+export 'screens/home/export.dart';
+export 'screens/order_new_test/export.dart';
+
 ///utils
 export 'utils/export.dart';
 
