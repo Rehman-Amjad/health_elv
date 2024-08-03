@@ -119,17 +119,18 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
                     )
                   ],
                 ),
+                const SizedBox(height: 20),
+                const CustomBarChart(),
                 const SizedBox(height: 10),
-                CustomBarChart(),
-                const SizedBox(height: 30),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: '68',
+                      text: '86',
                       color: AppColors.whiteColor,
-                      fontSize: 30,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w800,
                     ),
                     AppText(
                       text: 'hours',
