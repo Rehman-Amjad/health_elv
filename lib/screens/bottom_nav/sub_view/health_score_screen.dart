@@ -22,13 +22,19 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
             height: size.height * 0.4,
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
               ),
             ),
-            padding:  EdgeInsets.only(top: size.height * 0.08,left:20,right: 20),
-            margin: EdgeInsets.only(bottom: size.height * 0.02),
+            padding: EdgeInsets.only(
+              top: size.height * 0.08,
+              left: 20,
+              right: 20,
+            ),
+            margin: EdgeInsets.only(
+              bottom: size.height * 0.02,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,46 +45,73 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
                     GestureDetector(
                       child: ImageHelper(
                         image: AppAssets.backIcon,
-                        imageType: ImageType.svg,
+                        imageType: ImageType.asset,
                         color: AppColors.whiteColor,
+                        scale: 2.5,
                       ),
                       onTap: () => Get.back(),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 4,right: 4,top: 2,bottom: 2),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: AppColors.secondryColor
+                      padding: const EdgeInsets.only(
+                        left: 4,
+                        right: 4,
+                        top: 2,
+                        bottom: 2,
                       ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: AppColors.secondryColor),
                       alignment: Alignment.center,
-                      child: AppText(text: 'Normal',fontWeight: FontWeight.w500,fontSize: 16,color: AppColors.whiteColor,),
+                      child: const AppText(
+                        text: 'Normal',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        color: AppColors.whiteColor,
+                      ),
                     )
                   ],
                 ),
                 const Center(
-                  child: AppText(text: '75',fontWeight: FontWeight.bold,fontSize: 80,color: AppColors.whiteColor,),
+                  child: AppText(
+                    text: '75',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 100,
+                    color: AppColors.whiteColor,
+                  ),
                 ),
-                const Center(child: AppText(text: 'You are a healthy individual',fontSize: 18,fontWeight: FontWeight.w700,color: AppColors.whiteColor,)),
-                SizedBox(height: size.height * 0.02,)
+                const Center(
+                    child: AppText(
+                  text: 'You are a healthy individual',
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.whiteColor,
+                )),
+                SizedBox(
+                  height: size.height * 0.02,
+                )
               ],
             ),
           ),
           Container(
             width: size.width,
-            height: size.height * 0.24,
-            margin: EdgeInsets.symmetric(horizontal: 14),
+            margin: const EdgeInsets.symmetric(horizontal: 06),
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: const BorderRadius.all(Radius.circular(15)),
             ),
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const AppText(text: 'sleep',fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.whiteColor,),
+                    const AppText(
+                      text: 'sleep',
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.whiteColor,
+                    ),
                     SizedBox(
                       width: 20,
                       height: 20,
@@ -86,16 +119,10 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
                     )
                   ],
                 ),
-                SizedBox(height: 10,),
-                Center(
-                  child: AppText(
-                    text: 'Chart here',
-                    color: AppColors.whiteColor,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 30,),
-                Row(
+                const SizedBox(height: 10),
+                CustomBarChart(),
+                const SizedBox(height: 30),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -109,7 +136,6 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
                       color: AppColors.whiteColor,
                       fontSize: 16,
                     ),
-
                   ],
                 )
               ],

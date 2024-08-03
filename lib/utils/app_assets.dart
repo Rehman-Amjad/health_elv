@@ -14,6 +14,7 @@ class AppAssets {
  ///auth
   static const String icEmail = '${base}auth/ic_email.png';
   static const String icPassword = '${base}auth/ic_password.png';
+  static const String avatar = '${base}auth/avatar.png';
 
   ///blood result
   static const String icThumb = '${base}blood_result/ic_thumb.png';

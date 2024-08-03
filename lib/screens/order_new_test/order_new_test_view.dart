@@ -359,9 +359,11 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           backgroundColor: Colors.transparent,
           margin: const EdgeInsets.symmetric(horizontal: 70),
           fontColor: AppColors.blackColor,
+          borderColor:AppColors.blackColor,
           radios: 05,
           fontSize: 16,
         ),
+        SizedBox(height: 02.h),
       ],
     );
   }
@@ -516,9 +518,11 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           backgroundColor: Colors.transparent,
           margin: const EdgeInsets.symmetric(horizontal: 70),
           fontColor: AppColors.blackColor,
+          borderColor:AppColors.blackColor,
           radios: 05,
           fontSize: 16,
         ),
+        SizedBox(height: 02.h),
       ],
     );
   }

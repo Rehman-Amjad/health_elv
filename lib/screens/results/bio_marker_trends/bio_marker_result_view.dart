@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,8 +94,9 @@ class BioMarkerResultView extends GetView<ResultsController> {
       width: double.infinity,
       height: 56,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 05),
-      decoration: const BoxDecoration(
-        color: Color(0xFFE9E6E6),
+      decoration:  BoxDecoration(
+        color: const Color(0xFFE9E6E6),
+        borderRadius: BorderRadius.circular(05)
       ),
       child: Row(
         children: [

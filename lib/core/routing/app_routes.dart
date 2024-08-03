@@ -72,9 +72,5 @@ class AppRoutes {
       name: RoutesName.faqRoute,
       page: () => const FaqsView(),
     ),
-    GetPage(
-      name: RoutesName.accountSettingsRoute,
-      page: () => const AccountSettingScreen(),
-    ),
   ];
 }

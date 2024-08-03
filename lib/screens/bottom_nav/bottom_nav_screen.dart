@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:health_elev8_app/screens/home/home_view.dart';
 import 'package:health_elev8_app/screens/profile/profile_screen.dart';
@@ -36,6 +37,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
       body: screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
        backgroundColor: AppColors.whiteColor,
+        selectedLabelStyle: GoogleFonts.inter(
+          fontWeight: FontWeight.w700,
+          fontSize: 11,
+        ),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -91,7 +96,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             ),
             label: 'Profile',
             activeIcon: SvgPicture.asset(
-              AppAssets.resultIcon,
+              AppAssets.profile_icon,
               color: AppColors.primaryColor,
               width: 25,
               height: 25,
@@ -100,6 +105,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: AppColors.primaryColor,
+        showUnselectedLabels: true,
         onTap: _onItemTapped,
       ),
     );

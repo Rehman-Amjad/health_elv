@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/profile/profile_controller.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
@@ -31,8 +30,8 @@ class ProfileScreen extends GetView<ProfileController> {
                     )),
                 child: ClipOval(
                   child: ImageHelper(
-                    image: '',
-                    imageType: ImageType.network,
+                    image: AppAssets.avatar,
+                    imageType: ImageType.asset,
                   ),
                 ),
               ),
@@ -50,11 +49,19 @@ class ProfileScreen extends GetView<ProfileController> {
                 endIndent: 30,
               ),
               const SizedBox(height: 42),
-              const Padding(
-                padding: EdgeInsets.all(14.0),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
                 child: ProfileDetailWidget(
                   title: 'User Details',
                   imgPath: AppAssets.profileIcon1,
+                  onTap: () {
+                    Get.to(
+                      () => const UserDetailsView(),
+                      binding: AppBinding(),
+                      transition: Transition.rightToLeftWithFade,
+                      duration: const Duration(milliseconds: 500),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 25),
@@ -65,7 +72,12 @@ class ProfileScreen extends GetView<ProfileController> {
                   isEnableIcon: true,
                   iconData: Icons.settings,
                   onTap: () {
-                    Get.toNamed(RoutesName.accountSettingsRoute);
+                    Get.to(
+                      () => const AccountSettingView(),
+                      binding: AppBinding(),
+                      transition: Transition.leftToRightWithFade,
+                      duration: const Duration(milliseconds: 500),
+                    );
                   },
                 ),
               ),

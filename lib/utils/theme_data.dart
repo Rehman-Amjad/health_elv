@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
@@ -11,16 +10,7 @@ final appTheme = ThemeData(
   ),
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: AppColors.primaryColor,
+    seedColor: AppColors.whiteColor,
   ),
   scaffoldBackgroundColor: AppColors.lightWhiteBg,
-  appBarTheme: AppBarTheme(
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.light,
-      statusBarColor: AppColors.primaryColor,
-    ),
-    iconTheme: const IconThemeData(
-      color: Colors.white,
-    ),
-  ),
 );

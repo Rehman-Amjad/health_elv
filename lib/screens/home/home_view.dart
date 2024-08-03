@@ -119,16 +119,18 @@ class HomeView extends GetView<HomeController> {
       child: Row(
         children: [
           Container(
-            width: Get.width * 0.17,
-            height: Get.height * 0.08,
             margin: const EdgeInsets.only(left: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
             ),
-            child: Icon(
-              Icons.person,
-              color: AppColors.primaryColor,
+            child: ImageHelper(
+               image: AppAssets.femaleDoctorImg,
+              imageType: ImageType.asset,
+              boxFit: BoxFit.cover,
+              imageShape: ImageShape.rectangle,
+              width: 56,
+              height: 56,
             ),
           ),
           SizedBox(width: 1.h),

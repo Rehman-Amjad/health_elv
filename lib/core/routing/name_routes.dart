@@ -17,7 +17,6 @@ class RoutesName {
   static const String healthTrendsRoute = "/healthTrendsRoute";
   static const String healthTrendsResultRoute = "/healthTrendsResultRoute";
   static const String faqRoute = "/faqRoute";
-  static const String accountSettingsRoute = "/accountSettingsRoute";
 
 
   static const String orderNewTestRoute = "/orderNewTestView";
