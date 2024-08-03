@@ -20,7 +20,8 @@ class RoutesName {
   static const String accountSettingsRoute = "/accountSettingsRoute";
 
 
-  static const String orderNewTest = "/orderNewTestView";
+  static const String orderNewTestRoute = "/orderNewTestView";
+  static const String reportRoute = "/reportView";
 
 
 }

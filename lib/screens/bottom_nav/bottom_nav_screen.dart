@@ -19,7 +19,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   int _selectedIndex = 0;
   List<Widget> screens = <Widget>[
     const HomeScreen(),
-    const ReportScreen(),
+    const ReportView(),
     const BloodTestResultView(),
     const ProfileScreen(),
   ];

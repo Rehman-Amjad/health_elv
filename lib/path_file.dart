@@ -20,6 +20,8 @@ export 'screens/health_overview/export.dart';
 export 'screens/home/export.dart';
 export 'screens/order_new_test/export.dart';
 
+export 'screens/report/export.dart';
+
 ///utils
 export 'utils/export.dart';
 

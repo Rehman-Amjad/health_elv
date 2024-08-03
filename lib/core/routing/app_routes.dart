@@ -38,13 +38,19 @@ class AppRoutes {
       binding: AppBinding(),
     ),
     GetPage(
-      name: RoutesName.orderNewTest,
+      name: RoutesName.orderNewTestRoute,
       page: () => const OrderNewTestView(),
       binding: AppBinding(),
     ),
     GetPage(
       name: RoutesName.healthOverViewRoute,
       page: () => const HealthOverview(),
+      binding: AppBinding(),
+    ),
+    GetPage(
+      name: RoutesName.reportRoute,
+      page: () => const ReportView(),
+      binding: AppBinding(),
     ),
     GetPage(
       name: RoutesName.nutrationTipsRoute,

@@ -377,7 +377,7 @@ class HomeScreen extends GetView<HomeController> {
             ),
             onTap: () {
               Navigator.pop(context);
-              Get.toNamed(RoutesName.orderNewTest);
+              Get.toNamed(RoutesName.orderNewTestRoute);
             },
           ),
           SizedBox(height: 04.h),
