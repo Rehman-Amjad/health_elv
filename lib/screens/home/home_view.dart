@@ -7,10 +7,9 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
 import '../blood_test_result/export.dart';
-import 'export.dart';
 
-class HomeScreen extends GetView<HomeController> {
-  const HomeScreen({super.key});
+class HomeView extends GetView<HomeController> {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -323,7 +322,12 @@ class HomeScreen extends GetView<HomeController> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: CustomButton(
                       text: 'Flagged Results',
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(
+                          const BloodTestResultView(fromNew: true),
+                          binding: AppBinding(),
+                        );
+                      },
                       backgroundColor: AppColors.primaryColor,
                       fontSize: 13,
                     ),

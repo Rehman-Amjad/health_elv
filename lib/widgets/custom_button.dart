@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final double? fontSize;
   final EdgeInsetsGeometry? margin;
   final bool showArrow;
+  final bool showSuffix;
   final Color? fontColor;
 
   const CustomButton({
@@ -24,6 +25,7 @@ class CustomButton extends StatelessWidget {
     this.fontSize,
     this.margin,
     this.showArrow = false,
+    this.showSuffix = false,
     this.fontColor,
   });
 
@@ -46,14 +48,14 @@ class CustomButton extends StatelessWidget {
           children: [
             showArrow
                 ? Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: ImageHelper(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: ImageHelper(
                       image: AppAssets.backIcon,
                       imageType: ImageType.asset,
                       height: 24,
                       width: 24,
                     ),
-                )
+                  )
                 : const SizedBox.shrink(),
             AppText(
               text: text,
@@ -61,6 +63,16 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w600,
               fontSize: fontSize ?? 20,
             ),
+            showSuffix
+                ? const Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      color: AppColors.whiteColor,
+                      size: 15,
+                    ),
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       ),

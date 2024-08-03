@@ -5,7 +5,6 @@ import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../widgets/export.dart';
 
 class BloodTestResultView extends StatelessWidget {
   final bool fromNew;

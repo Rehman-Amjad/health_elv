@@ -19,6 +19,8 @@ class AppAssets {
   static const String icThumb = '${base}blood_result/ic_thumb.png';
   static const String icBloodTest = '${base}blood_result/ic_blood_test.png';
   static const String icAddBlood = '${base}blood_result/ic_add_blood.png';
+  static const String icTestTube = '${base}blood_result/ic_test_tube.png';
+  static const String icBloodSugarIndicator = '${base}blood_result/ic_blood_sugar_indicator.png';
 
 
   static const String noImageFound = '${base}noImageFound.svg';

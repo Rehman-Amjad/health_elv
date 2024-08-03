@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/home/home_screen.dart';
+import 'package:health_elev8_app/screens/home/home_view.dart';
 import 'package:health_elev8_app/screens/profile/profile_screen.dart';
 
 import '../blood_test_result/export.dart';
@@ -18,9 +18,9 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   int _selectedIndex = 0;
   List<Widget> screens = <Widget>[
-    const HomeScreen(),
+    const HomeView(),
     const ReportView(),
-    const BloodTestResultView(),
+    const ResultsView(),
     const ProfileScreen(),
   ];
 
