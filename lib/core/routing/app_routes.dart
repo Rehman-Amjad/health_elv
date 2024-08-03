@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/health_overview/health_overview.dart';
 
-import '../screens/bottom_nav/export.dart';
-import '../screens/faq/export.dart';
-import '../screens/health_trends/export.dart';
+import '../../screens/faq/export.dart';
+import '../../screens/health_trends/export.dart';
 
 class AppRoutes {
   static final routes = [

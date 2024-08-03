@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:health_elev8_app/core/data/shared_pref/share_pref_keys.dart';
+import 'package:health_elev8_app/utils/share_pref_keys.dart';
 import 'package:health_elev8_app/core/service/cache_manager.dart';
 import 'package:health_elev8_app/path_file.dart';
 

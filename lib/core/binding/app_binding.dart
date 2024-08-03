@@ -5,6 +5,7 @@ import '../../screens/blood_test_result/export.dart';
 import '../../screens/faq/export.dart';
 import '../../screens/health_overview/export.dart';
 import '../../screens/home/export.dart';
+import '../../screens/order_new_test/export.dart';
 import '../../screens/profile/export.dart';
 
 class AppBinding extends Bindings {
@@ -20,6 +21,7 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => HealthOverviewController());
     Get.lazyPut(() => FaqsController());
+    Get.lazyPut(() => AddNewTestController());
 
 
     Get.lazyPut(() => BloodTestResultController());

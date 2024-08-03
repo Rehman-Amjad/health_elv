@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/core/service/cache_manager.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../../../core/data/shared_pref/share_pref_keys.dart';
+import '../../../utils/share_pref_keys.dart';
 
 class LoginController extends BaseController {
   final formKey = GlobalKey<FormState>();
