@@ -56,6 +56,12 @@ dependencies:
   flutter_advanced_avatar: ^1.5.0
   gradient_slider: ^1.0.2
   fl_chart: ^0.68.0
+  syncfusion_flutter_calendar: ^26.2.7
+
+
+
+
+
 
 dev_dependencies:
   flutter_test:

@@ -46,16 +46,22 @@ class HomeView extends GetView<HomeController> {
                 subtitle: 'Recently TSH',
                 imgPath: AppAssets.icBloodTest,
                 onTap: () {
-                  Get.to(
-                    const BloodTestResultView(fromNew: true),
+                  Get.to(()=>
+                    const ResultsView(fromNew: true),
                     binding: AppBinding(),
                   );
                 },
               ),
-              const HealthCardWidget(
+               HealthCardWidget(
                 title: 'Upcoming Blood Test',
                 subtitle: 'Check your calendar',
                 imgPath: AppAssets.upcommingBloodTestIcon,
+                onTap: (){
+                  Get.to(()=>
+                     UpcomingResultsView(),
+                    binding: AppBinding(),
+                  );
+                },
               ),
               HealthCardWidget(
                 title: 'Health ',
@@ -325,8 +331,8 @@ class HomeView extends GetView<HomeController> {
                     child: CustomButton(
                       text: 'Flagged Results',
                       onTap: () {
-                        Get.to(
-                          const BloodTestResultView(fromNew: true),
+                        Get.to(()=>
+                          const BloodTestResultView(),
                           binding: AppBinding(),
                         );
                       },

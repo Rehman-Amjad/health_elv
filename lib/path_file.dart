@@ -21,6 +21,7 @@ export 'screens/home/export.dart';
 export 'screens/order_new_test/export.dart';
 
 export 'screens/results/export.dart';
+export 'screens/upcoming_results/export.dart';
 export 'screens/report/export.dart';
 
 export 'screens/profile/export.dart';

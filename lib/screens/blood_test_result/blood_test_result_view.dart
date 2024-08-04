@@ -5,13 +5,12 @@ import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-
 class BloodTestResultView extends StatelessWidget {
-  final bool fromNew;
+  final String title;
 
   const BloodTestResultView({
     super.key,
-    this.fromNew = false,
+    this.title = "LDH",
   });
 
   @override
@@ -22,7 +21,6 @@ class BloodTestResultView extends StatelessWidget {
         preferredSize: const Size(double.infinity, 60),
         child: CustomAppBar(
           title: "Blood Test Results",
-          showArrow: fromNew,
           marginTop: 20,
         ),
       ),
@@ -42,36 +40,33 @@ class BloodTestResultView extends StatelessWidget {
               ),
               child: ListView(
                 children: [
-                  fromNew
-                      ? Container(
-                          height: 10,
-                          margin: EdgeInsets.symmetric(horizontal: 30.w),
-                          decoration: BoxDecoration(
-                            color: AppColors.blackColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  fromNew
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconButton(
-                              onPressed: () => Get.back(),
-                              icon: const Icon(
-                                Icons.cancel_outlined,
-                                color: AppColors.blackColor,
-                              ),
-                            ),
-                          ],
-                        )
-                      : const SizedBox.shrink(),
+                  Container(
+                    height: 10,
+                    margin: EdgeInsets.symmetric(horizontal: 30.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.blackColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () => Get.back(),
+                        icon: const Icon(
+                          Icons.cancel_outlined,
+                          color: AppColors.blackColor,
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(height: 04.h),
-                  const Text(
-                    'LDH',
-                    style: TextStyle(
+                  Text(
+                    title,
+                    style: GoogleFonts.inter(
                       fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.blackColor,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -93,7 +88,8 @@ class BloodTestResultView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 24.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -163,7 +159,8 @@ class BloodTestResultView extends StatelessWidget {
                                 }),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 24.0),
                             child: Row(
                               children: [
                                 Text(
