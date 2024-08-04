@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:health_elev8_app/core/service/cache_manager.dart';
 import 'package:health_elev8_app/path_file.dart';
-
-import '../../../utils/share_pref_keys.dart';
+import 'package:health_elev8_app/screens/question_air/question_air_view.dart';
 
 class LoginController extends BaseController {
   final formKey = GlobalKey<FormState>();
@@ -26,18 +24,30 @@ class LoginController extends BaseController {
     password.value = !password.value;
   }
 
-   loginWithFirebase() async {
+  loginWithFirebase() async {
+    final isQuestionAir = await getBool(SharePrefKeys.isQuestionAir);
     if (formKey.currentState!.validate()) {
       try {
         isLoading.value = true;
-        await auth.signInWithEmailAndPassword(
+        await auth
+            .signInWithEmailAndPassword(
           email: emailTEC.text.trim(),
           password: passwordTEC.text.trim(),
-        ).then((UserCredential? user) {
+        )
+            .then((UserCredential? user) {
           if (user != null) {
-            saveBool(SharePrefKeys.isUserLoggedIn,true);
+            saveBool(SharePrefKeys.isUserLoggedIn, true);
             isLoading.value = false;
-            Get.offAllNamed(RoutesName.dashboardBottomNav);
+            if (isQuestionAir != null) {
+              Get.offAllNamed(RoutesName.dashboardBottomNav);
+            } else {
+              if (isQuestionAir == null || isQuestionAir == false) {
+                Get.offAll(
+                  () => const QuestionAirView(),
+                  binding: AppBinding(),
+                );
+              }
+            }
           }
         });
       } catch (e) {

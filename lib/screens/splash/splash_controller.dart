@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:health_elev8_app/utils/share_pref_keys.dart';
 import 'package:health_elev8_app/core/service/cache_manager.dart';
 import 'package:health_elev8_app/path_file.dart';
+
+import '../question_air/question_air_view.dart';
 
 class SplashController extends BaseController with CacheManager {
   @override
@@ -9,17 +10,27 @@ class SplashController extends BaseController with CacheManager {
     getOnBoardingStatus();
     super.onInit();
   }
+
   Future<void> getOnBoardingStatus() async {
     final onBoardingStatus = await getBool(SharePrefKeys.onBoarding);
     final isUserLoggedIn = await getBool(SharePrefKeys.isUserLoggedIn);
+    final isQuestionAir = await getBool(SharePrefKeys.isQuestionAir);
     await Future.delayed(const Duration(seconds: 2));
     if (onBoardingStatus == null) {
       Get.offAllNamed(RoutesName.onBoardingScreen);
     } else if (isUserLoggedIn == true) {
-      Get.offAllNamed(RoutesName.dashboardBottomNav);
+      if (isQuestionAir != null) {
+        Get.offAllNamed(RoutesName.dashboardBottomNav);
+      } else {
+        if (isQuestionAir == null || isQuestionAir == false) {
+          Get.offAll(
+            () => const QuestionAirView(),
+            binding: AppBinding(),
+          );
+        }
+      }
     } else {
       Get.offAllNamed(RoutesName.loginScreen);
     }
   }
-
 }

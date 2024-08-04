@@ -43,7 +43,10 @@ class SignupController extends BaseController {
           'email': emailTEC.text.trim(),
         });
         isLoading.value = false;
-        Get.offAllNamed(RoutesName.dashboardBottomNav);
+        Get.offAll(
+          () => LoginScreen(),
+          binding: AppBinding(),
+        );
       } catch (e) {
         isLoading.value = false;
         Get.snackbar('Error', '$e');

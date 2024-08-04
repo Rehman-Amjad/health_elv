@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../widgets/export.dart';
 
 class SignupScreen extends GetView<SignupController> {
   const SignupScreen({super.key});

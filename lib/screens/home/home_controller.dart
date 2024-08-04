@@ -16,11 +16,11 @@ class HomeController extends BaseController with GetSingleTickerProviderStateMix
 
    initAnimation() {
     _animationController = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
-    animation = Tween<double>(begin: 0, end: 0.75).animate(_animationController)
+    animation = Tween<double>(begin: 0, end: 0.95).animate(_animationController)
       ..addListener(() {
        update();
       });
