@@ -225,7 +225,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   Text(
-                    '${(controller.progress * 100).toInt()}%',
+                    '${(controller.animation.value * 100).toInt()}%',
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,

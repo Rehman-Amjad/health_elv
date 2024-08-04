@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../path_file.dart';
 
 class HomeController extends BaseController with GetSingleTickerProviderStateMixin{
-  double progress = 0.75;
   late AnimationController _animationController;
   late Animation<double> animation;
 
