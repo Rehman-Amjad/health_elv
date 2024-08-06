@@ -9,12 +9,15 @@ class SignupController extends BaseController {
 
   final nameTEC = TextEditingController();
   final emailTEC = TextEditingController();
+  final dobTEC = TextEditingController();
   final passwordTEC = TextEditingController();
   final confirmPasswordTEC = TextEditingController();
   RxBool password = false.obs;
   RxBool passwordConfirm = false.obs;
   RxBool isLoading = false.obs;
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  DateTime dobDateTime=DateTime.now();
 
   onChangePassword() {
     password.value = !password.value;
@@ -41,6 +44,7 @@ class SignupController extends BaseController {
             .set({
           'name': nameTEC.text.trim(),
           'email': emailTEC.text.trim(),
+          'dob': dobTEC.text.trim(),
         });
         isLoading.value = false;
         Get.offAll(

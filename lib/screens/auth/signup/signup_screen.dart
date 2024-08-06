@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:intl/intl.dart';
 
 class SignupScreen extends GetView<SignupController> {
   const SignupScreen({super.key});
@@ -79,6 +80,46 @@ class SignupScreen extends GetView<SignupController> {
                       return "Please enter email address";
                     } else if (!AppUtils.isEmail(value)) {
                       return "Email address is invalid";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 02.h),
+                CustomFormField(
+                  borderColor: Colors.transparent,
+                  tec: controller.dobTEC,
+                  readOnly: true,
+                  hint: 'DOB',
+                  prefixIcon: const Icon(
+                    Icons.calendar_month,
+                    color: AppColors.fieldColor,
+                    size: 24,
+                  ),
+                  fontSize: 14,
+                  textInputAction: TextInputAction.next,
+                  contentPadding: 20,
+                  borderRadius: 18,
+                  onFieldOnTap: () {
+                    DatePickerBdaya.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: DateTime(1900, 3, 5),
+                      maxTime: DateTime.now(),
+                      onChanged: (date) {
+                        debugPrint('change $date');
+                      },
+                      onConfirm: (DateTime date) {
+                        String selectedDate=DateFormat('dd, MMM, yyyy').format(date);
+                        controller.dobTEC.text=selectedDate;
+                        controller.dobDateTime=date;
+                        controller.update();
+                      },
+                      currentTime: DateTime(2000, 3, 5),
+                    );
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter dob";
                     }
                     return null;
                   },

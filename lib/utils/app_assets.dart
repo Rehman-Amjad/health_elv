@@ -11,6 +11,10 @@ class AppAssets {
   static const String onboardingBgImage = '${base}onboarding_bg_image.png';
   static const String femaleDoctorImg = '${base}female_doctor_img.png';
 
+ ///splash
+  static const String splashLogo = '${base}splash/splash_logo.png';
+  static const String splashBg = '${base}splash/splash_bg.png';
+
  ///auth
   static const String icEmail = '${base}auth/ic_email.png';
   static const String icPassword = '${base}auth/ic_password.png';
