@@ -6,10 +6,9 @@ class AppAssets {
   static const String logoImage = '${base}logo.png';
 
   ///on-boarding
-  static const String doctorMaleImg = '${base}doctor_male_img.png';
-  static const String bloodImg = '${base}blood_img.png';
-  static const String onboardingBgImage = '${base}onboarding_bg_image.png';
-  static const String femaleDoctorImg = '${base}female_doctor_img.png';
+  static const String introOne = '${base}onboarding/intro_one.jpeg';
+  static const String introTwo = '${base}onboarding/intro_two.jpeg';
+  static const String introThree = '${base}onboarding/intro_three.jpeg';
 
  ///splash
   static const String splashLogo = '${base}splash/splash_logo.png';

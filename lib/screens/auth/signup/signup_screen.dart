@@ -222,6 +222,7 @@ class SignupScreen extends GetView<SignupController> {
             : CustomButton(
                 radios: 10,
                 text: 'Sign Up',
+          isGradient: true,
                 onTap: () {
                   controller.signUpWithFirebase();
                 },

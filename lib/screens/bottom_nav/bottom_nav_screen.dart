@@ -20,8 +20,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   int _selectedIndex = 0;
   List<Widget> screens = <Widget>[
     const HomeView(),
-    const ReportView(),
     const ResultsView(),
+    const ReportView(),
     const ProfileScreen(),
   ];
 
@@ -59,21 +59,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              AppAssets.reportIcon,
-              color: Colors.grey,
-              width: 25,
-              height: 25,
-            ),
-            label: 'Report',
-            activeIcon: SvgPicture.asset(
-              AppAssets.reportIcon,
-              color: AppColors.primaryColor,
-              width: 25,
-              height: 25,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
               AppAssets.resultIcon,
               color: Colors.grey,
               width: 25,
@@ -82,6 +67,21 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             label: 'Result',
             activeIcon: SvgPicture.asset(
               AppAssets.resultIcon,
+              color: AppColors.primaryColor,
+              width: 25,
+              height: 25,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppAssets.reportIcon,
+              color: Colors.grey,
+              width: 25,
+              height: 25,
+            ),
+            label: 'Tips',
+            activeIcon: SvgPicture.asset(
+              AppAssets.reportIcon,
               color: AppColors.primaryColor,
               width: 25,
               height: 25,

@@ -39,31 +39,6 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                   ),
                   child: ListView(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 110),
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: AppColors.blackColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppText(
-                            text: "Order new blood test",
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          IconButton(
-                            onPressed: () => Get.back(),
-                            icon: const Icon(
-                              Icons.cancel_outlined,
-                              color: AppColors.blackColor,
-                            ),
-                          ),
-                        ],
-                      ),
                       SizedBox(height: 02.h),
                       getTabs(
                         index: controller.index.value,
@@ -96,37 +71,37 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
       children: [
         AppText(
           text: 'Information',
-          fontSize: 10,
+          fontSize: 14,
           color: color1,
           fontWeight: FontWeight.w600,
         ),
         Icon(
           Icons.arrow_forward_ios,
-          size: 12,
+          size: 13,
           color: color1,
         ),
-        SizedBox(width: 01.w),
+        SizedBox(width: 02.w),
         AppText(
           text: 'Shipping',
-          fontSize: 10,
+          fontSize: 14,
           color: color2,
           fontWeight: FontWeight.w600,
         ),
         Icon(
           Icons.arrow_forward_ios,
-          size: 12,
+          size: 13,
           color: color2,
         ),
-        SizedBox(width: 01.w),
+        SizedBox(width: 02.w),
         AppText(
           text: 'Payment',
-          fontSize: 10,
+          fontSize: 14,
           color: color3,
           fontWeight: FontWeight.w600,
         ),
         Icon(
           Icons.arrow_forward_ios,
-          size: 12,
+          size: 13,
           color: color3,
         ),
       ],

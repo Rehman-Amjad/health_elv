@@ -18,6 +18,7 @@ export 'screens/bottom_nav/export.dart';
 export 'screens/health_overview/export.dart';
 
 export 'screens/home/export.dart';
+export 'screens/notifications/export.dart';
 export 'screens/order_new_test/export.dart';
 
 export 'screens/results/export.dart';

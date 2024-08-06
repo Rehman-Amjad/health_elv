@@ -117,7 +117,7 @@ class LoginScreen extends GetView<LoginController> {
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
               decoration: TextDecoration.underline,
-              fontSize: 10,
+              fontSize: 14,
               color: AppColors.blackColor,
             ),
           ),
@@ -139,6 +139,7 @@ class LoginScreen extends GetView<LoginController> {
             : CustomButton(
                 radios: 10,
                 text: 'Log in',
+                isGradient: true,
                 onTap: () {
                   controller.loginWithFirebase();
                 },

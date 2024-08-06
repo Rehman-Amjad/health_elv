@@ -92,7 +92,8 @@ flutter:
     - assets/auth/
     - assets/blood_result/
     - assets/splash/
-  #   - images/a_dot_ham.jpeg
+    - assets/onboarding/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

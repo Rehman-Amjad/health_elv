@@ -3,9 +3,6 @@ import 'package:health_elev8_app/path_file.dart';
 
 import '../../screens/blood_test_result/export.dart';
 import '../../screens/faq/export.dart';
-import '../../screens/home/export.dart';
-import '../../screens/order_new_test/export.dart';
-import '../../screens/profile/export.dart';
 
 class AppBinding extends Bindings {
   @override
@@ -18,6 +15,7 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => BottomNavController());
 
     Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => NotificationController());
     Get.lazyPut(() => HealthOverviewController());
     Get.lazyPut(() => FaqsController());
     Get.lazyPut(() => OrderNewTestController());

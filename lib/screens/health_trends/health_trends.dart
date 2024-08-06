@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/widgets/export.dart';
 import 'package:sizer/sizer.dart';
 
 import 'export.dart';

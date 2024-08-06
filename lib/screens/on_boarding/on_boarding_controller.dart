@@ -15,15 +15,15 @@ class OnBoardingController extends BaseController with CacheManager {
 
   final List<OnBoardingModel> pages = [
     OnBoardingModel(
-      image: AppAssets.doctorMaleImg,
+      image: AppAssets.introOne,
       title: "Book your Doctor any time any where",
     ),
     OnBoardingModel(
-      image: AppAssets.bloodImg,
+      image: AppAssets.introTwo,
       title: "Blood Sample Test any Time any Where",
     ),
     OnBoardingModel(
-      image: AppAssets.femaleDoctorImg,
+      image: AppAssets.introThree,
       title: "Blood Sample Test any Time any Where",
     ),
   ];

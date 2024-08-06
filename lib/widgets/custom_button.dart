@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
   final bool showArrow;
   final bool showSuffix;
   final Color? fontColor;
+  final bool isGradient;
 
   const CustomButton({
     super.key,
@@ -27,6 +28,7 @@ class CustomButton extends StatelessWidget {
     this.showArrow = false,
     this.showSuffix = false,
     this.fontColor,
+    this.isGradient=false,
   });
 
   @override
@@ -41,6 +43,14 @@ class CustomButton extends StatelessWidget {
           color: backgroundColor ?? AppColors.blackColor,
           borderRadius: BorderRadius.circular(radios ?? 16),
           border: Border.all(color: borderColor ?? Colors.transparent),
+          gradient: isGradient?  LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              AppColors.primaryColor.withOpacity(0.90),
+              AppColors.primaryColor.withOpacity(0.70),
+            ],
+          ):null,
         ),
         alignment: Alignment.center,
         child: Row(

@@ -187,8 +187,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: AppColors.primaryColor,
-                  ),
+                    color: AppColors.primaryColor.withOpacity(0.80),                  ),
                   child: ImageHelper(
                     image: AppAssets.icTestTube,
                     imageType: ImageType.asset,
@@ -228,6 +227,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   text: 'Check Result',
                   width: 130,
                   height: 44,
+                  isGradient: true,
                   onTap: () {
                     Get.to(()=>
                       const BloodTestResultView(title: 'Serum LDH'),

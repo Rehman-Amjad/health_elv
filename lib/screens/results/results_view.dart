@@ -168,7 +168,7 @@ class ResultsView extends GetView<ResultsController> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: AppColors.primaryColor,
+                    color: AppColors.primaryColor.withOpacity(0.80),
                   ),
                   child: ImageHelper(
                     image: AppAssets.icTestTube,
@@ -209,9 +209,11 @@ class ResultsView extends GetView<ResultsController> {
                   text: 'Check Result',
                   width: 130,
                   height: 44,
+                  isGradient: true,
                   onTap: () {
                     Get.to(
-                      const ResultDetails(),
+                      const BioMarkerResultView(),
+
                     );
                   },
                   backgroundColor: AppColors.blackColor,

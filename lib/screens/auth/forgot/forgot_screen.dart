@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../widgets/export.dart';
-
 class ForgotScreen extends StatelessWidget {
   const ForgotScreen({super.key});
 
@@ -112,9 +110,11 @@ class ForgotScreen extends StatelessWidget {
               CustomButton(
                 radios: 10,
                 text: 'Confirm Email',
+                isGradient: true,
                 onTap: () {
                   forgotController.resetPassword(
-                      forgotController.forgoPassController.text.trim());
+                    forgotController.forgoPassController.text.trim(),
+                  );
                   // Get.offAllNamed(RoutesName.signupScreen);
                 },
               ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,81 +11,48 @@ class BioMarkerResultView extends GetView<ResultsController> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    return GetBuilder<ResultsController>(initState: (_) {
-      Get.put(ResultsController());
-    }, builder: (_) {
-      return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 60),
-          child: CustomAppBar(
-            title: "Biomarker Trends",
-            marginTop: 20,
-          ),
-        ),
-        body: Column(
-          children: [
-            SizedBox(height: 02.h),
-            Expanded(
-              child: Container(
-                width: size.width,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: const BoxDecoration(
-                  color: AppColors.darkGreyColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: ListView(
-                  children: [
-                    Container(
-                      height: 10,
-                      margin: EdgeInsets.symmetric(horizontal: 30.w),
-                      decoration: BoxDecoration(
-                        color: AppColors.blackColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          onPressed: () => Get.back(),
-                          icon: const Icon(
-                            Icons.cancel_outlined,
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Fasting Blood Sugar\nGlucose',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    getTabs(),
-                    const SizedBox(height: 8),
-                    if (controller.selectedTab.value == "Current")
-                      _getCurrentTab()
-                    else
-                      _getComparisonTab(),
-                  ],
-                ),
-              ),
+    return GetBuilder<ResultsController>(
+      initState: (_) {
+        Get.put(ResultsController());
+      },
+      builder: (_) {
+        return Scaffold(
+          appBar: const PreferredSize(
+            preferredSize: Size(double.infinity, 60),
+            child: CustomAppBar(
+              title: "Biomarker Trends",
+              marginTop: 20,
             ),
-          ],
-        ),
-      );
-    });
+          ),
+          body: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            children: [
+              SizedBox(height: 04.h),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Fasting Blood Sugar Glucose',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+               SizedBox(height: 02.h),
+              getTabs(),
+              const SizedBox(height: 8),
+              if (controller.selectedTab.value == "Current")
+                _getCurrentTab()
+              else
+                _getComparisonTab(),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   getTabs() {
@@ -94,10 +60,9 @@ class BioMarkerResultView extends GetView<ResultsController> {
       width: double.infinity,
       height: 56,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 05),
-      decoration:  BoxDecoration(
-        color: const Color(0xFFE9E6E6),
-        borderRadius: BorderRadius.circular(05)
-      ),
+      decoration: BoxDecoration(
+          color: const Color(0xFFE9E6E6),
+          borderRadius: BorderRadius.circular(05)),
       child: Row(
         children: [
           Expanded(
@@ -351,7 +316,7 @@ class BioMarkerResultView extends GetView<ResultsController> {
                           child: Column(
                             children: [
                               Text(
-                                'No ${index+1}',
+                                'No ${index + 1}',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/widgets/custom_button.dart';
 import 'package:sizer/sizer.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -12,6 +11,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       body: _buildBody(),
     );
   }
@@ -20,10 +20,7 @@ class OnBoardingScreen extends StatelessWidget {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage(AppAssets.onboardingBgImage),
-        )),
+        color: AppColors.whiteColor,
         child: Obx(
           () {
             return Column(

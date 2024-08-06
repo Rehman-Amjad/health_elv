@@ -58,6 +58,7 @@ class VitaminsView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 35),
             child: CustomButton(
               text: 'Learn more',
+              isGradient: true,
               onTap: () {},
               fontSize: 20,
             ),

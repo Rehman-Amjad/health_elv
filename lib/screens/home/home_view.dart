@@ -46,19 +46,19 @@ class HomeView extends GetView<HomeController> {
                 subtitle: 'Recently TSH',
                 imgPath: AppAssets.icBloodTest,
                 onTap: () {
-                  Get.to(()=>
-                    const ResultsView(fromNew: true),
+                  Get.to(
+                    () => const ResultsView(fromNew: true),
                     binding: AppBinding(),
                   );
                 },
               ),
-               HealthCardWidget(
+              HealthCardWidget(
                 title: 'Upcoming Blood Test',
                 subtitle: 'Check your calendar',
                 imgPath: AppAssets.upcommingBloodTestIcon,
-                onTap: (){
-                  Get.to(()=>
-                     UpcomingResultsView(),
+                onTap: () {
+                  Get.to(
+                    () => UpcomingResultsView(),
                     binding: AppBinding(),
                   );
                 },
@@ -115,8 +115,7 @@ class HomeView extends GetView<HomeController> {
       width: Get.width,
       height: 153,
       padding: const EdgeInsets.only(top: 30),
-      decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+      decoration: AppUtils.linearDecoration(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(06),
           bottomRight: Radius.circular(06),
@@ -131,7 +130,7 @@ class HomeView extends GetView<HomeController> {
               color: Colors.white,
             ),
             child: ImageHelper(
-               image: AppAssets.femaleDoctorImg,
+              image: AppAssets.avatar,
               imageType: ImageType.asset,
               boxFit: BoxFit.cover,
               imageShape: ImageShape.rectangle,
@@ -169,17 +168,27 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
           const Spacer(),
-          Container(
-            width: Get.width * 0.14,
-            height: Get.height * 0.06,
-            margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            alignment: Alignment.center,
-            child: SvgPicture.asset(
-              AppAssets.whiteBellIcon,
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const NotificationView(),
+                binding: AppBinding(),
+                transition: Transition.upToDown,
+                duration: const Duration(milliseconds: 500),
+              );
+            },
+            child: Container(
+              width: Get.width * 0.14,
+              height: Get.height * 0.06,
+              margin: const EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(
+                color: AppColors.whiteColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              alignment: Alignment.center,
+              child: SvgPicture.asset(
+                AppAssets.whiteBellIcon,
+              ),
             ),
           )
         ],
@@ -252,7 +261,7 @@ class HomeView extends GetView<HomeController> {
             },
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -286,23 +295,24 @@ class HomeView extends GetView<HomeController> {
                         )),
                       ],
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 15),
                     const AppText(
                       text: 'For quick summary',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0xff090E1D),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: CustomButton(
-                        text: 'Click Here',
-                        onTap: () {
-                          Get.toNamed(RoutesName.healthOverViewRoute);
-                        },
-                        backgroundColor: AppColors.primaryColor,
-                        fontSize: 13,
-                      ),
+                    const SizedBox(height: 10),
+                    CustomButton(
+                      text: 'Click Here',
+                      fontSize: 13,
+                      height: 30,
+                      radios: 06,
+                      isGradient: true,
+                      backgroundColor: AppColors.primaryColor,
+                      onTap: () {
+                        Get.toNamed(RoutesName.healthOverViewRoute);
+                      },
                     ),
                   ],
                 ),
@@ -326,19 +336,20 @@ class HomeView extends GetView<HomeController> {
                   const SizedBox(
                     height: 64,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: CustomButton(
-                      text: 'Flagged Results',
-                      onTap: () {
-                        Get.to(()=>
-                          const BloodTestResultView(),
-                          binding: AppBinding(),
-                        );
-                      },
-                      backgroundColor: AppColors.primaryColor,
-                      fontSize: 13,
-                    ),
+                  const SizedBox(height: 25),
+                  CustomButton(
+                    text: 'Flagged Results',
+                    height: 30,
+                    radios: 06,
+                    isGradient: true,
+                    onTap: () {
+                      Get.to(
+                        () => const BloodTestResultView(),
+                        binding: AppBinding(),
+                      );
+                    },
+                    backgroundColor: AppColors.primaryColor,
+                    fontSize: 13,
                   ),
                 ],
               ),
@@ -447,9 +458,10 @@ class HealthCardWidget extends StatelessWidget {
               width: 60,
               height: 64,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: AppColors.primaryColor,
+              decoration: AppUtils.linearDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5),
+                ),
               ),
               child: imgPath!.contains('.png')
                   ? Image.asset(

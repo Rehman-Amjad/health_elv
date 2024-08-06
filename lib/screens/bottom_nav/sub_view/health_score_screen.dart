@@ -20,8 +20,7 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
           Container(
             width: size.width,
             height: size.height * 0.4,
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor,
+            decoration: AppUtils.linearDecoration(
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -95,9 +94,10 @@ class _HealthScoreScreenState extends State<HealthScoreScreen> {
           Container(
             width: size.width,
             margin: const EdgeInsets.symmetric(horizontal: 06),
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: const BorderRadius.all(Radius.circular(15)),
+            decoration: AppUtils.linearDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
             ),
             padding: const EdgeInsets.all(16),
             child: Column(

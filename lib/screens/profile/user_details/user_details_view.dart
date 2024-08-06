@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
+import 'package:intl/intl.dart';
+
 
 class UserDetailsView extends GetView<SignupController> {
   const UserDetailsView({super.key});
@@ -117,6 +119,57 @@ class UserDetailsView extends GetView<SignupController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
+                      text: 'Date Of Birth',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 02),
+                CustomFormField(
+                  borderColor: Colors.transparent,
+                  tec: controller.dobTEC,
+                  readOnly: true,
+                  hint: 'DOB',
+                  prefixIcon: const Icon(
+                    Icons.calendar_month,
+                    color: AppColors.fieldColor,
+                    size: 24,
+                  ),
+                  fontSize: 14,
+                  textInputAction: TextInputAction.next,
+                  contentPadding: 20,
+                  borderRadius: 18,
+                  onFieldOnTap: () {
+                    DatePickerBdaya.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: DateTime(1900, 3, 5),
+                      maxTime: DateTime.now(),
+                      onChanged: (date) {
+                        debugPrint('change $date');
+                      },
+                      onConfirm: (DateTime date) {
+                        String selectedDate=DateFormat('dd, MMM, yyyy').format(date);
+                        controller.dobTEC.text=selectedDate;
+                        controller.dobDateTime=date;
+                        controller.update();
+                      },
+                      currentTime: DateTime(2000, 3, 5),
+                    );
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter dob";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 02.h),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppText(
                       text: 'Gender',
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -145,7 +198,8 @@ class UserDetailsView extends GetView<SignupController> {
                   },
                 ),
                 SizedBox(height: 02.h),
-                _signUpButton(),
+                _updateButton(),
+                SizedBox(height: 02.h),
               ],
             ),
           ),
@@ -154,7 +208,7 @@ class UserDetailsView extends GetView<SignupController> {
     );
   }
 
-  _signUpButton() {
+  _updateButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Obx(
@@ -166,7 +220,7 @@ class UserDetailsView extends GetView<SignupController> {
               )
             : CustomButton(
                 radios: 10,
-                text: 'Save',
+                text: 'Update',
                 onTap: () {
                   controller.signUpWithFirebase();
                 },

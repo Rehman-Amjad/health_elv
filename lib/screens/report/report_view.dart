@@ -96,17 +96,20 @@ class ReportView extends GetView<ReportController> {
       child: Container(
         width: double.infinity,
         height: Get.height * 0.11,
-        decoration: BoxDecoration(
-          color: AppColors.darkBlueColor,
+        // decoration: BoxDecoration(
+        //   color: AppColors.darkBlueColor,
+        //   borderRadius: BorderRadius.circular(16),
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: Colors.grey.withOpacity(0.5),
+        //       spreadRadius: 1,
+        //       blurRadius: 7,
+        //       offset: const Offset(0, 3), // changes position of shadow
+        //     ),
+        //   ],
+        // ),
+        decoration: AppUtils.linearDecoration(
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
         ),
         padding: const EdgeInsets.all(8),
         child: Row(
@@ -116,7 +119,7 @@ class ReportView extends GetView<ReportController> {
               width: Get.width * 0.2,
               padding: const EdgeInsets.all(22),
               decoration: BoxDecoration(
-                color: AppColors.darkBlueLight.withOpacity(0.6),
+                color: AppColors.primaryColor.withOpacity(0.80),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SvgPicture.asset(imgPath ?? ''),

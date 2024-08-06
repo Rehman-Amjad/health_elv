@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:sizer/sizer.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
   const ProfileScreen({super.key});
@@ -35,20 +35,20 @@ class ProfileScreen extends GetView<ProfileController> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const AppText(
                 text: 'Alex ',
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
               ),
-              const SizedBox(height: 33),
+              const SizedBox(height: 23),
               const Divider(
                 color: AppColors.blackColor,
                 height: 2,
                 indent: 30,
                 endIndent: 30,
               ),
-              const SizedBox(height: 42),
+              const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: ProfileDetailWidget(
@@ -64,37 +64,58 @@ class ProfileScreen extends GetView<ProfileController> {
                   },
                 ),
               ),
-              const SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                child: ProfileDetailWidget(
-                  title: 'Account Setting',
-                  isEnableIcon: true,
-                  iconData: Icons.settings,
-                  onTap: () {
-                    Get.to(
-                      () => const AccountSettingView(),
-                      binding: AppBinding(),
-                      transition: Transition.leftToRightWithFade,
-                      duration: const Duration(milliseconds: 500),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.all(14.0),
-                child: ProfileDetailWidget(
-                  title: 'Refer as Friend',
-                  imgPath: AppAssets.referIcon1,
-                ),
-              ),
-              const SizedBox(height: 25),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14),
                 child: ProfileDetailWidget(
                   title: 'Subscription',
                   imgPath: AppAssets.currencyIcon1,
+                ),
+              ),
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: ProfileDetailWidget(
+                  title: 'Term and Condition',
+                  isEnableIcon: true,
+                  iconData: CupertinoIcons.news,
+                  onTap: () {
+                    Get.to(
+                      () => const PrivacyAndTermsView(
+                        title: 'Term and Condition',
+                        content: AppStrings.termsAndCondition,
+                      ),
+                      binding: AppBinding(),
+                      transition: Transition.rightToLeftWithFade,
+                      duration: const Duration(milliseconds: 500),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: ProfileDetailWidget(
+                  title: 'Data and Privacy',
+                  isEnableIcon: true,
+                  iconData: CupertinoIcons.exclamationmark,
+                  onTap: () {
+                    Get.to(
+                      () => const PrivacyAndTermsView(
+                        title: 'Data and Privacy',
+                        content: AppStrings.termsAndCondition,
+                      ),
+                      binding: AppBinding(),
+                      transition: Transition.rightToLeftWithFade,
+                      duration: const Duration(milliseconds: 500),
+                    );
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(14.0),
+                child: ProfileDetailWidget(
+                  title: 'Refer as Friend',
+                  imgPath: AppAssets.referIcon1,
                 ),
               ),
               const SizedBox(height: 25),
@@ -116,16 +137,6 @@ class ProfileScreen extends GetView<ProfileController> {
         fontWeight: FontWeight.w700,
         fontSize: 24,
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.more_vert,
-            color: Colors.black,
-          ),
-          onPressed: () {},
-          padding: EdgeInsets.zero,
-        )
-      ],
     );
   }
 
@@ -142,8 +153,7 @@ class ProfileScreen extends GetView<ProfileController> {
       child: Container(
         height: 50,
         margin: const EdgeInsets.symmetric(horizontal: 50),
-        decoration: BoxDecoration(
-          color: AppColors.blackColor,
+        decoration: AppUtils.linearDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
         alignment: Alignment.center,
@@ -195,17 +205,29 @@ class ProfileDetailWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              isEnableIcon
-                  ? Icon(
-                      iconData,
-                      color: Colors.grey,
-                    )
-                  : SvgPicture.asset(imgPath ?? ''),
-              SizedBox(width: 2.h),
+              Container(
+                height: 40,
+                width: 40,
+                padding: const EdgeInsets.all(5),
+                decoration: AppUtils.linearDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.only(right: 20),
+                alignment: Alignment.center,
+                child: isEnableIcon
+                    ? Icon(
+                        iconData,
+                        color: Colors.white,
+                      )
+                    : SvgPicture.asset(
+                        imgPath ?? '',
+                        color: AppColors.whiteColor,
+                      ),
+              ),
               AppText(
                 text: title,
                 fontSize: 20,
-                color: AppColors.fieldColor,
+                color: AppColors.blackColor,
                 fontWeight: FontWeight.w600,
               ),
             ],
@@ -213,9 +235,8 @@ class ProfileDetailWidget extends StatelessWidget {
           Container(
             width: 30,
             height: 30,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.blackColor,
+            decoration: AppUtils.linearDecoration(
+              borderRadius: BorderRadius.circular(30),
             ),
             alignment: Alignment.center,
             child: const Icon(
