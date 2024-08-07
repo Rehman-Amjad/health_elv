@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 
-
-class UserDetailsView extends GetView<SignupController> {
+class UserDetailsView extends GetView<ProfileController> {
   const UserDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignupController>(
+    return GetBuilder<ProfileController>(
       initState: (_) {
-        Get.put(SignupController());
+        Get.put(ProfileController());
+        controller.getProfileInfo();
       },
       builder: (_) {
         return Scaffold(
@@ -32,21 +32,24 @@ class UserDetailsView extends GetView<SignupController> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 SizedBox(height: 04.h),
-                Container(
-                  width: 126,
-                  height: 126,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColors.blackColor,
-                      )),
-                  child: ClipOval(
-                    child: ImageHelper(
-                      image: AppAssets.avatar,
-                      imageType: ImageType.asset,
-                    ),
-                  ),
-                ),
+                controller.isLoading.isFalse
+                    ? SizedBox(
+                        width: 126,
+                        height: 126,
+                        child: ClipOval(
+                          child: ImageHelper(
+                            image: controller.userData?.imageUrl ??
+                                AppAssets.avatar,
+                            imageType: controller.userData?.imageUrl != null
+                                ? ImageType.network
+                                : ImageType.asset,
+                            boxBorder: Border.all(
+                              color: AppColors.blackColor,
+                            ),
+                          ),
+                        ),
+                      )
+                    : AppUtils.loader(),
                 const SizedBox(height: 20),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -93,18 +96,19 @@ class UserDetailsView extends GetView<SignupController> {
                 ),
                 const SizedBox(height: 02),
                 CustomFormField(
-                  borderColor: Colors.transparent,
-                  tec: controller.emailTEC,
                   hint: 'Email',
+                  tec: controller.emailTEC,
+                  fontSize: 14,
+                  contentPadding: 20,
+                  borderRadius: 10,
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  borderColor: Colors.transparent,
                   prefixIcon: Image.asset(
                     AppAssets.icEmail,
                     height: 24,
                     width: 24,
                   ),
-                  fontSize: 14,
-                  textInputAction: TextInputAction.next,
-                  contentPadding: 20,
-                  borderRadius: 10,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter email address";
@@ -150,9 +154,10 @@ class UserDetailsView extends GetView<SignupController> {
                         debugPrint('change $date');
                       },
                       onConfirm: (DateTime date) {
-                        String selectedDate=DateFormat('dd, MMM, yyyy').format(date);
-                        controller.dobTEC.text=selectedDate;
-                        controller.dobDateTime=date;
+                        String selectedDate =
+                            DateFormat('dd, MMM, yyyy').format(date);
+                        controller.dobTEC.text = selectedDate;
+                        controller.dobDateTime = date;
                         controller.update();
                       },
                       currentTime: DateTime(2000, 3, 5),
@@ -179,7 +184,7 @@ class UserDetailsView extends GetView<SignupController> {
                 const SizedBox(height: 02),
                 CustomFormField(
                   borderColor: Colors.transparent,
-                  tec: controller.emailTEC,
+                  tec: controller.ganderTEC,
                   hint: 'Gender',
                   prefixIcon: const Icon(
                     CupertinoIcons.person_2_fill,
@@ -211,22 +216,13 @@ class UserDetailsView extends GetView<SignupController> {
   _updateButton(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Obx(
-        () => controller.isLoading.isTrue
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.black,
-                ),
-              )
-            : CustomButton(
-                radios: 10,
-                text: 'Update',
-                onTap: () {
-                  //controller.signUpWithFirebase(context);
-                },
-              ),
+      child: CustomButton(
+        radios: 10,
+        text: 'Update',
+        onTap: () {
+          //controller.signUpWithFirebase(context);
+        },
       ),
     );
   }
-
 }

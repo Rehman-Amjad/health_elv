@@ -20,24 +20,27 @@ class ProfileScreen extends GetView<ProfileController> {
           body: ListView(
             padding: const EdgeInsets.all(8.0),
             children: [
-              Container(
-                width: 126,
-                height: 126,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.blackColor,
-                    )),
-                child: ClipOval(
-                  child: ImageHelper(
-                    image: AppAssets.avatar,
-                    imageType: ImageType.asset,
-                  ),
-                ),
-              ),
+              controller.isLoading.isFalse
+                  ? SizedBox(
+                      width: 126,
+                      height: 126,
+                      child: ClipOval(
+                        child: ImageHelper(
+                          image:
+                              controller.userData?.imageUrl ?? AppAssets.avatar,
+                          imageType: controller.userData?.imageUrl != null
+                              ? ImageType.network
+                              : ImageType.asset,
+                          boxBorder: Border.all(
+                            color: AppColors.blackColor,
+                          ),
+                        ),
+                      ),
+                    )
+                  : AppUtils.loader(),
               const SizedBox(height: 10),
-              const AppText(
-                text: 'Alex ',
+              AppText(
+                text: controller.userData?.fullName ?? "",
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
               ),

@@ -31,21 +31,27 @@ class AppUtils {
     return (pickedFile != null) ? File(pickedFile.path) : null;
   }
 
-   showLoading(context) {
-     return showDialog(
-       barrierDismissible: true,
-       context: context,
-       builder: (dialogContext) {
-         return Center(
-           child: CircularProgressIndicator(
-             color: AppColors.primaryColor,
-           ),
-         );
-       },
-     );
+ static loader() => Center(
+        child: CircularProgressIndicator(
+          color: AppColors.primaryColor,
+        ),
+      );
+
+  showLoading(context) {
+    return showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (dialogContext) {
+        return Center(
+          child: CircularProgressIndicator(
+            color: AppColors.primaryColor,
+          ),
+        );
+      },
+    );
   }
 
-   dismissLoading() {
+  dismissLoading() {
     Get.back();
   }
 
