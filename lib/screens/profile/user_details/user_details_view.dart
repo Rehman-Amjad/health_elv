@@ -198,7 +198,7 @@ class UserDetailsView extends GetView<SignupController> {
                   },
                 ),
                 SizedBox(height: 02.h),
-                _updateButton(),
+                _updateButton(context),
                 SizedBox(height: 02.h),
               ],
             ),
@@ -208,7 +208,7 @@ class UserDetailsView extends GetView<SignupController> {
     );
   }
 
-  _updateButton() {
+  _updateButton(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Obx(
@@ -222,7 +222,7 @@ class UserDetailsView extends GetView<SignupController> {
                 radios: 10,
                 text: 'Update',
                 onTap: () {
-                  controller.signUpWithFirebase();
+                  //controller.signUpWithFirebase(context);
                 },
               ),
       ),

@@ -31,7 +31,7 @@ class AppUtils {
     return (pickedFile != null) ? File(pickedFile.path) : null;
   }
 
-  static dynamic showLoading(context) {
+   showLoading(context) {
     return showDialog(
       barrierDismissible: true,
       context: context,
@@ -45,7 +45,7 @@ class AppUtils {
     );
   }
 
-  static dismissLoading() {
+   dismissLoading() {
     Get.back();
   }
 

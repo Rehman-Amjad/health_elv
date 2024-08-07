@@ -198,7 +198,7 @@ class SignupScreen extends GetView<SignupController> {
                   ),
                 ),
                 SizedBox(height: 4.h),
-                _signUpButton(),
+                _signUpButton(context),
                 SizedBox(height: 8.h),
                 _haveAccount(),
               ],
@@ -209,7 +209,7 @@ class SignupScreen extends GetView<SignupController> {
     );
   }
 
-  _signUpButton() {
+  _signUpButton(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Obx(
@@ -224,7 +224,7 @@ class SignupScreen extends GetView<SignupController> {
                 text: 'Sign Up',
           isGradient: true,
                 onTap: () {
-                  controller.signUpWithFirebase();
+                  controller.signUpWithFirebase(context);
                 },
               ),
       ),

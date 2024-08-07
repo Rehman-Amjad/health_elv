@@ -1,29 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 import '../../path_file.dart';
 
 class AuthService with CacheManager {
 
   final firebaseAuth=FirebaseAuth.instance;
+  final firebaseStore=FirebaseFirestore.instance;
 
-  Future<bool> signInWithEmailAndPassword({context, email, password}) async {
-    bool isUserFound = false;
+  Future<void> signInWithEmailAndPassword({required UserData userData}) async {
+
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+      final userCredential =
+      await firebaseAuth.createUserWithEmailAndPassword(
+        email: userData.email!,
+        password: userData.password!,
+      );
+      await firebaseStore
           .collection(Collection.user.name)
-          .where('email', isEqualTo: email)
-          .where('password', isEqualTo: password)
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        saveString(SharePrefKeys.uidKey,querySnapshot.docs.first.id);
-        isUserFound = true;
-      }
+          .doc(userCredential.user?.uid)
+          .set(userData.toMap());
+      Get.offAll(
+            () => const LoginScreen(),
+        binding: AppBinding(),
+      );
     } catch (e) {
-      AppUtils().showToast(text: "Error signing in: $e");
+      AppUtils().showToast(text: 'Error $e');
     }
-    return isUserFound;
+
   }
 
   Future<bool> isPhoneNoExists({context, phoneNumber}) async {
