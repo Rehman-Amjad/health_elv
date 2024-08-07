@@ -59,11 +59,6 @@ class LoginScreen extends GetView<LoginController> {
                   () => CustomFormField(
                     showPassword: true,
                     obscureText: controller.password.value,
-                    prefixIcon: Image.asset(
-                      AppAssets.icPassword,
-                      height: 24,
-                      width: 24,
-                    ),
                     borderColor: Colors.transparent,
                     tec: controller.passwordTEC,
                     hint: 'Password',
@@ -71,15 +66,25 @@ class LoginScreen extends GetView<LoginController> {
                     contentPadding: 20,
                     textInputAction: TextInputAction.done,
                     borderRadius: 18,
+                    prefixIcon: Image.asset(
+                      AppAssets.icPassword,
+                      height: 24,
+                      width: 24,
+                    ),
                     suffixIcon: IconButton(
                       highlightColor: Colors.transparent,
                       padding: const EdgeInsets.only(right: 10),
-                      icon: const Icon(
-                        Icons.visibility,
+                      icon:  Icon(
+                        controller.password.isTrue
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: AppColors.greyColor,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.password.value = !controller.password.value;
+                        controller.update();
+                      },
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
@@ -93,8 +98,8 @@ class LoginScreen extends GetView<LoginController> {
                 ),
                 _forgotPassword(),
                 SizedBox(height: 06.h),
-                _signUpButton(),
-                SizedBox(height: 08.h),
+                _signUpButton(context),
+                SizedBox(height: 06.h),
                 _haveAccount(),
               ],
             ),
@@ -126,24 +131,16 @@ class LoginScreen extends GetView<LoginController> {
     );
   }
 
-  _signUpButton() {
+  _signUpButton(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Obx(
-        () => controller.isLoading.isTrue
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.blackColor,
-                ),
-              )
-            : CustomButton(
-                radios: 10,
-                text: 'Log in',
-                isGradient: true,
-                onTap: () {
-                  controller.loginWithFirebase();
-                },
-              ),
+      child: CustomButton(
+        radios: 10,
+        text: 'Log in',
+        isGradient: true,
+        onTap: () {
+          controller.loginWithFirebase(context);
+        },
       ),
     );
   }
@@ -157,7 +154,7 @@ class LoginScreen extends GetView<LoginController> {
           style: GoogleFonts.inter(
             color: AppColors.fieldColor,
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
         const SizedBox(width: 10),
@@ -170,7 +167,7 @@ class LoginScreen extends GetView<LoginController> {
             style: GoogleFonts.inter(
               color: AppColors.blackColor,
               fontWeight: FontWeight.w500,
-              fontSize: 20,
+              fontSize: 16,
             ),
           ),
         ),

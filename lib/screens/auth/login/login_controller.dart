@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/question_air/question_air_view.dart';
 
 class LoginController extends BaseController {
   final formKey = GlobalKey<FormState>();
@@ -11,24 +10,18 @@ class LoginController extends BaseController {
   final passwordTEC = TextEditingController();
 
   RxBool password = false.obs;
-  RxBool isLoading = false.obs;
   final auth = FirebaseAuth.instance;
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
   }
 
-  onChangePassword() {
-    password.value = !password.value;
-  }
-
-  loginWithFirebase() async {
+  loginWithFirebase(context) async {
     final isQuestionAir = await getBool(SharePrefKeys.isQuestionAir);
     if (formKey.currentState!.validate()) {
       try {
-        isLoading.value = true;
+        AppUtils().showLoading(context);
         await auth
             .signInWithEmailAndPassword(
           email: emailTEC.text.trim(),
@@ -37,7 +30,7 @@ class LoginController extends BaseController {
             .then((UserCredential? user) {
           if (user != null) {
             saveBool(SharePrefKeys.isUserLoggedIn, true);
-            isLoading.value = false;
+            AppUtils().dismissLoading();
             if (isQuestionAir != null) {
               Get.offAllNamed(RoutesName.dashboardBottomNav);
             } else {
@@ -51,9 +44,11 @@ class LoginController extends BaseController {
           }
         });
       } catch (e) {
-        isLoading.value = false;
-        Get.snackbar('Error', 'Please try again later',
-            backgroundColor: Colors.red);
+        AppUtils().dismissLoading();
+        AppUtils().showToast(
+          text: 'Please try again later',
+          bgColor: Colors.red,
+        );
       }
     }
   }

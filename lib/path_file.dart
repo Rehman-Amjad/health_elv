@@ -27,6 +27,8 @@ export 'screens/report/export.dart';
 
 export 'screens/profile/export.dart';
 
+export 'screens/question_air/export.dart';
+
 ///utils
 export 'utils/export.dart';
 

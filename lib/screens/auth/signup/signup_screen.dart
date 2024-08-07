@@ -3,8 +3,8 @@ import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 
 class SignupScreen extends GetView<SignupController> {
   const SignupScreen({super.key});
@@ -66,15 +66,16 @@ class SignupScreen extends GetView<SignupController> {
                   borderColor: Colors.transparent,
                   tec: controller.emailTEC,
                   hint: 'Email',
+                  contentPadding: 20,
+                  borderRadius: 18,
+                  fontSize: 14,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
                   prefixIcon: Image.asset(
                     AppAssets.icEmail,
                     height: 24,
                     width: 24,
                   ),
-                  fontSize: 14,
-                  textInputAction: TextInputAction.next,
-                  contentPadding: 20,
-                  borderRadius: 18,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter email address";
@@ -109,9 +110,10 @@ class SignupScreen extends GetView<SignupController> {
                         debugPrint('change $date');
                       },
                       onConfirm: (DateTime date) {
-                        String selectedDate=DateFormat('dd, MMM, yyyy').format(date);
-                        controller.dobTEC.text=selectedDate;
-                        controller.dobDateTime=date;
+                        String selectedDate =
+                            DateFormat('dd, MMM, yyyy').format(date);
+                        controller.dobTEC.text = selectedDate;
+                        controller.dobDateTime = date;
                         controller.update();
                       },
                       currentTime: DateTime(2000, 3, 5),
@@ -129,27 +131,32 @@ class SignupScreen extends GetView<SignupController> {
                   () => CustomFormField(
                     showPassword: true,
                     obscureText: controller.password.value,
+                    contentPadding: 20,
+                    borderRadius: 18,
+                    borderColor: Colors.transparent,
+                    tec: controller.passwordTEC,
+                    hint: 'Password',
+                    fontSize: 14,
+                    textInputAction: TextInputAction.next,
                     prefixIcon: Image.asset(
                       AppAssets.icPassword,
                       height: 24,
                       width: 24,
                     ),
-                    borderColor: Colors.transparent,
-                    tec: controller.passwordTEC,
-                    hint: 'Password',
-                    fontSize: 14,
-                    textInputAction: TextInputAction.done,
-                    contentPadding: 20,
-                    borderRadius: 18,
                     suffixIcon: IconButton(
                       highlightColor: Colors.transparent,
                       padding: const EdgeInsets.only(right: 10),
-                      icon: const Icon(
-                        Icons.visibility,
+                      icon: Icon(
+                        controller.password.isTrue
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: AppColors.greyColor,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.password.value = !controller.password.value;
+                        controller.update();
+                      },
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
@@ -181,12 +188,18 @@ class SignupScreen extends GetView<SignupController> {
                     suffixIcon: IconButton(
                       highlightColor: Colors.transparent,
                       padding: const EdgeInsets.only(right: 10),
-                      icon: const Icon(
-                        Icons.visibility,
+                      icon:  Icon(
+                        controller.passwordConfirm.isTrue
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: AppColors.greyColor,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.passwordConfirm.value =
+                            !controller.passwordConfirm.value;
+                        controller.update();
+                      },
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
@@ -199,7 +212,7 @@ class SignupScreen extends GetView<SignupController> {
                 ),
                 SizedBox(height: 4.h),
                 _signUpButton(context),
-                SizedBox(height: 8.h),
+                SizedBox(height: 6.h),
                 _haveAccount(),
               ],
             ),
@@ -209,7 +222,7 @@ class SignupScreen extends GetView<SignupController> {
     );
   }
 
-  _signUpButton(context) {
+  _signUpButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Obx(
@@ -222,7 +235,7 @@ class SignupScreen extends GetView<SignupController> {
             : CustomButton(
                 radios: 10,
                 text: 'Sign Up',
-          isGradient: true,
+                isGradient: true,
                 onTap: () {
                   controller.signUpWithFirebase(context);
                 },
@@ -240,7 +253,7 @@ class SignupScreen extends GetView<SignupController> {
           style: GoogleFonts.inter(
             color: AppColors.fieldColor,
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
         const SizedBox(width: 10),
@@ -253,7 +266,7 @@ class SignupScreen extends GetView<SignupController> {
             style: GoogleFonts.inter(
               color: AppColors.blackColor,
               fontWeight: FontWeight.w500,
-              fontSize: 20,
+              fontSize: 18,
             ),
           ),
         ),

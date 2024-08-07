@@ -32,17 +32,17 @@ class AppUtils {
   }
 
    showLoading(context) {
-    return showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (dialogContext) {
-        return const Center(
-          child: CircularProgressIndicator(
-              // color: AppColors.primaryAppColor,
-              ),
-        );
-      },
-    );
+     return showDialog(
+       barrierDismissible: true,
+       context: context,
+       builder: (dialogContext) {
+         return Center(
+           child: CircularProgressIndicator(
+             color: AppColors.primaryColor,
+           ),
+         );
+       },
+     );
   }
 
    dismissLoading() {

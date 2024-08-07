@@ -28,7 +28,6 @@ class AuthService with CacheManager {
     } catch (e) {
       AppUtils().showToast(text: 'Error $e');
     }
-
   }
 
   Future<bool> isPhoneNoExists({context, phoneNumber}) async {

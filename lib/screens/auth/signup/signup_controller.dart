@@ -24,23 +24,16 @@ class SignupController extends BaseController {
     super.onInit();
   }
 
-  onChangePassword() {
-    password.value = !password.value;
-  }
-
-  onChangePasswordConfirm() {
-    passwordConfirm.value = !passwordConfirm.value;
-  }
-
-  signUpWithFirebase(context) async {
+  signUpWithFirebase(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       AppUtils().showLoading(context);
       UserData userData = UserData(
+        fullName: nameTEC.text.trim(),
         email: emailTEC.text.trim(),
         password: passwordTEC.text.trim(),
         dob: dobTEC.text.trim(),
       );
-      authService.signInWithEmailAndPassword(
+     await authService.signInWithEmailAndPassword(
         userData: userData,
       );
       AppUtils().dismissLoading();
