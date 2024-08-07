@@ -7,18 +7,18 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppUtils {
-
- static  linearDecoration({BorderRadiusGeometry? borderRadius}) =>  BoxDecoration(
-    borderRadius:borderRadius,
-    gradient:  LinearGradient(
-      begin: Alignment.topRight,
-      end: Alignment.bottomLeft,
-      colors: [
-        AppColors.primaryColor.withOpacity(0.90),
-        AppColors.primaryColor.withOpacity(0.50),
-      ],
-    ),
-  );
+  static linearDecoration({BorderRadiusGeometry? borderRadius}) =>
+      BoxDecoration(
+        borderRadius: borderRadius,
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            AppColors.primaryColor.withOpacity(0.90),
+            AppColors.primaryColor.withOpacity(0.50),
+          ],
+        ),
+      );
 
   static bool isEmail(email) {
     return RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
@@ -48,14 +48,16 @@ class AppUtils {
   static dismissLoading() {
     Get.back();
   }
-  showToast(Color color, String msg) {
+
+  showToast({String? text, Color? bgColor, Color? txtColor}) {
     Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.black45,
-        textColor: Colors.white,
-        fontSize: 14.0);
+      msg: text!,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 3,
+      backgroundColor: bgColor ?? Colors.black45,
+      textColor: txtColor ?? Colors.white,
+      fontSize: 14.0,
+    );
   }
 }
