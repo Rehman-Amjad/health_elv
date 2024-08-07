@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
 import '../../screens/faq/export.dart';
-import '../../screens/health_trends/export.dart';
 
 class AppRoutes {
   static final routes = [
@@ -43,11 +42,6 @@ class AppRoutes {
       binding: AppBinding(),
     ),
     GetPage(
-      name: RoutesName.healthOverViewRoute,
-      page: () => const HealthOverview(),
-      binding: AppBinding(),
-    ),
-    GetPage(
       name: RoutesName.reportRoute,
       page: () => const ReportView(),
       binding: AppBinding(),
@@ -59,14 +53,6 @@ class AppRoutes {
     GetPage(
       name: RoutesName.healthScoreRoute,
       page: () => const HealthScoreScreen(),
-    ),
-    GetPage(
-      name: RoutesName.healthTrendsRoute,
-      page: () => const HealthTrends(),
-    ),
-    GetPage(
-      name: RoutesName.healthTrendsResultRoute,
-      page: () => const HealthTrendDetailsScreen(),
     ),
     GetPage(
       name: RoutesName.faqRoute,

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/widgets/export.dart';
-
-import 'export.dart';
 
 class HealthOverview extends GetView<HealthOverviewController> {
   const HealthOverview({super.key});

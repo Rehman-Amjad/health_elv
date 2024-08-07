@@ -68,7 +68,10 @@ class HomeView extends GetView<HomeController> {
                 subtitle: 'Trends for biomarkers',
                 imgPath: AppAssets.homeUpCommingBldTestIcon,
                 onTap: () {
-                  Get.toNamed(RoutesName.healthTrendsRoute);
+                  Get.to(
+                    () => const HealthTrendsView(),
+                    binding: AppBinding(),
+                  );
                 },
               ),
               const Align(
@@ -114,7 +117,7 @@ class HomeView extends GetView<HomeController> {
     return Container(
       width: Get.width,
       height: 153,
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(left: 10, top: 30),
       decoration: AppUtils.linearDecoration(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(06),
@@ -123,50 +126,54 @@ class HomeView extends GetView<HomeController> {
       ),
       child: Row(
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: ImageHelper(
-              image: AppAssets.avatar,
-              imageType: ImageType.asset,
-              boxFit: BoxFit.cover,
-              imageShape: ImageShape.rectangle,
-              width: 56,
-              height: 56,
-            ),
-          ),
-          SizedBox(width: 1.h),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const AppText(
-                text: 'Alexa',
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: AppColors.whiteColor,
-              ),
-              const SizedBox(
-                height: 1,
-              ),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppAssets.greenAddIcon,
-                  ),
-                  AppText(
-                    text: ' %75',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.greenColor,
-                  ),
-                ],
-              )
-            ],
-          ),
+          controller.isLoading.isFalse
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: ImageHelper(
+                        image:
+                            controller.userData?.imageUrl ?? AppAssets.avatar,
+                        imageType: controller.userData?.imageUrl != null
+                            ? ImageType.network
+                            : ImageType.asset,
+                        boxFit: BoxFit.contain,
+                        imageShape: ImageShape.rectangle,
+                        width: 56,
+                        height: 56,
+                      ),
+                    ),
+                    SizedBox(width: 1.h),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                          text: controller.userData?.fullName ?? "",
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.whiteColor,
+                        ),
+                        const SizedBox(height: 1),
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              AppAssets.greenAddIcon,
+                            ),
+                            AppText(
+                              text: ' %75',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.greenColor,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                )
+              : AppUtils.loader(),
           const Spacer(),
           GestureDetector(
             onTap: () {
@@ -255,67 +262,65 @@ class HomeView extends GetView<HomeController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: GestureDetector(
-            onTap: () {
-              Get.toNamed(RoutesName.healthOverViewRoute);
-            },
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 64,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.primaryColor.withOpacity(0.1),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
-                          child: SvgPicture.asset(
-                            AppAssets.walkingPersonDIcon,
-                            color: AppColors.primaryColor,
-                            width: 25,
-                            height: 25,
-                          ),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 64,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.primaryColor.withOpacity(0.1),
                         ),
-                        const SizedBox(width: 5),
-                        const Expanded(
-                            child: AppText(
-                          text: 'Quick\nHealth\nOverview',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Color(0xff5D6A85),
-                          softWrap: true,
-                          textAlign: TextAlign.start,
-                        )),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    const AppText(
-                      text: 'For quick summary',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff090E1D),
-                    ),
-                    const SizedBox(height: 10),
-                    CustomButton(
-                      text: 'Click Here',
-                      fontSize: 13,
-                      height: 30,
-                      radios: 06,
-                      isGradient: true,
-                      backgroundColor: AppColors.primaryColor,
-                      onTap: () {
-                        Get.toNamed(RoutesName.healthOverViewRoute);
-                      },
-                    ),
-                  ],
-                ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 15),
+                        child: SvgPicture.asset(
+                          AppAssets.walkingPersonDIcon,
+                          color: AppColors.primaryColor,
+                          width: 25,
+                          height: 25,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      const Expanded(
+                          child: AppText(
+                        text: 'Quick\nHealth\nOverview',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: Color(0xff5D6A85),
+                        softWrap: true,
+                        textAlign: TextAlign.start,
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  const AppText(
+                    text: 'For quick summary',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff090E1D),
+                  ),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    text: 'Click Here',
+                    fontSize: 13,
+                    height: 30,
+                    radios: 06,
+                    isGradient: true,
+                    backgroundColor: AppColors.primaryColor,
+                    onTap: () {
+                      Get.to(
+                        () => const HealthOverview(),
+                        binding: AppBinding(),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),

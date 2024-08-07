@@ -11,11 +11,8 @@ class RoutesName {
 
   ///bottom nav
   static const String dashboardBottomNav = "/dashboardBottomNavigation";
-  static const String healthOverViewRoute = "/healthOverViewRoute";
   static const String nutrationTipsRoute = "/nutrationTipsRoute";
   static const String healthScoreRoute = "/healthScoreRoute";
-  static const String healthTrendsRoute = "/healthTrendsRoute";
-  static const String healthTrendsResultRoute = "/healthTrendsResultRoute";
   static const String faqRoute = "/faqRoute";
 
 
