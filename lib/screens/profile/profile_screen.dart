@@ -144,7 +144,7 @@ class ProfileScreen extends GetView<ProfileController> {
     return GestureDetector(
       onTap: () {
         controller.firebase.signOut().then((onValue) {
-          controller.clearPref();
+          controller.saveBool(SharePrefKeys.isUserLoggedIn, false);
           Get.offAllNamed(
             RoutesName.loginScreen,
           );

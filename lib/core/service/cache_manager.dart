@@ -39,8 +39,3 @@ mixin CacheManager {
     sp.clear();
   }
 }
-
-enum CMEnum {
-  token,
-  role,
-}

@@ -58,6 +58,7 @@ dependencies:
   gradient_slider: ^1.0.2
   fl_chart: ^0.68.0
   syncfusion_flutter_calendar: ^26.2.7
+  rename: ^3.0.2
 
 
 

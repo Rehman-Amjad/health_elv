@@ -108,6 +108,7 @@ class _QuestionAirViewState extends State<QuestionAirView> with CacheManager {
           CustomButton(
             text: "Submit",
             radios: 06,
+            isGradient:true,
             onTap: () {
               _showResults();
             },
@@ -278,6 +279,7 @@ class _QuestionAirViewState extends State<QuestionAirView> with CacheManager {
             CustomButton(
               text: "Continue",
               radios: 06,
+              isGradient:true,
               onTap: () {
                 saveBool(SharePrefKeys.isQuestionAir, true);
                 Get.offAllNamed(RoutesName.dashboardBottomNav);

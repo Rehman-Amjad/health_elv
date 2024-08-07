@@ -27,7 +27,7 @@ class SignupScreen extends GetView<SignupController> {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
-                SizedBox(height: 08.h),
+                SizedBox(height: 05.h),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

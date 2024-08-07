@@ -19,21 +19,20 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.only(left: 10.0,top: marginTop),
+        padding: EdgeInsets.only(left: 10.0, top: marginTop),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             showArrow
-                ? GestureDetector(
-                    child: ImageHelper(
-                      image: AppAssets.backIcon,
-                      imageType: ImageType.asset,
-                      height: 24,
-                      width: 24,
-                    ),
-                    onTap: () => Get.back(),
-                  )
-                : const SizedBox.shrink(),
+                ? IconButton(
+              onPressed: () => Get.back(),
+              icon: ImageHelper(
+                image: AppAssets.backIcon,
+                imageType: ImageType.asset,
+                height: 24,
+                width: 24,
+              ),
+            ) : const SizedBox.shrink(),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

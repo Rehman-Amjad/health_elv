@@ -106,6 +106,7 @@ class OnBoardingScreen extends StatelessWidget {
     return CustomButton(
       radios: 30,
       width: 70.w,
+      isGradient:true,
       text: AppStrings.getStarted,
       onTap: () {
         Get.offAllNamed(RoutesName.loginScreen);
