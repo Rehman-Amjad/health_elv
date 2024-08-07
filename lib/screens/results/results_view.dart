@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class ResultsView extends GetView<ResultsController> {
@@ -18,7 +20,7 @@ class ResultsView extends GetView<ResultsController> {
       initState: (_) {
         Get.put(ResultsController());
       },
-      builder: (context) {
+      builder: (_) {
         return Scaffold(
           appBar: PreferredSize(
             preferredSize: const Size(double.infinity, 60),
@@ -61,7 +63,7 @@ class ResultsView extends GetView<ResultsController> {
                 ],
               ),
               SizedBox(height: 03.h),
-              getFilterButtons(),
+              getFilterButtons(context),
               const SizedBox(height: 16),
               ListView.builder(
                 itemCount: 10,
@@ -78,27 +80,38 @@ class ResultsView extends GetView<ResultsController> {
     );
   }
 
-  getFilterButtons() {
+  getFilterButtons(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           flex: 1,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              controller.isShowFirst.value = true;
+              controller.selectedDate = "";
+              controller.update();
+            },
             child: Container(
               width: Get.width,
               height: Get.height * 0.05,
               decoration: BoxDecoration(
-                  border: Border.all(
-                color: AppColors.blackColor,
-              )),
+                color: controller.isShowFirst.isTrue
+                    ? AppColors.blackColor
+                    : AppColors.whiteColor,
+                border: Border.all(
+                  color: AppColors.blackColor,
+                ),
+              ),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: const AppText(
+              child:  AppText(
                 text: 'Show Latest First',
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
+                color: controller.isShowFirst.isTrue
+                    ? AppColors.whiteColor
+                    : AppColors.blackColor,
               ),
             ),
           ),
@@ -108,18 +121,23 @@ class ResultsView extends GetView<ResultsController> {
           flex: 1,
           child: GestureDetector(
             onTap: () {
-              showDatePicker(
-                context: Get.context!,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2025),
-              ).then((value) {
-                if (value != null) {
-                  String date = value.toString().split(' ')[0];
-                  controller.selectedDate = date;
+              DatePickerBdaya.showDatePicker(
+                context,
+                showTitleActions: true,
+                minTime: DateTime(1900, 3, 5),
+                maxTime: DateTime(2500, 3, 5),
+                onChanged: (date) {
+                  debugPrint('change $date');
+                },
+                onConfirm: (DateTime date) {
+                  String selectedDate =
+                      DateFormat('dd, MMM, yyyy').format(date);
+                  controller.selectedDate = selectedDate;
+                  controller.isShowFirst.value = false;
                   controller.update();
-                }
-              });
+                },
+                currentTime: DateTime.now(),
+              );
             },
             child: Container(
               width: Get.width,
@@ -211,9 +229,10 @@ class ResultsView extends GetView<ResultsController> {
                   height: 44,
                   isGradient: true,
                   onTap: () {
+                    controller.selectedTab='Current'.obs;
                     Get.to(
                       const BioMarkerResultView(),
-
+                      binding: AppBinding(),
                     );
                   },
                   backgroundColor: AppColors.blackColor,
