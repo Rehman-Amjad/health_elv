@@ -19,6 +19,7 @@ class ResultsView extends GetView<ResultsController> {
     return GetBuilder<ResultsController>(
       initState: (_) {
         Get.put(ResultsController());
+        controller.getBloodTestResults();
       },
       builder: (_) {
         return Scaffold(
@@ -65,14 +66,19 @@ class ResultsView extends GetView<ResultsController> {
               SizedBox(height: 03.h),
               getFilterButtons(context),
               const SizedBox(height: 16),
-              ListView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return resultItem();
-                },
-              ),
+              controller.isLoading.isFalse
+                  ? ListView.builder(
+                      itemCount: controller.bloodTestResults.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return resultItem(controller.bloodTestResults[index]);
+                      },
+                    )
+                  : SizedBox(
+                      height: Get.height * 0.5,
+                      child: AppUtils.loader(),
+                    ),
             ],
           ),
         );
@@ -105,7 +111,7 @@ class ResultsView extends GetView<ResultsController> {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child:  AppText(
+              child: AppText(
                 text: 'Show Latest First',
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -168,7 +174,7 @@ class ResultsView extends GetView<ResultsController> {
     );
   }
 
-  resultItem() {
+  resultItem(BloodTestResults item) {
     return Card(
       child: Container(
         height: 140,
@@ -197,17 +203,17 @@ class ResultsView extends GetView<ResultsController> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: "Elev8 Essential",
+                      text: item.title,
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: "For Cardiovascular Function Test",
+                      text: item.subTitle,
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     )
@@ -218,8 +224,8 @@ class ResultsView extends GetView<ResultsController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(
-                  text: "26 June 2024 - 4 PM",
+                AppText(
+                  text: item.testDate ?? "",
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -229,10 +235,10 @@ class ResultsView extends GetView<ResultsController> {
                   height: 44,
                   isGradient: true,
                   onTap: () {
-                    controller.selectedTab='Current'.obs;
                     Get.to(
                       const BioMarkerResultView(),
                       binding: AppBinding(),
+                      arguments: item,
                     );
                   },
                   backgroundColor: AppColors.blackColor,

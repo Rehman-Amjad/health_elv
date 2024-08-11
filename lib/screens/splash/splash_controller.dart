@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:health_elev8_app/core/service/cache_manager.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../question_air/question_air_view.dart';
 
 class SplashController extends BaseController with CacheManager {
   @override

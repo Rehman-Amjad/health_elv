@@ -32,80 +32,92 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 02.h),
               _quickSummary(),
               SizedBox(height: 02.h),
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: AppText(
-                    text: 'Health Hub',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.blackColor,
-                  )),
-              SizedBox(height: 01.h),
-              HealthCardWidget(
-                title: 'Blood Test Results',
-                subtitle: 'Recently TSH',
-                imgPath: AppAssets.icBloodTest,
-                onTap: () {
-                  Get.to(
-                    () => const ResultsView(fromNew: true),
-                    binding: AppBinding(),
-                  );
-                },
-              ),
-              HealthCardWidget(
-                title: 'Upcoming Blood Test',
-                subtitle: 'Check your calendar',
-                imgPath: AppAssets.upcommingBloodTestIcon,
-                onTap: () {
-                  Get.to(
-                    () => UpcomingResultsView(),
-                    binding: AppBinding(),
-                  );
-                },
-              ),
-              HealthCardWidget(
-                title: 'Health ',
-                subtitle: 'Trends for biomarkers',
-                imgPath: AppAssets.homeUpCommingBldTestIcon,
-                onTap: () {
-                  Get.to(
-                    () => const HealthTrendsView(),
-                    binding: AppBinding(),
-                  );
-                },
-              ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: AppText(
-                  text: 'Others',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-              FaqWidget(
-                title: 'FAQs',
-                onTap: () {
-                  Get.toNamed(RoutesName.faqRoute);
-                },
-              ),
-              const SizedBox(height: 5),
-              FaqWidget(
-                title: 'Order new test',
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    backgroundColor: AppColors.whiteColor,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16.0),
+                child: Column(
+                  children: [
+                    const Align(
+                        alignment: Alignment.centerLeft,
+                        child: AppText(
+                          text: 'Health Hub',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.blackColor,
+                        )),
+                    SizedBox(height: 01.h),
+                    HealthCardWidget(
+                      title: 'Blood Test Results',
+                      subtitle: 'Recently TSH',
+                      imgPath: AppAssets.icBloodTest,
+                      onTap: () {
+                        Get.to(
+                              () => const ResultsView(fromNew: true),
+                          binding: AppBinding(),
+                        );
+                      },
+                    ),
+                    HealthCardWidget(
+                      title: 'Upcoming Blood Test',
+                      subtitle: 'Check your calendar',
+                      imgPath: AppAssets.upcommingBloodTestIcon,
+                      onTap: () {
+                        Get.to(
+                              () => UpcomingResultsView(),
+                          binding: AppBinding(),
+                        );
+                      },
+                    ),
+                    HealthCardWidget(
+                      title: 'Health ',
+                      subtitle: 'Trends for biomarkers',
+                      imgPath: AppAssets.homeUpCommingBldTestIcon,
+                      onTap: () {
+                        Get.to(
+                              () => const HealthTrendsView(),
+                          binding: AppBinding(),
+                        );
+                      },
+                    ),
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: AppText(
+                        text: 'Others',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    builder: (context) {
-                      return _addNewTest(context);
-                    },
-                  );
-                },
+                    FaqWidget(
+                      title: 'FAQs',
+                      onTap: () {
+                        Get.toNamed(RoutesName.faqRoute);
+                      },
+                    ),
+                    const SizedBox(height: 5),
+                    FaqWidget(
+                      title: 'Order new test',
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: AppColors.whiteColor,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(16.0),
+                            ),
+                          ),
+                          builder: (context) {
+                            return _addNewTest(context);
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
+             
             ],
           ),
         );

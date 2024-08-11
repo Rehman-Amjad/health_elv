@@ -4,10 +4,12 @@ import '../../path_file.dart';
 
 class ProfileInfoService {
 
+  final _firestoreRef = FirebaseFirestore.instance;
+
 
   Future<UserData?> getUserData(uid) async {
     try {
-      final res = await FirebaseFirestore.instance
+      final res = await _firestoreRef
           .collection(Collection.user.name)
           .doc(uid)
           .get();
@@ -18,4 +20,21 @@ class ProfileInfoService {
       return null;
     }
   }
+
+  //get all drop down category
+  Future<List<BloodTestResults>> getBloodTestResults() async {
+    List<BloodTestResults> list = [];
+
+    QuerySnapshot querySnapshot =
+    await _firestoreRef
+        .collection(Collection.blood_test_results.name)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      list.add(BloodTestResults.fromFirestore(doc.data()! as Map<String, dynamic>));
+    }
+    return list;
+  }
+
+
 }

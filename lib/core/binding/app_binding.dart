@@ -21,6 +21,7 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => OrderNewTestController());
 
     Get.lazyPut(() => ResultsController());
+    Get.lazyPut(() => BloodTestResultController());
     Get.lazyPut(() => UpcomingResultsController());
 
 

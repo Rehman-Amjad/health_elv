@@ -30,6 +30,7 @@ class AppText extends StatelessWidget {
       text,
       textAlign: textAlign,
       softWrap: softWrap,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.inter(
         decoration: textDecoration,
         decorationColor: decorationColor,

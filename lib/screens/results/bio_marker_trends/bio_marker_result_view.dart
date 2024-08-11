@@ -5,43 +5,28 @@ import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-class BioMarkerResultView extends GetView<ResultsController> {
+class BioMarkerResultView extends GetView<BloodTestDetailsController> {
   const BioMarkerResultView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
-    return GetBuilder<ResultsController>(
+    return GetBuilder<BloodTestDetailsController>(
       initState: (_) {
-        Get.put(ResultsController());
+        Get.put(BloodTestDetailsController());
       },
       builder: (_) {
         return Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 60),
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Biomarker Trends",
+              title: controller.item.title,
               marginTop: 20,
             ),
           ),
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
-              SizedBox(height: 04.h),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Fasting Blood Sugar Glucose',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-               SizedBox(height: 02.h),
+              SizedBox(height: 02.h),
               getTabs(),
               const SizedBox(height: 8),
               if (controller.selectedTab.value == "Current")
@@ -135,7 +120,8 @@ class BioMarkerResultView extends GetView<ResultsController> {
                       Row(
                         children: [
                           Text(
-                            'Normal Range: 140-280 units/L',
+                            'Normal Range: ${controller.item.normalRange} ${controller.item.testUnit}',
+                            //'Normal Range: 140-280 units/L',
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -143,9 +129,9 @@ class BioMarkerResultView extends GetView<ResultsController> {
                             ),
                           ),
                           const Spacer(),
-                          const CustomButton(
+                          CustomButton(
                             backgroundColor: AppColors.redColor,
-                            text: 'High',
+                            text: controller.item.status,
                             width: 74,
                             height: 27,
                             fontSize: 14,
@@ -154,7 +140,8 @@ class BioMarkerResultView extends GetView<ResultsController> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '400 U/L',
+                        '${controller.item.currentRange} ${controller.item.testUnit}',
+                        // '400 U/L',
                         style: GoogleFonts.montserrat(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -234,41 +221,27 @@ class BioMarkerResultView extends GetView<ResultsController> {
           ),
         ),
         const SizedBox(height: 8),
-        const Text(
-          'LDH (Lactate Dehydrogenase) is an enzyme found in many body tissues. A blood test measures its level to assess potential cell or tissue damage. Normal LDH levels vary slightly based on age and lab, but typically range from 140 to 280 units per liter (U/L) for adults.',
-          style: TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'What might a normal result mean?',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+        Text(
+          controller.item.testDesc,
+          style: const TextStyle(
+            fontSize: 16,
           ),
         ),
-        const SizedBox(height: 8),
-        const Text(
-          "While reassuring, a normal LDH doesn't necessarily rule out all potential tissue damage. Your doctor might recommend additional tests based on your symptoms and medical history.",
-          style: TextStyle(fontSize: 16),
-        ),
         const SizedBox(height: 16),
-        const Text(
-          'What might a high result mean?',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          "High LDH (above normal range): This can indicate damage to various tissues, including muscles, liver, kidneys, red blood cells, or the heart. It's important to note that a high LDH alone doesn't pinpoint the source of the damage. Further tests are needed for diagnosis.",
-          style: TextStyle(fontSize: 16),
-        ),
       ],
     );
   }
 
   _getComparisonTab() {
+    return Container(
+      height: Get.height * 0.5,
+      child: const Center(
+        child: AppText(
+          text: "No Relevant Data Were Found",
+          fontSize: 16,
+        ),
+      ),
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

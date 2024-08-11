@@ -1,4 +1,4 @@
 enum Collection {
   user,
-  history,
+  blood_test_results,
 }
