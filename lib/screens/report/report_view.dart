@@ -18,7 +18,7 @@ class ReportView extends GetView<ReportController> {
           appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Recommendations",
+              title: "Health Coach Advice",
               showArrow: false,
               marginTop: 20,
             ),
@@ -29,7 +29,7 @@ class ReportView extends GetView<ReportController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const AppText(
-                  text: 'Based on your health ',
+                  text: 'Based on your results ',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -48,8 +48,8 @@ class ReportView extends GetView<ReportController> {
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: _getReportCardWidget(
                           imgPath: AppAssets.reportPlusIcon2,
-                          title: 'Lifestyle Changes',
-                          subTitle: 'Keep you healthy',
+                          title: 'Lifestyle Advice',
+                          subTitle: '',
                           onTap: () {
                             Navigator.push(
                               context,
@@ -63,8 +63,8 @@ class ReportView extends GetView<ReportController> {
                       ),
                       _getReportCardWidget(
                         imgPath: AppAssets.pillIcon,
-                        title: 'Vitamins',
-                        subTitle: 'For good healthy life',
+                        title: 'Supplement Advice',
+                        subTitle: '',
                         onTap: () {
                           Navigator.push(
                             context,
@@ -130,13 +130,13 @@ class ReportView extends GetView<ReportController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: title ?? 'Nutritional Tips',
+                  text: title ?? 'Nutritional Advice',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.whiteColor,
                 ),
                 AppText(
-                  text: subTitle ?? 'Tips for your health',
+                  text: subTitle ?? '',
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                   color: AppColors.whiteColor,

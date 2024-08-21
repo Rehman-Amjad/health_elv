@@ -40,18 +40,18 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: Column(
                   children: [
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: AppText(
-                          text: 'Health Hub',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.blackColor,
-                        )),
+                    // const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: AppText(
+                    //       text: 'Health Hub',
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.w600,
+                    //       color: AppColors.blackColor,
+                    //     )),
                     SizedBox(height: 01.h),
                     HealthCardWidget(
                       title: 'Blood Test Results',
-                      subtitle: 'Recently TSH',
+                      subtitle: '',
                       imgPath: AppAssets.icBloodTest,
                       onTap: () {
                         Get.to(
@@ -61,8 +61,8 @@ class HomeView extends GetView<HomeController> {
                       },
                     ),
                     HealthCardWidget(
-                      title: 'Upcoming Blood Test',
-                      subtitle: 'Check your calendar',
+                      title: 'Upcoming Tests',
+                      subtitle: '',
                       imgPath: AppAssets.upcommingBloodTestIcon,
                       onTap: () {
                         Get.to(
@@ -72,9 +72,10 @@ class HomeView extends GetView<HomeController> {
                       },
                     ),
                     HealthCardWidget(
-                      title: 'Health ',
-                      subtitle: 'Trends for biomarkers',
-                      imgPath: AppAssets.homeUpCommingBldTestIcon,
+                      title: 'Health Trends',
+                      subtitle: '',
+                      imgPath: AppAssets.trendsIcon,
+                      scale: 0.8,
                       onTap: () {
                         Get.to(
                               () => const HealthTrendsView(),
@@ -82,23 +83,17 @@ class HomeView extends GetView<HomeController> {
                         );
                       },
                     ),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: AppText(
-                        text: 'Others',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    FaqWidget(
-                      title: 'FAQs',
-                      onTap: () {
-                        Get.toNamed(RoutesName.faqRoute);
-                      },
-                    ),
+                    // const Align(
+                    //   alignment: Alignment.centerLeft,
+                    //   child: AppText(
+                    //     text: 'Others',
+                    //     fontSize: 16,
+                    //     fontWeight: FontWeight.w600,
+                    //   ),
+                    // ),
                     const SizedBox(height: 5),
                     FaqWidget(
-                      title: 'Order new test',
+                      title: 'Book A Test',
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
@@ -114,6 +109,14 @@ class HomeView extends GetView<HomeController> {
                         );
                       },
                     ),
+                    const SizedBox(height: 5),
+                    FaqWidget(
+                      title: 'FAQs',
+                      onTap: () {
+                        Get.toNamed(RoutesName.faqRoute);
+                      },
+                    ),
+
                   ],
                 ),
               ),
@@ -168,19 +171,19 @@ class HomeView extends GetView<HomeController> {
                           color: AppColors.whiteColor,
                         ),
                         const SizedBox(height: 1),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              AppAssets.greenAddIcon,
-                            ),
-                            AppText(
-                              text: ' %75',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.greenColor,
-                            ),
-                          ],
-                        )
+                        // Row(
+                        //   children: [
+                        //     SvgPicture.asset(
+                        //       AppAssets.greenAddIcon,
+                        //     ),
+                        //     AppText(
+                        //       text: '',
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.w500,
+                        //       color: AppColors.greenColor,
+                        //     ),
+                        //   ],
+                        // )
                       ],
                     ),
                   ],
@@ -237,37 +240,38 @@ class HomeView extends GetView<HomeController> {
                   )
                 ],
               ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: CircularProgressIndicator(
-                      value: controller.animation.value,
-                      strokeWidth: 16,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        Colors.green,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '${(controller.animation.value * 100).toInt()}%',
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.green,
-                    ),
-                  ),
-                ],
-              ),
+              // Stack(
+              //   alignment: Alignment.center,
+              //   children: [
+              //     SizedBox(
+              //       width: 100,
+              //       height: 100,
+              //       child: CircularProgressIndicator(
+              //         value: controller.animation.value,
+              //         strokeWidth: 16,
+              //         backgroundColor: Colors.grey[300],
+              //         valueColor: const AlwaysStoppedAnimation<Color>(
+              //           Colors.green,
+              //         ),
+              //       ),
+              //     ),
+              //     Text(
+              //       '${(controller.animation.value * 100).toInt()}%',
+              //       style: const TextStyle(
+              //         fontSize: 24,
+              //         fontWeight: FontWeight.w700,
+              //         color: Colors.green,
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
       ),
     );
   }
+
 
   _quickSummary() {
     return Row(
@@ -281,6 +285,7 @@ class HomeView extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
@@ -294,85 +299,55 @@ class HomeView extends GetView<HomeController> {
                         child: SvgPicture.asset(
                           AppAssets.walkingPersonDIcon,
                           color: AppColors.primaryColor,
-                          width: 25,
-                          height: 25,
+                          width: 40,
+                          height: 40,
                         ),
                       ),
-                      const SizedBox(width: 5),
-                      const Expanded(
-                          child: AppText(
-                        text: 'Quick\nHealth\nOverview',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        color: Color(0xff5D6A85),
-                        softWrap: true,
-                        textAlign: TextAlign.start,
-                      )),
                     ],
                   ),
                   const SizedBox(height: 15),
-                  const AppText(
-                    text: 'For quick summary',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff090E1D),
+                  Align(
+                    alignment: AlignmentDirectional.center,
+                    child: CustomButton(
+                      text: 'Quick Overview',
+                      fontSize: 16,
+                      height: 60,
+                      width: 200.0,
+                      radios: 06,
+                      isGradient: true,
+                      backgroundColor: AppColors.primaryColor,
+                      onTap: () {
+                        Get.to(
+                          () => const HealthOverview(),
+                          binding: AppBinding(),
+                        );
+                      },
+                    ),
                   ),
-                  const SizedBox(height: 10),
-                  CustomButton(
-                    text: 'Click Here',
-                    fontSize: 13,
-                    height: 30,
-                    radios: 06,
-                    isGradient: true,
-                    backgroundColor: AppColors.primaryColor,
-                    onTap: () {
-                      Get.to(
-                        () => const HealthOverview(),
-                        binding: AppBinding(),
-                      );
-                    },
+                  const SizedBox(height: 15),
+                  Align(
+                    alignment: AlignmentDirectional.center,
+                    child: CustomButton(
+                      text: 'Flagged Results',
+                      fontSize: 16,
+                      height: 60,
+                      width: 200.0,
+                      radios: 06,
+                      isGradient: true,
+                      onTap: () {
+                        Get.to(
+                              () => const BloodTestResultView(),
+                          binding: AppBinding(),
+                        );
+                      },
+                      backgroundColor: AppColors.primaryColor,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
         ),
-        Expanded(
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AppText(
-                    text: 'Area of concern',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff090E1D),
-                  ),
-                  const SizedBox(
-                    height: 64,
-                  ),
-                  const SizedBox(height: 25),
-                  CustomButton(
-                    text: 'Flagged Results',
-                    height: 30,
-                    radios: 06,
-                    isGradient: true,
-                    onTap: () {
-                      Get.to(
-                        () => const BloodTestResultView(),
-                        binding: AppBinding(),
-                      );
-                    },
-                    backgroundColor: AppColors.primaryColor,
-                    fontSize: 13,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        )
       ],
     );
   }
@@ -452,13 +427,15 @@ class FaqWidget extends StatelessWidget {
 class HealthCardWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final String? title, subtitle, imgPath;
+  double? scale;
 
-  const HealthCardWidget({
+   HealthCardWidget({
     super.key,
     this.onTap,
     this.title,
     this.imgPath,
     this.subtitle,
+    this.scale,
   });
 
   @override
@@ -483,7 +460,7 @@ class HealthCardWidget extends StatelessWidget {
               child: imgPath!.contains('.png')
                   ? Image.asset(
                       imgPath!,
-                      scale: 1.5,
+                      scale: scale ?? 1.5,
                     )
                   : SvgPicture.asset(
                       imgPath ?? AppAssets.bloodTestR,

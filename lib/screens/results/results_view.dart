@@ -26,7 +26,7 @@ class ResultsView extends GetView<ResultsController> {
           appBar: PreferredSize(
             preferredSize: const Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Health Elev8 Check up",
+              title: "Health Elev8 Results",
               showArrow: fromNew,
               marginTop: 20,
             ),

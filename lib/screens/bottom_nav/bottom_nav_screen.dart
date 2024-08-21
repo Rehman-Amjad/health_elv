@@ -79,7 +79,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               width: 25,
               height: 25,
             ),
-            label: 'Tips',
+            label: 'Advice',
             activeIcon: SvgPicture.asset(
               AppAssets.reportIcon,
               color: AppColors.primaryColor,

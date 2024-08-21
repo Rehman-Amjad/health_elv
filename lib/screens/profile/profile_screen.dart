@@ -55,7 +55,7 @@ class ProfileScreen extends GetView<ProfileController> {
               Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: ProfileDetailWidget(
-                  title: 'User Details',
+                  title: 'Account',
                   imgPath: AppAssets.profileIcon1,
                   onTap: () {
                     Get.to(
@@ -78,13 +78,13 @@ class ProfileScreen extends GetView<ProfileController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: ProfileDetailWidget(
-                  title: 'Term and Condition',
+                  title: 'Term & Condition',
                   isEnableIcon: true,
                   iconData: CupertinoIcons.news,
                   onTap: () {
                     Get.to(
                       () => const PrivacyAndTermsView(
-                        title: 'Term and Condition',
+                        title: 'Term & Condition',
                         content: AppStrings.termsAndCondition,
                       ),
                       binding: AppBinding(),
@@ -98,13 +98,13 @@ class ProfileScreen extends GetView<ProfileController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: ProfileDetailWidget(
-                  title: 'Data and Privacy',
+                  title: 'Data & Privacy',
                   isEnableIcon: true,
                   iconData: CupertinoIcons.exclamationmark,
                   onTap: () {
                     Get.to(
                       () => const PrivacyAndTermsView(
-                        title: 'Data and Privacy',
+                        title: 'Data & Privacy',
                         content: AppStrings.termsAndCondition,
                       ),
                       binding: AppBinding(),
@@ -117,7 +117,7 @@ class ProfileScreen extends GetView<ProfileController> {
               const Padding(
                 padding: EdgeInsets.all(14.0),
                 child: ProfileDetailWidget(
-                  title: 'Refer as Friend',
+                  title: 'Refer a Friend',
                   imgPath: AppAssets.referIcon1,
                 ),
               ),
@@ -188,7 +188,7 @@ class ProfileDetailWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData? iconData;
 
-  final bool isEnableIcon;
+  final bool isEnableIcon,isEnableText;
 
   const ProfileDetailWidget(
       {super.key,
@@ -196,7 +196,9 @@ class ProfileDetailWidget extends StatelessWidget {
       this.onTap,
       this.imgPath,
       this.iconData,
-      this.isEnableIcon = false});
+      this.isEnableIcon = false,
+      this.isEnableText = false,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +224,9 @@ class ProfileDetailWidget extends StatelessWidget {
                         iconData,
                         color: Colors.white,
                       )
-                    : SvgPicture.asset(
+                    : isEnableText ? 
+                AppText(text: "AED")
+                 :SvgPicture.asset(
                         imgPath ?? '',
                         color: AppColors.whiteColor,
                       ),

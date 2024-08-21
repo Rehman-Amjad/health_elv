@@ -56,4 +56,6 @@ class AppAssets {
   static const ocrIcon = 'assets/ocr_icon.svg';
   static const sleepzzIcon = 'assets/sleepzz_img.png';
   static const healthChrtIcon = 'assets/health_chart_img.png';
+  static const trendsIcon = 'assets/ic_trends.png';
+
 }

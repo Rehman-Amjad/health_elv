@@ -47,7 +47,7 @@ class _HealthTrendDetailsViewState extends State<HealthTrendDetailsView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppText(
-                  text: '91',
+                  text: '0',
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                 ),

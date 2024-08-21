@@ -12,7 +12,7 @@ class NutrationTips extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: CustomAppBar(
-          title: "Nutritional Tips",
+          title: "Nutritional Advice",
           marginTop: 20,
         ),
       ),
@@ -24,7 +24,7 @@ class NutrationTips extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppText(
-                text: 'Nutritional Tips',
+                text: 'Nutritional Advice',
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
               ),
@@ -44,7 +44,7 @@ class NutrationTips extends StatelessWidget {
               children: [
                 const Expanded(
                   child: AppText(
-                    text: 'Increase intake of\nvegetables',
+                    text: 'Increase vegetable \n8 Hours of Sleep',
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     softWrap: true,
@@ -63,7 +63,7 @@ class NutrationTips extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 35),
             child: CustomButton(
-              text: 'Learn more',
+              text: 'As Such',
               isGradient: true,
               onTap: () {},
               fontSize: 20,
