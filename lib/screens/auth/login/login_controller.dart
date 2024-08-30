@@ -36,7 +36,7 @@ class LoginController extends BaseController {
             } else {
               if (isQuestionAir == null || isQuestionAir == false) {
                 Get.offAll(
-                  () => const HomeView(),
+                  () => const BottomNavScreen(),
                   binding: AppBinding(),
                 );
               }

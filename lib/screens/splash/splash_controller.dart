@@ -22,7 +22,7 @@ class SplashController extends BaseController with CacheManager {
       } else {
         if (isQuestionAir == null || isQuestionAir == false) {
           Get.offAll(
-            () => const HomeView(),
+            () => const BottomNavScreen(),
             binding: AppBinding(),
           );
         }

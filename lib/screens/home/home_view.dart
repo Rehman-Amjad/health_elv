@@ -40,14 +40,6 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: Column(
                   children: [
-                    // const Align(
-                    //     alignment: Alignment.centerLeft,
-                    //     child: AppText(
-                    //       text: 'Health Hub',
-                    //       fontSize: 16,
-                    //       fontWeight: FontWeight.w600,
-                    //       color: AppColors.blackColor,
-                    //     )),
                     SizedBox(height: 01.h),
                     HealthCardWidget(
                       title: 'Blood Test Results',
@@ -83,14 +75,6 @@ class HomeView extends GetView<HomeController> {
                         );
                       },
                     ),
-                    // const Align(
-                    //   alignment: Alignment.centerLeft,
-                    //   child: AppText(
-                    //     text: 'Others',
-                    //     fontSize: 16,
-                    //     fontWeight: FontWeight.w600,
-                    //   ),
-                    // ),
                     const SizedBox(height: 5),
                     FaqWidget(
                       title: 'Book A Test',
