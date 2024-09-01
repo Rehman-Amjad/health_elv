@@ -53,7 +53,7 @@ class ResultsView extends GetView<ResultsController> {
                         borderRadius: BorderRadius.circular(06)),
                     alignment: Alignment.center,
                     child: const Text(
-                      '2',
+                      '0',
                       style: TextStyle(
                         color: AppColors.redColor,
                         fontSize: 16,
@@ -225,7 +225,7 @@ class ResultsView extends GetView<ResultsController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: item.testDate ?? "",
+                  text: AppUtils().formatDateString(item.testDate),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),

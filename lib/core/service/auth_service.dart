@@ -30,23 +30,4 @@ class AuthService with CacheManager {
       AppUtils().showToast(text: 'Error $e');
     }
   }
-
-  Future<bool> isPhoneNoExists({context, phoneNumber}) async {
-    bool exists = false;
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(Collection.user.name)
-          .where('phoneNumber', isEqualTo: phoneNumber)
-          .get();
-      if (querySnapshot.docs.isNotEmpty) {
-        exists = true;
-      }
-    } catch (e) {
-      AppUtils().showToast(
-        text: "Error checking phone number: $e",
-      );
-    }
-
-    return exists;
-  }
 }

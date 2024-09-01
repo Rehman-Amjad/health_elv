@@ -1,18 +1,18 @@
 import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../path_file.dart';
 
 class ProfileInfoService {
-
   final _firestoreRef = FirebaseFirestore.instance;
-
+  final _firebaseAuth = FirebaseAuth.instance;
 
   Future<UserData?> getUserData(uid) async {
     try {
-      final res = await _firestoreRef
-          .collection(Collection.user.name)
-          .doc(uid)
-          .get();
+      final res =
+          await _firestoreRef.collection(Collection.user.name).doc(uid).get();
 
       return UserData.fromMap(res.data()!);
     } on FirebaseException catch (e) {
@@ -25,16 +25,15 @@ class ProfileInfoService {
   Future<List<BloodTestResults>> getBloodTestResults() async {
     List<BloodTestResults> list = [];
 
-    QuerySnapshot querySnapshot =
-    await _firestoreRef
-        .collection(Collection.blood_test_results.name)
+    final querySnapshot = await _firestoreRef
+        .collection(Collection.bloodTestResults.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.tests.name)
         .get();
 
     for (var doc in querySnapshot.docs) {
-      list.add(BloodTestResults.fromFirestore(doc.data()! as Map<String, dynamic>));
+      list.add(BloodTestResults.fromFirestore(doc.data()));
     }
     return list;
   }
-
-
 }

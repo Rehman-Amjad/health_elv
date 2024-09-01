@@ -5,8 +5,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class AppUtils {
+
   static linearDecoration({BorderRadiusGeometry? borderRadius}) =>
       BoxDecoration(
         borderRadius: borderRadius,
@@ -65,5 +67,16 @@ class AppUtils {
       textColor: txtColor ?? Colors.white,
       fontSize: 14.0,
     );
+  }
+
+  /// date formate
+  String formatDateString(String dateString) {
+    // Step 1: Parse the Date String into a DateTime object
+    DateTime dateTime = DateTime.parse(dateString);
+
+    // Step 2: Format the DateTime object into the desired format
+    String formattedDate = DateFormat('dd MMMM yyyy - h a').format(dateTime);
+
+    return formattedDate;
   }
 }
