@@ -42,6 +42,7 @@ class OrderNewTestController extends BaseController {
         "address": addressTEC.text,
       };
       orderBloodTest = OrderBloodTest(
+        uid: firebaseAuth.currentUser?.uid,
         email: emailTEC.text,
         discount: 0,
         sameAsShipping: isSameAddress.value,

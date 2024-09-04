@@ -1,4 +1,5 @@
 class OrderBloodTest {
+  String? uid;
   String? email;
   bool? sameAsShipping;
   int? discount;
@@ -7,6 +8,7 @@ class OrderBloodTest {
   Map<String, dynamic>? secondAddress;
 
   OrderBloodTest({
+    this.uid,
     this.email,
     this.sameAsShipping,
     this.discount,
@@ -18,6 +20,7 @@ class OrderBloodTest {
   // Convert OrderBloodTest object to JSON
   Map<String, dynamic> toFirestore() {
     return {
+      'uid': uid,
       'email': email,
       'sameAsShipping': sameAsShipping,
       'discount': discount,
@@ -30,6 +33,7 @@ class OrderBloodTest {
   // Convert JSON to OrderBloodTest object
   factory OrderBloodTest.toJson(Map<String, dynamic> json) {
     return OrderBloodTest(
+      uid: json['uid'] as String?,
       email: json['email'] as String?,
       sameAsShipping: json['sameAsShipping'] as bool?,
       discount: json['discount'] as int?,
