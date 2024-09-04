@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:health_elev8_app/core/models/health_score.dart';
 
 import '../../path_file.dart';
 
@@ -49,11 +50,33 @@ class FireStoreService {
 
       // Get the document snapshot
       DocumentSnapshot snapshot = await ref.get();
-      print(snapshot);
       // Check if the document exists
       if (snapshot.exists) {
-        return BloodTestResults.fromFlaggedResult(
-            snapshot.data() as Map<String, dynamic>);
+        return BloodTestResults.fromFlaggedResult(snapshot.data() as Map<String, dynamic>);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      debugPrint("Error getting document: $e");
+    }
+    return null;
+  }
+
+  ///
+  Future<HealthScore?> getHealthScoreData() async {
+    try {
+      // Reference to the document
+      final ref = FirebaseFirestore.instance
+          .collection(Collection.user.name)
+          .doc(_firebaseAuth.currentUser!.uid)
+          .collection(Collection.userHealthScore.name)
+          .doc(Collection.healthScore.name);
+
+      // Get the document snapshot
+      DocumentSnapshot snapshot = await ref.get();
+      // Check if the document exists
+      if (snapshot.exists) {
+        return HealthScore.fromFirestore(snapshot.data() as Map<String, dynamic>);
       } else {
         return null;
       }

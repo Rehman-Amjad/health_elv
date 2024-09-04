@@ -14,13 +14,13 @@ class FlaggedResultController extends BaseController
   @override
   void onInit() {
     getFlaggedResults();
-    initAnimation();
     super.onInit();
   }
 
   getFlaggedResults() async {
     isLoading.value = true;
     bloodTestResults = await firestoreService.getFlaggedData();
+    initAnimation();
     isLoading.value = false;
     update();
   }

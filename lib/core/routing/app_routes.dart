@@ -46,10 +46,6 @@ class AppRoutes {
       page: () => const NutrationTips(),
     ),
     GetPage(
-      name: RoutesName.healthScoreRoute,
-      page: () => const HealthScoreScreen(),
-    ),
-    GetPage(
       name: RoutesName.faqRoute,
       page: () => const FaqsView(),
     ),

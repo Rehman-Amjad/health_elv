@@ -4,4 +4,6 @@ enum Collection {
   result,
   bloodTestResults,
   tests,
+  userHealthScore,
+  healthScore,
 }

@@ -7,6 +7,7 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
 import '../flagged_result/export.dart';
+import '../health_score/export.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -47,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                       imgPath: AppAssets.icBloodTest,
                       onTap: () {
                         Get.to(
-                              () => const ResultsView(fromNew: true),
+                          () => const ResultsView(fromNew: true),
                           binding: AppBinding(),
                         );
                       },
@@ -58,7 +59,7 @@ class HomeView extends GetView<HomeController> {
                       imgPath: AppAssets.upcommingBloodTestIcon,
                       onTap: () {
                         Get.to(
-                              () => UpcomingResultsView(),
+                          () => UpcomingResultsView(),
                           binding: AppBinding(),
                         );
                       },
@@ -70,7 +71,7 @@ class HomeView extends GetView<HomeController> {
                       scale: 0.8,
                       onTap: () {
                         Get.to(
-                              () => const HealthTrendsView(),
+                          () => const HealthTrendsView(),
                           binding: AppBinding(),
                         );
                       },
@@ -100,11 +101,9 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(RoutesName.faqRoute);
                       },
                     ),
-
                   ],
                 ),
               ),
-             
             ],
           ),
         );
@@ -205,7 +204,10 @@ class HomeView extends GetView<HomeController> {
   _healthCard() {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(RoutesName.healthScoreRoute);
+        Get.to(
+          () => HealthScoreScreen(),
+          binding: AppBinding(),
+        );
       },
       child: Card(
         child: Padding(
@@ -255,7 +257,6 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
 
   _quickSummary() {
     return Row(
@@ -320,7 +321,7 @@ class HomeView extends GetView<HomeController> {
                       isGradient: true,
                       onTap: () {
                         Get.to(
-                              () => const FlaggedResultView(),
+                          () => const FlaggedResultView(),
                           binding: AppBinding(),
                         );
                       },
@@ -413,7 +414,7 @@ class HealthCardWidget extends StatelessWidget {
   final String? title, subtitle, imgPath;
   double? scale;
 
-   HealthCardWidget({
+  HealthCardWidget({
     super.key,
     this.onTap,
     this.title,
