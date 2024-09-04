@@ -3,9 +3,12 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
 class HealthTrendDetailsView extends StatefulWidget {
-  final String? data;
+  final HealthTrends? data;
 
-  const HealthTrendDetailsView({super.key, this.data});
+  const HealthTrendDetailsView({
+    super.key,
+    required this.data,
+  });
 
   @override
   State<HealthTrendDetailsView> createState() => _HealthTrendDetailsViewState();
@@ -29,32 +32,28 @@ class _HealthTrendDetailsViewState extends State<HealthTrendDetailsView> {
         children: [
           SizedBox(height: 02.h),
           AppText(
-            text: '${widget.data?.replaceAll("\n", " ")}',
+            text: '${widget.data?.trendName}',
             fontSize: 24,
             fontWeight: FontWeight.w600,
             color: AppColors.blackColor,
           ),
           SizedBox(height: 02.h),
-          SizedBox(
-            width: size.width,
-            child: Image.asset(
-              AppAssets.healthChrtIcon,
-            ),
+          AspectRatio(
+            aspectRatio: 1.5,
+            child: HealthTrendChart(score:double.parse(widget.data?.score??"0.0")),
           ),
           SizedBox(height: 02.h),
-          const Center(
+          Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppText(
-                  text: '0',
+                  text: '${widget.data?.score}',
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                AppText(
+                const SizedBox(height: 10),
+                const AppText(
                   text: 'Heart Health Score',
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -93,15 +92,15 @@ class _HealthTrendDetailsViewState extends State<HealthTrendDetailsView> {
               )),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppText(
-                    text: 'Liver',
+                    text:'${widget.data?.trendName}',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
-                  Icon(Icons.arrow_forward_ios_rounded),
+                  const Icon(Icons.arrow_forward_ios_rounded),
                 ],
               ),
             ),

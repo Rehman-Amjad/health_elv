@@ -6,4 +6,5 @@ enum Collection {
   tests,
   userHealthScore,
   healthScore,
+  healthTrends,
 }

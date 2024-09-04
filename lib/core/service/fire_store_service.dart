@@ -85,4 +85,18 @@ class FireStoreService {
     }
     return null;
   }
+
+  ///
+  Future<List<HealthTrends>> getHealthTrendsList() async {
+    List<HealthTrends> list = [];
+
+    final querySnapshot = await _firestoreRef
+        .collection(Collection.healthTrends.name)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      list.add(HealthTrends.fromFirestore(doc.data()));
+    }
+    return list;
+  }
 }
