@@ -2,15 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class FlaggedResultController extends BaseController with GetSingleTickerProviderStateMixin{
+class FlaggedResultController extends BaseController
+    with GetSingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> animation;
 
+  final firestoreService = FireStoreService();
+  BloodTestResults? bloodTestResults;
+  RxBool isLoading = false.obs;
+
   @override
   void onInit() {
+    getFlaggedResults();
     initAnimation();
     super.onInit();
+  }
 
+  getFlaggedResults() async {
+    isLoading.value = true;
+    bloodTestResults = await firestoreService.getFlaggedData();
+    isLoading.value = false;
+    update();
   }
 
   initAnimation() {
@@ -31,5 +43,4 @@ class FlaggedResultController extends BaseController with GetSingleTickerProvide
     _animationController.dispose();
     super.dispose();
   }
-
 }

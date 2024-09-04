@@ -13,7 +13,7 @@ class ProfileController extends BaseController {
   DateTime dobDateTime = DateTime.now();
 
   final firebase = FirebaseAuth.instance;
-  final profileInfoService = ProfileInfoService();
+  final fireStoreService = FireStoreService();
   UserData? userData;
 
   RxBool isLoading = false.obs;
@@ -26,7 +26,7 @@ class ProfileController extends BaseController {
 
   getProfileInfo() async {
     isLoading.value = true;
-    userData = await profileInfoService.getUserData(
+    userData = await fireStoreService.getUserData(
       firebase.currentUser?.uid,
     );
     if (userData != null) {

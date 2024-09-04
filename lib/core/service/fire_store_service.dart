@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../path_file.dart';
 
-class ProfileInfoService {
+class FireStoreService {
   final _firestoreRef = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;
 
@@ -38,7 +38,7 @@ class ProfileInfoService {
     return list;
   }
 
-  Future<BloodTestResults?> getFlaggedData(uid) async {
+  Future<BloodTestResults?> getFlaggedData() async {
     try {
       // Reference to the document
       final ref = FirebaseFirestore.instance
@@ -49,9 +49,10 @@ class ProfileInfoService {
 
       // Get the document snapshot
       DocumentSnapshot snapshot = await ref.get();
+      print(snapshot);
       // Check if the document exists
       if (snapshot.exists) {
-        return BloodTestResults.fromFirestore(
+        return BloodTestResults.fromFlaggedResult(
             snapshot.data() as Map<String, dynamic>);
       } else {
         return null;

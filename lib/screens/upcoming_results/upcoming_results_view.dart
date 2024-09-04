@@ -232,7 +232,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   isGradient: true,
                   onTap: () {
                     Get.to(
-                      () => const FlaggedResultView(title: 'Serum LDH'),
+                      () => const FlaggedResultView(),
                     );
                   },
                   backgroundColor: AppColors.blackColor,

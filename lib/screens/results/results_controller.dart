@@ -6,7 +6,7 @@ class ResultsController extends BaseController {
   RxBool isShowFirst = true.obs;
 
   RxBool isLoading = false.obs;
-  final _profileInfoService = ProfileInfoService();
+  final fireStoreService = FireStoreService();
   List<BloodTestResults> bloodTestResults = [];
 
   @override
@@ -17,7 +17,7 @@ class ResultsController extends BaseController {
 
   getBloodTestResults() async {
     isLoading.value = true;
-    bloodTestResults = await _profileInfoService.getBloodTestResults();
+    bloodTestResults = await fireStoreService.getBloodTestResults();
     isLoading.value = false;
     update();
   }

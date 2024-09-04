@@ -41,6 +41,21 @@ class BloodTestResults {
     );
   }
 
+  factory BloodTestResults.fromFlaggedResult(Map<String, dynamic> data) {
+    return BloodTestResults(
+      uid: data['uid'],
+      currentRange: data['current_range'],
+      normalRange: data['normal_range'],
+      status:data['status'],
+      testUnit :data['test_unit'],
+      title: data['title'],
+      testDate : data['test_date'],
+      testDesc: data['test_desc'],
+      highMeanDate: data['high_desc'],
+      lowMeanDate: data['low_desc'],
+    );
+  }
+
   // Method to convert the instance back to a map for Firestore
   Map<String, dynamic> toFirestore() {
     return {
