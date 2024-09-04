@@ -7,20 +7,26 @@ class FlaggedResultController extends BaseController
   late AnimationController _animationController;
   late Animation<double> animation;
 
+  bool isFromUpComing = Get.arguments[0];
+
   final firestoreService = FireStoreService();
   BloodTestResults? bloodTestResults;
   RxBool isLoading = false.obs;
 
   @override
   void onInit() {
-    getFlaggedResults();
+    if (isFromUpComing) {
+      bloodTestResults = Get.arguments[1];
+    } else {
+      getFlaggedResults();
+    }
+    initAnimation();
     super.onInit();
   }
 
   getFlaggedResults() async {
     isLoading.value = true;
     bloodTestResults = await firestoreService.getFlaggedData();
-    initAnimation();
     isLoading.value = false;
     update();
   }

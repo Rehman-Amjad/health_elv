@@ -96,6 +96,7 @@ class ResultsView extends GetView<ResultsController> {
             onTap: () {
               controller.isShowFirst.value = true;
               controller.selectedDate = "";
+              controller.getBloodTestResults();
               controller.update();
             },
             child: Container(
@@ -132,14 +133,11 @@ class ResultsView extends GetView<ResultsController> {
                 showTitleActions: true,
                 minTime: DateTime(1900, 3, 5),
                 maxTime: DateTime(2500, 3, 5),
-                onChanged: (date) {
-                  debugPrint('change $date');
-                },
                 onConfirm: (DateTime date) {
-                  String selectedDate =
-                      DateFormat('dd, MMM, yyyy').format(date);
+                  String selectedDate = DateFormat('dd, MMM, yyyy').format(date);
                   controller.selectedDate = selectedDate;
                   controller.isShowFirst.value = false;
+                  controller.getBloodTestResults(selectedDate: date);
                   controller.update();
                 },
                 currentTime: DateTime.now(),
@@ -225,7 +223,7 @@ class ResultsView extends GetView<ResultsController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: AppUtils().formatDateString(item.testDate!),
+                  text: AppUtils().formatDateString(item.testDate!.toDate().toString()),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),

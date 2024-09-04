@@ -47,7 +47,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                         borderRadius: BorderRadius.circular(06)),
                     alignment: Alignment.center,
                     child: const Text(
-                      '12',
+                      '0',
                       style: TextStyle(
                         color: AppColors.redColor,
                         fontSize: 16,
@@ -61,11 +61,12 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
               getCalendarFilter(context),
               const SizedBox(height: 16),
               ListView.builder(
-                itemCount: 01,
+                itemCount: controller.bloodTestResults.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return resultItem();
+                  BloodTestResults item = controller.bloodTestResults[index];
+                  return resultItem(item);
                 },
               ),
             ],
@@ -77,7 +78,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
 
   getCalendarFilter(context) {
     return SizedBox(
-      height: 250,
+      height: 280,
       child: SfCalendar(
         controller: controller.monthController,
         view: CalendarView.month,
@@ -91,11 +92,11 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
             color: Theme.of(context).primaryColor,
           ),
         ),
-        monthCellBuilder: _monthCellBuilder,
+        //monthCellBuilder: _monthCellBuilder,
         todayTextStyle: GoogleFonts.inter(
-          color: AppColors.primaryColor,
-          fontWeight: FontWeight.w700,
-          fontSize: 18,
+          color: AppColors.whiteColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
         ),
         todayHighlightColor: Colors.black87,
         headerStyle: CalendarHeaderStyle(
@@ -118,59 +119,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
     );
   }
 
-  Widget _monthCellBuilder(context, MonthCellDetails details) {
-    //final bool isToday = isSameDate(dateTime, DateTime.now());
-    DateTime dateTime = details.date;
-    final bool isSpecialDate = isSpecialDay(dateTime);
-    return Container(
-      decoration: controller.tempDate == dateTime
-          ? todayDecoration
-          : isSpecialDate
-              ? otherDayDecoration
-              : null,
-      margin: const EdgeInsets.symmetric(vertical: 00),
-      alignment: Alignment.center,
-      child: Text(
-        dateTime.day.toString(),
-        textAlign: TextAlign.center,
-        style: GoogleFonts.inter(
-          color: controller.tempDate == dateTime
-              ? AppColors.blackColor
-              : AppColors.fieldColor,
-          fontSize: 12,
-          fontWeight: FontWeight.w300,
-        ),
-      ),
-    );
-  }
-
-  final BoxDecoration todayDecoration = BoxDecoration(
-    color: AppColors.primaryColor,
-    shape: BoxShape.circle,
-  );
-
-  final BoxDecoration otherDayDecoration = BoxDecoration(
-    border: Border.all(
-      color: AppColors.primaryColor,
-      width: 2,
-    ),
-    shape: BoxShape.circle,
-  );
-
-  bool isSpecialDay(DateTime date) {
-    bool result = false;
-    // if (controller.availableSlots.value.data != null) {
-    //   for (var element in controller.availableSlots.value.data!.dateKeys!) {
-    //     String calenderDate = DateTimeUtils.dayMonthYear(date.toString());
-    //     if (calenderDate == element) {
-    //       result = true;
-    //     }
-    //   }
-    // }
-    return result;
-  }
-
-  resultItem() {
+  resultItem(BloodTestResults item) {
     return Card(
       child: Container(
         height: 140,
@@ -199,17 +148,17 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: "Serum LDH",
+                      text: '${item.title}',
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: "For Cardiovascular Function Test",
+                      text: '${item.subTitle}',
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     )
@@ -220,8 +169,10 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(
-                  text: "26 June 2024 - 4 PM",
+                AppText(
+                  text: AppUtils().formatDateString(
+                    item.testDate!.toDate().toString(),
+                  ),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -233,6 +184,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   onTap: () {
                     Get.to(
                       () => const FlaggedResultView(),
+                      arguments: [true,item],
                     );
                   },
                   backgroundColor: AppColors.blackColor,

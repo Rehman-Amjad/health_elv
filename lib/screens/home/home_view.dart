@@ -323,6 +323,9 @@ class HomeView extends GetView<HomeController> {
                         Get.to(
                           () => const FlaggedResultView(),
                           binding: AppBinding(),
+                          arguments: [
+                            false,
+                          ]
                         );
                       },
                       backgroundColor: AppColors.primaryColor,

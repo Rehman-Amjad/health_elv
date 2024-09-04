@@ -14,15 +14,15 @@ class OnBoardingController extends BaseController with CacheManager {
   final RxList<OnBoardingModel> pages = <OnBoardingModel>[
     OnBoardingModel(
       image: AppAssets.introOne,
-      title: "Book your Doctor any time any where",
+      title: "DHA Certified Blood Tests",
     ),
     OnBoardingModel(
       image: AppAssets.introTwo,
-      title: "Blood Sample Test any Time any Where",
+      title: "Detailed Analysis & Trends",
     ),
     OnBoardingModel(
       image: AppAssets.introThree,
-      title: "Blood Sample Test any Time any Where",
+      title: "Custom Health Coach Guidance",
     ),
   ].obs;
 

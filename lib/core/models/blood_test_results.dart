@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BloodTestResults {
   final String? uid;
   final String? currentRange;
@@ -8,7 +10,7 @@ class BloodTestResults {
   final String? testDesc;
   final String? testUnit;
   final String? title;
-  final String? testDate;
+  final Timestamp? testDate;
   final String? highMeanDate;
   final String? lowMeanDate;
 
@@ -37,7 +39,7 @@ class BloodTestResults {
       testDesc: data['test_desc'] as String,
       testUnit: data['test_unit'] as String,
       title: data['title'] as String,
-      testDate: data['test_date'] as String,
+      testDate: data['test_date'] as Timestamp,
     );
   }
 
