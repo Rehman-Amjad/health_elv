@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class BloodTestResultController extends BaseController with GetSingleTickerProviderStateMixin{
+class FlaggedResultController extends BaseController with GetSingleTickerProviderStateMixin{
   late AnimationController _animationController;
   late Animation<double> animation;
 

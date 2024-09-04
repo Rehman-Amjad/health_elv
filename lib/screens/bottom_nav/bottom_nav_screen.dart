@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/home/home_view.dart';
-import 'package:health_elev8_app/screens/profile/profile_screen.dart';
-
-import '../blood_test_result/export.dart';
-import 'export.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});

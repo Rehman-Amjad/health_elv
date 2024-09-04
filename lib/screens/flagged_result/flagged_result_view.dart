@@ -7,10 +7,10 @@ import 'package:sizer/sizer.dart';
 
 import 'export.dart';
 
-class BloodTestResultView extends GetView<BloodTestResultController> {
+class FlaggedResultView extends GetView<FlaggedResultController> {
   final String title;
 
-  const BloodTestResultView({
+  const FlaggedResultView({
     super.key,
     this.title = "LDH",
   });
@@ -18,9 +18,9 @@ class BloodTestResultView extends GetView<BloodTestResultController> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    return GetBuilder<BloodTestResultController>(
+    return GetBuilder<FlaggedResultController>(
       initState: (_){
-        Get.put(BloodTestResultController());
+        Get.put(FlaggedResultController());
       },
       builder: (_) {
         return Scaffold(

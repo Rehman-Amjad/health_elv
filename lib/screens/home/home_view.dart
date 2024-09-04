@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import '../blood_test_result/export.dart';
+import '../flagged_result/export.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -320,7 +320,7 @@ class HomeView extends GetView<HomeController> {
                       isGradient: true,
                       onTap: () {
                         Get.to(
-                              () => const BloodTestResultView(),
+                              () => const FlaggedResultView(),
                           binding: AppBinding(),
                         );
                       },

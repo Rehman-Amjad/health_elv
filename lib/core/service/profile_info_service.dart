@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import '../../path_file.dart';
 
@@ -21,7 +22,7 @@ class ProfileInfoService {
     }
   }
 
-  //get all drop down category
+  ///get all drop down category
   Future<List<BloodTestResults>> getBloodTestResults() async {
     List<BloodTestResults> list = [];
 
@@ -35,5 +36,29 @@ class ProfileInfoService {
       list.add(BloodTestResults.fromFirestore(doc.data()));
     }
     return list;
+  }
+
+  Future<BloodTestResults?> getFlaggedData(uid) async {
+    try {
+      // Reference to the document
+      final ref = FirebaseFirestore.instance
+          .collection(Collection.user.name)
+          .doc(_firebaseAuth.currentUser!.uid)
+          .collection(Collection.flaggedResult.name)
+          .doc(Collection.result.name);
+
+      // Get the document snapshot
+      DocumentSnapshot snapshot = await ref.get();
+      // Check if the document exists
+      if (snapshot.exists) {
+        return BloodTestResults.fromFirestore(
+            snapshot.data() as Map<String, dynamic>);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      debugPrint("Error getting document: $e");
+    }
+    return null;
   }
 }

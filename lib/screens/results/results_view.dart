@@ -208,12 +208,12 @@ class ResultsView extends GetView<ResultsController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: item.title,
+                      text: '${item.title}',
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: item.subTitle,
+                      text: '${item.subTitle}',
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     )
@@ -225,7 +225,7 @@ class ResultsView extends GetView<ResultsController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: AppUtils().formatDateString(item.testDate),
+                  text: AppUtils().formatDateString(item.testDate!),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),

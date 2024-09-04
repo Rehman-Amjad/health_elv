@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../../screens/blood_test_result/export.dart';
 import '../../screens/faq/export.dart';
+import '../../screens/flagged_result/export.dart';
 
 class AppBinding extends Bindings {
   @override
@@ -21,12 +21,11 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => OrderNewTestController());
 
     Get.lazyPut(() => ResultsController());
-    Get.lazyPut(() => BloodTestResultController());
+    Get.lazyPut(() => FlaggedResultController());
     Get.lazyPut(() => UpcomingResultsController());
 
 
     Get.lazyPut(() => ReportController());
-    Get.lazyPut(() => BloodTestResultController());
 
 
     Get.lazyPut(() => ProfileController());

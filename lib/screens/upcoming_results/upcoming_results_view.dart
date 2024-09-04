@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/screens/blood_test_result/blood_test_result_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import '../flagged_result/export.dart';
+
 class UpcomingResultsView extends GetView<UpcomingResultsController> {
-   UpcomingResultsView({super.key});
+  UpcomingResultsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
           ),
         ),
         monthCellBuilder: _monthCellBuilder,
-        todayTextStyle:  GoogleFonts.inter(
+        todayTextStyle: GoogleFonts.inter(
           color: AppColors.primaryColor,
           fontWeight: FontWeight.w700,
           fontSize: 18,
@@ -187,7 +188,8 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: AppColors.primaryColor.withOpacity(0.80),                  ),
+                    color: AppColors.primaryColor.withOpacity(0.80),
+                  ),
                   child: ImageHelper(
                     image: AppAssets.icTestTube,
                     imageType: ImageType.asset,
@@ -229,8 +231,8 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   height: 44,
                   isGradient: true,
                   onTap: () {
-                    Get.to(()=>
-                      const BloodTestResultView(title: 'Serum LDH'),
+                    Get.to(
+                      () => const FlaggedResultView(title: 'Serum LDH'),
                     );
                   },
                   backgroundColor: AppColors.blackColor,

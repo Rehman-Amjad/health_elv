@@ -19,7 +19,7 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
           appBar: PreferredSize(
             preferredSize: const Size(double.infinity, 60),
             child: CustomAppBar(
-              title: controller.item.title,
+              title: '${controller.item.title}',
               marginTop: 20,
             ),
           ),
@@ -131,7 +131,7 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                           const Spacer(),
                           CustomButton(
                             backgroundColor: AppColors.redColor,
-                            text: controller.item.status,
+                            text: controller.item.status!,
                             width: 74,
                             height: 27,
                             fontSize: 14,
@@ -222,7 +222,7 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
         ),
         const SizedBox(height: 8),
         Text(
-          controller.item.testDesc,
+          controller.item.testDesc!,
           style: const TextStyle(
             fontSize: 16,
           ),
