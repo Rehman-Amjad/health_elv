@@ -115,4 +115,15 @@ class FireStoreService {
     }
     return list;
   }
+
+  ///order new blood test
+  Future<void> saveOrderBloodTest(OrderBloodTest orderBloodTest) async {
+    final ref = _firestoreRef
+        .collection(Collection.orderBloodTest.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.tests.name)
+        .doc(); // Generates a unique ID for each test
+
+    await ref.set(orderBloodTest.toFirestore());
+  }
 }

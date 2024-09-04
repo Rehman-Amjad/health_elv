@@ -23,39 +23,42 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
               marginTop: 30,
             ),
           ),
-          body: Column(
-            children: [
-              SizedBox(height: 02.h),
-              Expanded(
-                child: Container(
-                  width: Get.width,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: const BoxDecoration(
-                    color: AppColors.darkGreyColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+          body: Form(
+            key: controller.formKey,
+            child: Column(
+              children: [
+                SizedBox(height: 02.h),
+                Expanded(
+                  child: Container(
+                    width: Get.width,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: const BoxDecoration(
+                      color: AppColors.darkGreyColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                    child: ListView(
+                      children: [
+                        SizedBox(height: 02.h),
+                        getTabs(
+                          index: controller.index.value,
+                          title: 'Information',
+                        ),
+                        SizedBox(height: 02.h),
+                        if (controller.index.value == 1)
+                          _informationTab()
+                        else if (controller.index.value == 2)
+                          _shippingTab()
+                        else
+                          _paymentTab(context),
+                      ],
                     ),
                   ),
-                  child: ListView(
-                    children: [
-                      SizedBox(height: 02.h),
-                      getTabs(
-                        index: controller.index.value,
-                        title: 'Information',
-                      ),
-                      SizedBox(height: 02.h),
-                      if (controller.index.value == 1)
-                        _informationTab()
-                      else if (controller.index.value == 2)
-                        _shippingTab()
-                      else
-                        _paymentTab(),
-                    ],
-                  ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         );
       },
@@ -125,7 +128,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         ),
         SizedBox(height: 01.h),
         LabelFormField(
-          tec: TextEditingController(),
+          tec: controller.emailTEC,
           hint: 'Email',
           fontSize: 14,
           textInputAction: TextInputAction.next,
@@ -152,7 +155,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         ),
         SizedBox(height: 01.h),
         LabelFormField(
-          tec: TextEditingController(),
+          tec: controller.firstNameTEC,
           hint: 'First Name',
           fontSize: 14,
           textInputAction: TextInputAction.next,
@@ -165,7 +168,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         ),
         SizedBox(height: 01.h),
         LabelFormField(
-          tec: TextEditingController(),
+          tec: controller.lastNameTEC,
           hint: 'Last Name',
           fontSize: 14,
           textInputAction: TextInputAction.next,
@@ -178,7 +181,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         ),
         SizedBox(height: 01.h),
         LabelFormField(
-          tec: TextEditingController(),
+          tec: controller.phoneNumberTEC,
           hint: 'Phone Number',
           fontSize: 14,
           textInputAction: TextInputAction.next,
@@ -191,7 +194,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         ),
         SizedBox(height: 01.h),
         LabelFormField(
-          tec: TextEditingController(),
+          tec: controller.addressTEC,
           hint: 'Address',
           fontSize: 14,
           textInputAction: TextInputAction.next,
@@ -206,8 +209,11 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         Row(
           children: [
             Checkbox(
-              value: false,
-              onChanged: (value) {},
+              value: controller.saveInfoForNextTime.value,
+              onChanged: (value) {
+                controller.saveInfoForNextTime.value = value!;
+                controller.update();
+              },
             ),
             const AppText(
               text: "Save the information for next time",
@@ -221,10 +227,12 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         CustomButton(
           text: 'Continue',
           onTap: () {
-            if (controller.index.value == 1) {
-              controller.index.value++;
+            if(controller.formKey.currentState!.validate()){
+              if (controller.index.value == 1) {
+                controller.index.value++;
+              }
+              controller.update();
             }
-            controller.update();
           },
           backgroundColor: AppColors.blackColor,
           margin: const EdgeInsets.symmetric(horizontal: 70),
@@ -334,7 +342,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           backgroundColor: Colors.transparent,
           margin: const EdgeInsets.symmetric(horizontal: 70),
           fontColor: AppColors.blackColor,
-          borderColor:AppColors.blackColor,
+          borderColor: AppColors.blackColor,
           radios: 05,
           fontSize: 16,
         ),
@@ -343,7 +351,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
     );
   }
 
-  _paymentTab() {
+  _paymentTab(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -474,7 +482,13 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         CustomButton(
           text: 'Pay Now',
           onTap: () {
-            Get.back();
+            if(controller.isSameAddress.isFalse){
+              if(controller.formKey.currentState!.validate()){
+                controller.saveToDatabase(context);
+              }
+            }else{
+              controller.saveToDatabase(context);
+            }
           },
           backgroundColor: AppColors.blackColor,
           margin: const EdgeInsets.symmetric(horizontal: 70),
@@ -493,7 +507,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           backgroundColor: Colors.transparent,
           margin: const EdgeInsets.symmetric(horizontal: 70),
           fontColor: AppColors.blackColor,
-          borderColor:AppColors.blackColor,
+          borderColor: AppColors.blackColor,
           radios: 05,
           fontSize: 16,
         ),
@@ -507,61 +521,77 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
       child: Container(
         height: 220,
         padding: const EdgeInsets.all(16),
-        child: const Column(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(
+                const AppText(
                   text: 'Contact',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: AppColors.blackColor,
                 ),
-                AppText(
-                  text: 'Change',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
-                  textDecoration: TextDecoration.underline,
-                  decorationColor: AppColors.blackColor,
+                GestureDetector(
+                  onTap: (){
+                    if (controller.index.value == 2) {
+                      controller.index.value--;
+                    }
+                    controller.update();
+                  },
+                  child: const AppText(
+                    text: 'Change',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.blackColor,
+                    textDecoration: TextDecoration.underline,
+                    decorationColor: AppColors.blackColor,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 05),
-            AppText(
-              text: 'ijaz@gmail.com',
+            const SizedBox(height: 05),
+             AppText(
+              text: controller.emailTEC.text,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: AppColors.blackColor,
             ),
-            SizedBox(height: 20),
-            Divider(),
-            SizedBox(height: 20),
-            Row(
+            const SizedBox(height: 20),
+            const Divider(),
+            const SizedBox(height: 20),
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(
+                const AppText(
                   text: 'Ship to',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: AppColors.blackColor,
                 ),
-                AppText(
-                  text: 'Change',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
-                  textDecoration: TextDecoration.underline,
-                  decorationColor: AppColors.blackColor,
+                GestureDetector(
+                  onTap: (){
+                    if (controller.index.value == 2) {
+                      controller.index.value--;
+                    }
+                    controller.update();
+                  },
+                  child: const AppText(
+                    text: 'Change',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.blackColor,
+                    textDecoration: TextDecoration.underline,
+                    decorationColor: AppColors.blackColor,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            AppText(
-              text: ' new york mid front station',
+            const SizedBox(height: 10),
+             AppText(
+              text: controller.addressTEC.text,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: AppColors.blackColor,
@@ -580,81 +610,70 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
-        child: const Column(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(
+                const AppText(
                   text: 'Contact',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: AppColors.blackColor,
                 ),
-                AppText(
-                  text: 'Change',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
-                  textDecoration: TextDecoration.underline,
-                  decorationColor: AppColors.blackColor,
+                GestureDetector(
+                  onTap: (){
+                    if (controller.index.value == 3) {
+                      controller.index.value--;
+                    }
+                    controller.update();
+                  },
+                  child: const AppText(
+                    text: 'Change',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.blackColor,
+                    textDecoration: TextDecoration.underline,
+                    decorationColor: AppColors.blackColor,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 05),
+            const SizedBox(height: 05),
             AppText(
-              text: 'ijaz@gmail.com',
+              text: controller.emailTEC.text,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: AppColors.blackColor,
             ),
-            SizedBox(height: 08),
-            Divider(),
-            SizedBox(height: 08),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(
-                  text: 'Ship to',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
-                ),
-                AppText(
-                  text: 'Change',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
-                  textDecoration: TextDecoration.underline,
-                  decorationColor: AppColors.blackColor,
-                ),
-              ],
-            ),
-            SizedBox(height: 03),
-            AppText(
-              text: 'new york mid front station',
+            const SizedBox(height: 08),
+            const Divider(),
+            const SizedBox(height: 08),
+             const AppText(
+               text: 'Ship to',
+               fontSize: 14,
+               fontWeight: FontWeight.w500,
+               color: AppColors.blackColor,
+             ),
+            const SizedBox(height: 03),
+             AppText(
+              text: controller.addressTEC.text,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: AppColors.blackColor,
             ),
-            Divider(),
-            SizedBox(height: 03),
-            AppText(
+            const Divider(),
+            const SizedBox(height: 03),
+            const AppText(
               text: 'Shipping Method',
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: AppColors.blackColor,
             ),
-            AppText(
+            const AppText(
               text: 'First Shipment - Standard . 0.00',
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: AppColors.blackColor,
-            ),
-            AppText(
-              text: 'new york mid front station',
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: AppColors.blackColor,
@@ -715,7 +734,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
 
   _diffShippingAddress() {
     return Container(
-      padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 04.h),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 04.h),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
         border: Border.all(color: AppColors.blackColor),
@@ -729,7 +748,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
       child: Column(
         children: [
           LabelFormField(
-            tec: TextEditingController(),
+            tec: controller.diffFirstNameTEC,
             hint: 'First Name',
             fontSize: 14,
             fillColor: AppColors.darkGreyColor,
@@ -744,7 +763,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           ),
           SizedBox(height: 01.h),
           LabelFormField(
-            tec: TextEditingController(),
+            tec: controller.diffLastNameTEC,
             hint: 'Last Name',
             fontSize: 14,
             fillColor: AppColors.darkGreyColor,
@@ -759,7 +778,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           ),
           SizedBox(height: 01.h),
           LabelFormField(
-            tec: TextEditingController(),
+            tec: controller.diffLastNameTEC,
             hint: 'Phone Number',
             fontSize: 14,
             fillColor: AppColors.darkGreyColor,
@@ -774,7 +793,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
           ),
           SizedBox(height: 01.h),
           LabelFormField(
-            tec: TextEditingController(),
+            tec: controller.diffAddressTEC,
             hint: 'Address',
             fontSize: 14,
             fillColor: AppColors.darkGreyColor,

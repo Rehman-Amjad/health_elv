@@ -70,7 +70,7 @@ class LabelFormField extends StatelessWidget {
             focusNode: FocusNode(),
             cursorColor: AppColors.blackColor,
             style: GoogleFonts.inter(
-              color: AppColors.fieldColor,
+              color: AppColors.blackColor,
               fontSize: fontSize,
               fontWeight: FontWeight.w500,
             ),

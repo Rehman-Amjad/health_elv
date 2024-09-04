@@ -23,7 +23,7 @@ export 'screens/health_trends/export.dart';
 export 'screens/order_new_test/export.dart';
 export 'screens/results/export.dart';
 export 'screens/upcoming_results/export.dart';
-export 'screens/report/export.dart';
+export 'screens/advices/export.dart';
 export 'screens/profile/export.dart';
 export 'screens/question_air/export.dart';
 
