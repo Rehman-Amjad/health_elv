@@ -1,7 +1,26 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class FaqsController extends BaseController{
-  List stringList = ['How personal are\nHealth Elevate supplements?','Who is Health Elevate?', 'What make Health Elevate\ndifferent for other?','How do i cancel my Subscription\non Health Elevate?', 'How does the Health Elevate Pro\nSubscription Work?'];
+class FaqsController extends BaseController {
+  final fireStoreService = FireStoreService();
+  List<Map<String, dynamic>> stringList = [];
+  List<TextEditingController> controllerList = [];
+  RxBool isLoading = false.obs;
 
+  @override
+  void onInit() {
+    getFaqsList();
+    super.onInit();
+  }
 
+  getFaqsList({search}) async {
+    isLoading.value = true;
+    stringList = await fireStoreService.getAllFaqs();
+    stringList.forEach((action){
+      controllerList.add(TextEditingController(text: "write..."));
+    });
+    isLoading.value = false;
+    update();
+  }
 }

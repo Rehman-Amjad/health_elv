@@ -124,4 +124,17 @@ class FireStoreService {
 
     await ref.set(orderBloodTest.toFirestore());
   }
+
+  ///get all faqs
+  Future<List<Map<String, dynamic>>> getAllFaqs() async {
+    final snapshot = await _firestoreRef.collection(Collection.faqs.name).get();
+
+    List<Map<String, dynamic>> faqsList = [];
+    for (var doc in snapshot.docs) {
+      faqsList.add(doc.data());
+    }
+
+    return faqsList;
+  }
+
 }

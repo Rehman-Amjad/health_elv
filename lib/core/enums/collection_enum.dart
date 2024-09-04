@@ -9,4 +9,5 @@ enum Collection {
   healthTrends,
   userAdvices,
   orderBloodTest,
+  faqs,
 }
