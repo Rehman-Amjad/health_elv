@@ -12,11 +12,6 @@ class AppRoutes {
       transition: Transition.downToUp,
     ),
     GetPage(
-      name: RoutesName.onBoardingScreen,
-      page: () => OnBoardingScreen(),
-      binding: AppBinding(),
-    ),
-    GetPage(
       name: RoutesName.signupScreen,
       page: () => const SignupScreen(),
       binding: AppBinding(),
