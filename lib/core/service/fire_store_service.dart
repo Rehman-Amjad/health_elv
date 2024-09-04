@@ -99,4 +99,20 @@ class FireStoreService {
     }
     return list;
   }
+
+  ///
+  Future<List<AdviceModel>> getAdviceList() async {
+    List<AdviceModel> list = [];
+
+    final querySnapshot = await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.userAdvices.name)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      list.add(AdviceModel.fromFirestore(doc.data()));
+    }
+    return list;
+  }
 }

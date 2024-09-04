@@ -16,7 +16,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   List<Widget> screens = <Widget>[
     const HomeView(),
     const ResultsView(),
-    const ReportView(),
+    const AdviceView(),
     const ProfileScreen(),
   ];
 

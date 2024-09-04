@@ -25,7 +25,7 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => UpcomingResultsController());
 
 
-    Get.lazyPut(() => ReportController());
+    Get.lazyPut(() => AdviceController());
 
 
     Get.lazyPut(() => ProfileController());

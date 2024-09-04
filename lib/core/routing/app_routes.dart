@@ -37,15 +37,6 @@ class AppRoutes {
       binding: AppBinding(),
     ),
     GetPage(
-      name: RoutesName.reportRoute,
-      page: () => const ReportView(),
-      binding: AppBinding(),
-    ),
-    GetPage(
-      name: RoutesName.nutrationTipsRoute,
-      page: () => const NutrationTips(),
-    ),
-    GetPage(
       name: RoutesName.faqRoute,
       page: () => const FaqsView(),
     ),

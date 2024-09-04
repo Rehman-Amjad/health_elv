@@ -3,14 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class ReportView extends GetView<ReportController> {
-  const ReportView({super.key});
+class AdviceView extends GetView<AdviceController> {
+  const AdviceView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ReportController>(
+    return GetBuilder<AdviceController>(
       initState: (_) {
-        Get.put(ReportController());
+        Get.put(AdviceController());
+        controller.getAdvices();
       },
       builder: (_) {
         return Scaffold(
@@ -35,46 +36,30 @@ class ReportView extends GetView<ReportController> {
                 ),
                 const SizedBox(height: 10),
                 Expanded(
-                  child: ListView(
+                  child: ListView.builder(
+                    itemCount: controller.adviceList.length,
                     shrinkWrap: true,
-                    children: [
-                      _getReportCardWidget(
-                        imgPath: AppAssets.reportPlusIcon,
-                        onTap: () {
-                          Get.toNamed(RoutesName.nutrationTipsRoute);
-                        },
-                      ),
-                      Padding(
+                    itemBuilder: (context, index) {
+                      AdviceModel advice = controller.adviceList[index];
+                      return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: _getReportCardWidget(
                           imgPath: AppAssets.reportPlusIcon2,
-                          title: 'Lifestyle Advice',
+                          title: advice.title,
                           subTitle: '',
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const LifeStyleChangeView(),
+                                builder: (context) => NutrationTips(
+                                  description: '${advice.description}',
+                                ),
                               ),
                             );
                           },
                         ),
-                      ),
-                      _getReportCardWidget(
-                        imgPath: AppAssets.pillIcon,
-                        title: 'Supplement Advice',
-                        subTitle: '',
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const VitaminsView(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 )
               ],

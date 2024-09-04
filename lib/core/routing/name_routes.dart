@@ -9,12 +9,10 @@ class RoutesName {
 
   ///bottom nav
   static const String dashboardBottomNav = "/dashboardBottomNavigation";
-  static const String nutrationTipsRoute = "/nutrationTipsRoute";
   static const String faqRoute = "/faqRoute";
 
 
   static const String orderNewTestRoute = "/orderNewTestView";
-  static const String reportRoute = "/reportView";
 
 
 }

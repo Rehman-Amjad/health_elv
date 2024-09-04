@@ -11,6 +11,7 @@ class AppText extends StatelessWidget {
   final Color color;
   final Color decorationColor;
   final TextDecoration textDecoration;
+  final TextOverflow? overflow;
 
   const AppText({
     super.key,
@@ -22,6 +23,7 @@ class AppText extends StatelessWidget {
     this.decorationColor = AppColors.whiteColor,
     this.fontSize = 12,
     this.softWrap = false,
+    this.overflow = TextOverflow.ellipsis,
   });
 
   @override
@@ -30,7 +32,7 @@ class AppText extends StatelessWidget {
       text,
       textAlign: textAlign,
       softWrap: softWrap,
-      overflow: TextOverflow.ellipsis,
+      overflow: overflow,
       style: GoogleFonts.inter(
         decoration: textDecoration,
         decorationColor: decorationColor,

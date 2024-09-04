@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class HealthTrendChart extends StatelessWidget {
   final double score;
 
-  HealthTrendChart({
+  const HealthTrendChart({
     super.key,
     this.score = 0.0,
   });

@@ -7,4 +7,5 @@ enum Collection {
   userHealthScore,
   healthScore,
   healthTrends,
+  userAdvices,
 }

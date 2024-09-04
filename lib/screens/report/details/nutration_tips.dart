@@ -3,7 +3,12 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
 class NutrationTips extends StatelessWidget {
-  const NutrationTips({Key? key}) : super(key: key);
+  final String description;
+
+  const NutrationTips({
+    super.key,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,7 @@ class NutrationTips extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: CustomAppBar(
-          title: "Nutritional Advice",
+          title: "Advice Details",
           marginTop: 20,
         ),
       ),
@@ -20,17 +25,6 @@ class NutrationTips extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           SizedBox(height: 04.h),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              AppText(
-                text: 'Nutritional Advice',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(15),
@@ -38,37 +32,15 @@ class NutrationTips extends StatelessWidget {
               color: Colors.grey.withOpacity(0.3),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Expanded(
-                  child: AppText(
-                    text: 'Increase vegetable \n8 Hours of Sleep',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    softWrap: true,
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Image.asset(AppAssets.leafIcon),
-                )
-              ],
+            child: AppText(
+              text: description,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              softWrap: true,
+              overflow: TextOverflow.visible,
+              textAlign: TextAlign.start,
             ),
           ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35),
-            child: CustomButton(
-              text: 'As Such',
-              isGradient: true,
-              onTap: () {},
-              fontSize: 20,
-            ),
-          )
         ],
       ),
     );
