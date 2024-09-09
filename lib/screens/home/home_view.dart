@@ -44,7 +44,6 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(height: 01.h),
                     HealthCardWidget(
                       title: 'Blood Test Results',
-                      subtitle: '',
                       imgPath: AppAssets.icBloodTest,
                       onTap: () {
                         Get.to(
@@ -55,7 +54,6 @@ class HomeView extends GetView<HomeController> {
                     ),
                     HealthCardWidget(
                       title: 'Upcoming Tests',
-                      subtitle: '',
                       imgPath: AppAssets.upcommingBloodTestIcon,
                       onTap: () {
                         Get.to(
@@ -66,7 +64,6 @@ class HomeView extends GetView<HomeController> {
                     ),
                     HealthCardWidget(
                       title: 'Health Trends',
-                      subtitle: '',
                       imgPath: AppAssets.trendsIcon,
                       scale: 0.8,
                       onTap: () {
@@ -153,20 +150,6 @@ class HomeView extends GetView<HomeController> {
                           fontWeight: FontWeight.w700,
                           color: AppColors.whiteColor,
                         ),
-                        const SizedBox(height: 1),
-                        // Row(
-                        //   children: [
-                        //     SvgPicture.asset(
-                        //       AppAssets.greenAddIcon,
-                        //     ),
-                        //     AppText(
-                        //       text: '',
-                        //       fontSize: 16,
-                        //       fontWeight: FontWeight.w500,
-                        //       color: AppColors.greenColor,
-                        //     ),
-                        //   ],
-                        // )
                       ],
                     ),
                   ],
@@ -226,31 +209,6 @@ class HomeView extends GetView<HomeController> {
                   )
                 ],
               ),
-              // Stack(
-              //   alignment: Alignment.center,
-              //   children: [
-              //     SizedBox(
-              //       width: 100,
-              //       height: 100,
-              //       child: CircularProgressIndicator(
-              //         value: controller.animation.value,
-              //         strokeWidth: 16,
-              //         backgroundColor: Colors.grey[300],
-              //         valueColor: const AlwaysStoppedAnimation<Color>(
-              //           Colors.green,
-              //         ),
-              //       ),
-              //     ),
-              //     Text(
-              //       '${(controller.animation.value * 100).toInt()}%',
-              //       style: const TextStyle(
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.w700,
-              //         color: Colors.green,
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
@@ -414,7 +372,7 @@ class FaqWidget extends StatelessWidget {
 
 class HealthCardWidget extends StatelessWidget {
   final VoidCallback? onTap;
-  final String? title, subtitle, imgPath;
+  final String? title, imgPath;
   double? scale;
 
   HealthCardWidget({
@@ -422,7 +380,6 @@ class HealthCardWidget extends StatelessWidget {
     this.onTap,
     this.title,
     this.imgPath,
-    this.subtitle,
     this.scale,
   });
 
@@ -455,21 +412,11 @@ class HealthCardWidget extends StatelessWidget {
                       color: AppColors.whiteColor,
                     ),
             ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  text: title ?? 'Blood Test Results',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-                AppText(
-                  text: subtitle ?? 'Recently TSH',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.greyColor,
-                ),
-              ],
+            title: AppText(
+              text: title ?? 'Blood Test Results',
+              fontSize: 16,
+              textAlign: TextAlign.start,
+              fontWeight: FontWeight.w600,
             ),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
           ),
