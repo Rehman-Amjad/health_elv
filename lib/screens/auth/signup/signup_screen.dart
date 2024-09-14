@@ -88,6 +88,27 @@ class SignupScreen extends GetView<SignupController> {
                 SizedBox(height: 02.h),
                 CustomFormField(
                   borderColor: Colors.transparent,
+                  tec: controller.phoneTEC,
+                  hint: 'PhoneNumber',
+                  contentPadding: 20,
+                  borderRadius: 18,
+                  fontSize: 14,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  prefixIcon: const Icon(
+                    Icons.phone_iphone,
+                    size: 24,
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter phone number";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 02.h),
+                CustomFormField(
+                  borderColor: Colors.transparent,
                   tec: controller.dobTEC,
                   readOnly: true,
                   hint: 'DOB',

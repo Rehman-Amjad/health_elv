@@ -10,18 +10,6 @@ class FireStoreService {
   final _firestoreRef = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<UserData?> getUserData(uid) async {
-    try {
-      final res =
-          await _firestoreRef.collection(Collection.user.name).doc(uid).get();
-
-      return UserData.fromMap(res.data()!);
-    } on FirebaseException catch (e) {
-      log(e.message.toString());
-      return null;
-    }
-  }
-
   ///get all drop down category
   Future<List<BloodTestResults>> getBloodTestResults({DateTime? selectedDate}) async {
     List<BloodTestResults> list = [];

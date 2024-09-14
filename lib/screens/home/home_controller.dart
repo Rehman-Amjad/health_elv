@@ -9,7 +9,7 @@ class HomeController extends BaseController with GetSingleTickerProviderStateMix
   late Animation<double> animation;
 
   final firebase = FirebaseAuth.instance;
-  final fireStoreService = FireStoreService();
+  final authService = AuthService();
   UserData? userData;
 
   RxBool isLoading = false.obs;
@@ -37,9 +37,7 @@ class HomeController extends BaseController with GetSingleTickerProviderStateMix
 
   getProfileInfo() async {
     isLoading.value = true;
-    userData = await fireStoreService.getUserData(
-      firebase.currentUser?.uid,
-    );
+    userData = await authService.getUserData();
     isLoading.value = false;
     update();
   }

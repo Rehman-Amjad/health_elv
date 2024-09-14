@@ -7,6 +7,7 @@ class SignupController extends BaseController {
 
   final nameTEC = TextEditingController();
   final emailTEC = TextEditingController();
+  final phoneTEC = TextEditingController();
   final dobTEC = TextEditingController();
   final passwordTEC = TextEditingController();
   final confirmPasswordTEC = TextEditingController();
@@ -30,6 +31,7 @@ class SignupController extends BaseController {
       UserData userData = UserData(
         fullName: nameTEC.text.trim(),
         email: emailTEC.text.trim(),
+        phoneNumber: phoneTEC.text.trim(),
         password: passwordTEC.text.trim(),
         dob: dobTEC.text.trim(),
       );

@@ -123,6 +123,38 @@ class UserDetailsView extends GetView<ProfileController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
+                      text: 'Phone',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 02),
+                CustomFormField(
+                  hint: 'Phone Number',
+                  tec: controller.phoneTEC,
+                  fontSize: 14,
+                  contentPadding: 20,
+                  borderRadius: 10,
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  borderColor: Colors.transparent,
+                  prefixIcon: const Icon(
+                    Icons.phone_iphone,
+                    size: 24,
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter phone number";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 02.h),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppText(
                       text: 'Date Of Birth',
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -171,38 +203,6 @@ class UserDetailsView extends GetView<ProfileController> {
                   },
                 ),
                 SizedBox(height: 02.h),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    AppText(
-                      text: 'Gender',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 02),
-                CustomFormField(
-                  borderColor: Colors.transparent,
-                  tec: controller.ganderTEC,
-                  hint: 'Gender',
-                  prefixIcon: const Icon(
-                    CupertinoIcons.person_2_fill,
-                    size: 24,
-                    color: AppColors.fieldColor,
-                  ),
-                  fontSize: 14,
-                  textInputAction: TextInputAction.next,
-                  contentPadding: 20,
-                  borderRadius: 10,
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter gender";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 02.h),
                 _updateButton(context),
                 SizedBox(height: 02.h),
               ],
@@ -220,7 +220,7 @@ class UserDetailsView extends GetView<ProfileController> {
         radios: 10,
         text: 'Update',
         onTap: () {
-          //controller.signUpWithFirebase(context);
+          controller.updateProfileInfo(context);
         },
       ),
     );
