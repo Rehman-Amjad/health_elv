@@ -42,11 +42,10 @@ class ProfileController extends BaseController {
     AppUtils().showLoading(context);
     UserData userData = UserData(
       uid: firebase.currentUser?.uid,
-      fullName: firebase.currentUser?.uid,
-      dob: firebase.currentUser?.uid,
-      phoneNumber: firebase.currentUser?.uid,
-      email: firebase.currentUser?.uid,
-      password: firebase.currentUser?.uid,
+      fullName: nameTEC.text.trim(),
+      dob: dobTEC.text.trim(),
+      phoneNumber: phoneTEC.text.trim(),
+      email: emailTEC.text.trim(),
     );
 
     await authService.updateUserData(userData).then((isUpdate) {

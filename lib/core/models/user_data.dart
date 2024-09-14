@@ -35,7 +35,6 @@ class UserData {
       'fullName': fullName,
       'dob': dob,
       'phoneNumber': phoneNumber,
-      'email': email,
     };
   }
 

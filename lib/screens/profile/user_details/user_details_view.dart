@@ -136,7 +136,6 @@ class UserDetailsView extends GetView<ProfileController> {
                   fontSize: 14,
                   contentPadding: 20,
                   borderRadius: 10,
-                  readOnly: true,
                   textInputAction: TextInputAction.next,
                   borderColor: Colors.transparent,
                   prefixIcon: const Icon(
