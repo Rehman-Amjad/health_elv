@@ -78,10 +78,8 @@ class FireStoreService {
     try {
       // Reference to the document
       final ref = FirebaseFirestore.instance
-          .collection(Collection.user.name)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.userHealthScore.name)
-          .doc(Collection.healthScore.name);
+          .collection(Collection.allHealthScore.name)
+          .doc(_firebaseAuth.currentUser!.uid);
 
       // Get the document snapshot
       DocumentSnapshot snapshot = await ref.get();
