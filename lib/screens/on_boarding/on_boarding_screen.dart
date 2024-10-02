@@ -36,9 +36,10 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
                               children: [
                                 AppText(
                                   text: controller.pages[controller.activePage.value].title,
-                                  fontSize: 24,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   softWrap: true,
+                                  overflow: TextOverflow.visible,
                                   textAlign: TextAlign.center,
                                 ),
                                 SizedBox(

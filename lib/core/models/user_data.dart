@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserData {
   String? uid;
   String? fullName;
@@ -6,6 +8,7 @@ class UserData {
   String? phoneNumber;
   String? email;
   String? password;
+  Timestamp? joinDate;
 
   UserData({
     this.uid,
@@ -15,8 +18,8 @@ class UserData {
     this.phoneNumber,
     this.email,
     this.password,
+    this.joinDate,
   });
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -27,6 +30,7 @@ class UserData {
       'phoneNumber': phoneNumber,
       'email': email,
       'password': password,
+      'joinDate': joinDate ?? FieldValue.serverTimestamp(),
     };
   }
 
@@ -38,7 +42,6 @@ class UserData {
     };
   }
 
-
   factory UserData.fromMap(Map<String, dynamic> map) {
     return UserData(
       uid: map['uid'],
@@ -47,8 +50,7 @@ class UserData {
       dob: map['dob'],
       phoneNumber: map['phoneNumber'],
       email: map['email'],
+      joinDate: map['joinDate'], // Fetch joinDate from map
     );
   }
-
 }
-

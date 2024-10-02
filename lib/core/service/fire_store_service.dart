@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,22 +9,25 @@ class FireStoreService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   ///get all drop down category
-  Future<List<BloodTestResults>> getBloodTestResults({DateTime? selectedDate}) async {
+  Future<List<BloodTestResults>> getBloodTestResults(
+      {DateTime? selectedDate}) async {
     List<BloodTestResults> list = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot;
     if (selectedDate == null) {
       querySnapshot = await _firestoreRef
-          .collection(Collection.bloodTestResults.name)
+          .collection(Collection.user.name)
           .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.tests.name)
+          .collection(Collection.allBloodTestResults.name)
           .get();
       for (var doc in querySnapshot.docs) {
         list.add(BloodTestResults.fromFirestore(doc.data()));
       }
     } else {
       // Convert DateTime to the start of the day and end of the day for filtering
-      DateTime startOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-      DateTime endOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+      DateTime startOfDay =
+          DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+      DateTime endOfDay =
+          DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
 
       Timestamp startTimestamp = Timestamp.fromDate(startOfDay);
       Timestamp endTimestamp = Timestamp.fromDate(endOfDay);
@@ -35,9 +36,9 @@ class FireStoreService {
       print(endTimestamp);
 
       querySnapshot = await _firestoreRef
-          .collection(Collection.bloodTestResults.name)
+          .collection(Collection.user.name)
           .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.tests.name)
+          .collection(Collection.allBloodTestResults.name)
           .where('testDate', isGreaterThanOrEqualTo: startTimestamp)
           .where('testDate', isLessThanOrEqualTo: endTimestamp)
           .get();
@@ -77,7 +78,7 @@ class FireStoreService {
   Future<HealthScore?> getHealthScoreData() async {
     try {
       // Reference to the document
-      final ref = FirebaseFirestore.instance
+      final ref = _firestoreRef
           .collection(Collection.allHealthScore.name)
           .doc(_firebaseAuth.currentUser!.uid);
 
@@ -94,6 +95,22 @@ class FireStoreService {
       debugPrint("Error getting document: $e");
     }
     return null;
+  }
+
+  ///
+  Future<List<QuickOverview>> getQuickOverViewList() async {
+    List<QuickOverview> list = [];
+
+    final querySnapshot =await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.quickOverView.name)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      list.add(QuickOverview.fromFirestore(doc.data()));
+    }
+    return list;
   }
 
   ///

@@ -188,7 +188,7 @@ class HomeView extends GetView<HomeController> {
     return GestureDetector(
       onTap: () {
         Get.to(
-          () => HealthScoreScreen(),
+          () => const HealthScoreScreen(),
           binding: AppBinding(),
         );
       },
@@ -261,7 +261,7 @@ class HomeView extends GetView<HomeController> {
                       backgroundColor: AppColors.primaryColor,
                       onTap: () {
                         Get.to(
-                          () => const HealthOverview(),
+                          () => const QuickOverviewView(),
                           binding: AppBinding(),
                         );
                       },

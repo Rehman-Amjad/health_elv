@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
@@ -65,8 +64,8 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                                         BorderRadius.all(Radius.circular(5)),
                                     color: AppColors.secondryColor),
                                 alignment: Alignment.center,
-                                child: const AppText(
-                                  text: 'Normal',
+                                child: AppText(
+                                  text: controller.healthScore?.healthStatus??"N/A",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
                                   color: AppColors.whiteColor,
@@ -76,7 +75,7 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                           ),
                           Center(
                             child: AppText(
-                              text: '${controller.healthScore?.score}',
+                              text: controller.healthScore?.score ?? "0",
                               fontWeight: FontWeight.w700,
                               fontSize: 100,
                               color: AppColors.whiteColor,
@@ -95,57 +94,6 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                         ],
                       ),
                     ),
-                    Container(
-                      width: size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 06),
-                      decoration: AppUtils.linearDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const AppText(
-                                text: 'sleep',
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
-                              ),
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: SvgPicture.asset(AppAssets.sleepIcon),
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          const CustomBarChart(),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AppText(
-                                text: '${controller.healthScore?.sleepTime}',
-                                color: AppColors.whiteColor,
-                                fontSize: 36,
-                                fontWeight: FontWeight.w800,
-                              ),
-                              const AppText(
-                                text: 'hours',
-                                color: AppColors.whiteColor,
-                                fontSize: 16,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
                   ],
                 )
               : Center(

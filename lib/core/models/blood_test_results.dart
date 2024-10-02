@@ -3,26 +3,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BloodTestResults {
   final String? uid;
+  final String? testType;
+  final String? title;
+  final String? subTitle;
   final String? currentRange;
   final String? normalRange;
   final String? status;
-  final String? subTitle;
   final String? testDesc;
   final String? testUnit;
-  final String? title;
   final Timestamp? testDate;
   final String? highMeanDate;
   final String? lowMeanDate;
 
   BloodTestResults({
     this.uid,
+    this.testType,
+    this.title,
+    this.subTitle,
     this.currentRange,
     this.normalRange,
     this.status,
-    this.subTitle,
     this.testDesc,
     this.testUnit,
-    this.title,
     this.testDate,
     this.highMeanDate,
     this.lowMeanDate,
