@@ -177,9 +177,9 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                   ),
                   inactiveTrackColor: Colors.black,
                   slider: Slider(
-                      value: 9.5,
+                      value: double.parse(controller.item.currentRange??"0"),
                       min: 0,
-                      max: 10,
+                      max: 100,
                       onChanged: (val) {
                         //sliderValue = val;
                       }),

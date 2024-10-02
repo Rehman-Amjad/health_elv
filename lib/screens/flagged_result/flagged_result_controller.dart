@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
@@ -17,16 +19,17 @@ class FlaggedResultController extends BaseController
   void onInit() {
     if (isFromUpComing) {
       bloodTestResults = Get.arguments[1];
+      initAnimation();
     } else {
       getFlaggedResults();
     }
-    initAnimation();
     super.onInit();
   }
 
   getFlaggedResults() async {
     isLoading.value = true;
     bloodTestResults = await firestoreService.getFlaggedData();
+    initAnimation();
     isLoading.value = false;
     update();
   }
@@ -36,8 +39,8 @@ class FlaggedResultController extends BaseController
       duration: const Duration(seconds: 1),
       vsync: this,
     );
-
-    animation = Tween<double>(begin: 0, end: 9.5).animate(_animationController)
+    double endValue= double.parse(bloodTestResults?.currentRange??"0");
+    animation = Tween<double>(begin: 0, end: endValue).animate(_animationController)
       ..addListener(() {
         update();
       });

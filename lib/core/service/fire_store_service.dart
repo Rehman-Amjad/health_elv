@@ -133,7 +133,7 @@ class FireStoreService {
     final querySnapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
-        .collection(Collection.userAdvices.name)
+        .collection(Collection.advices.name)
         .get();
 
     for (var doc in querySnapshot.docs) {

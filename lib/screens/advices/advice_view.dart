@@ -82,18 +82,6 @@ class AdviceView extends GetView<AdviceController> {
       child: Container(
         width: double.infinity,
         height: Get.height * 0.11,
-        // decoration: BoxDecoration(
-        //   color: AppColors.darkBlueColor,
-        //   borderRadius: BorderRadius.circular(16),
-        //   boxShadow: [
-        //     BoxShadow(
-        //       color: Colors.grey.withOpacity(0.5),
-        //       spreadRadius: 1,
-        //       blurRadius: 7,
-        //       offset: const Offset(0, 3), // changes position of shadow
-        //     ),
-        //   ],
-        // ),
         decoration: AppUtils.linearDecoration(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -113,18 +101,12 @@ class AdviceView extends GetView<AdviceController> {
             const SizedBox(width: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AppText(
                   text: title ?? 'Nutritional Advice',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.whiteColor,
-                ),
-                AppText(
-                  text: subTitle ?? '',
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
                   color: AppColors.whiteColor,
                 ),
               ],

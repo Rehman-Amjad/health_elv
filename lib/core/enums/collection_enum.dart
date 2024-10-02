@@ -7,7 +7,7 @@ enum Collection {
   allHealthScore,
   quickOverView,
   healthTrends,
-  userAdvices,
+  advices,
   orderBloodTest,
   faqs,
 }

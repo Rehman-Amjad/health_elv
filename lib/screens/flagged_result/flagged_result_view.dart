@@ -129,7 +129,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                               slider: Slider(
                                 value: controller.animation.value,
                                 min: 0,
-                                max: 10,
+                                max: 100,
                                 onChanged: (val) {
                                   //sliderValue = val;
                                 },
