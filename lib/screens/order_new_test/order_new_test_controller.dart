@@ -5,73 +5,81 @@ import 'package:health_elev8_app/path_file.dart';
 
 class OrderNewTestController extends BaseController {
   var formKey = GlobalKey<FormState>();
-  RxInt index = 1.obs;
-  RxBool saveInfoForNextTime = false.obs;
-  RxBool isSameAddress = true.obs;
+
+  RxBool isLoading=false.obs;
+
   final firebaseAuth = FirebaseAuth.instance;
   final firestoreService = FireStoreService();
 
   ///
   var emailTEC = TextEditingController();
+  final testDateTEC = TextEditingController();
+  DateTime dobDateTime = DateTime.now();
+
+  ///for blood test
+  ///drop downs lists
+  List<TestTypeModel> testTypeList = [];
+  String testType = "";
+
+  List<TestCategoryModel> testCategoryList = [];
+  String testCategory = "";
+
+  List<TestSubCategoryModel> testSubCategoryList = [];
+  String testSubCategory = "";
+
   final firstNameTEC = TextEditingController();
   final lastNameTEC = TextEditingController();
   final phoneNumberTEC = TextEditingController();
   final addressTEC = TextEditingController();
 
-  final diffFirstNameTEC = TextEditingController();
-  final diffLastNameTEC = TextEditingController();
-  final diffPhoneNumberTEC = TextEditingController();
-  final diffAddressTEC = TextEditingController();
-
   @override
   void onInit() {
     emailTEC = TextEditingController(text: firebaseAuth.currentUser?.email);
+    getTestsTypeDropDown();
     super.onInit();
+  }
+
+  /// All Drop downs
+  getTestsTypeDropDown() async {
+    isLoading=true.obs;
+    testTypeList = await firestoreService.getTestTypes();
+    isLoading=false.obs;
+    update();
+  }
+
+  getTestsCategoryDropDown(context, String testType) async {
+    AppUtils().showLoading(context);
+    testCategoryList.clear();
+    testCategoryList = await firestoreService.getTestCategory(
+      testType: testType,
+    );
+    AppUtils().dismissLoading();
+    update();
+  }
+
+  getTestsSubCategoryDropDown(context, String testCategory) async {
+    AppUtils().showLoading(context);
+    testCategoryList.clear();
+    testSubCategoryList = await firestoreService.getTestSubCategory(
+      testCategory: testCategory,
+    );
+    AppUtils().dismissLoading();
+    update();
   }
 
   saveToDatabase(context) async{
     AppUtils().showLoading(context);
     OrderBloodTest orderBloodTest = OrderBloodTest();
     Map<String, dynamic> shippingAddress = {};
-    Map<String, dynamic> secondAddress = {};
-    if (isSameAddress.isTrue) {
-      shippingAddress = {
-        "firstName": firstNameTEC.text,
-        "lastName": lastNameTEC.text,
-        "phoneNumber": phoneNumberTEC.text,
-        "address": addressTEC.text,
-      };
-      orderBloodTest = OrderBloodTest(
-        uid: firebaseAuth.currentUser?.uid,
-        email: emailTEC.text,
-        discount: 0,
-        sameAsShipping: isSameAddress.value,
-        shippingMethod: "Standard",
-        shippingAddress: shippingAddress,
-        secondAddress: secondAddress,
-      );
-    } else {
-      shippingAddress = {
-        "firstName": firstNameTEC.text,
-        "lastName": lastNameTEC.text,
-        "phoneNumber": phoneNumberTEC.text,
-        "address": addressTEC.text,
-      };
-      secondAddress = {
-        "firstName": diffFirstNameTEC.text,
-        "lastName": diffLastNameTEC.text,
-        "phoneNumber": diffPhoneNumberTEC.text,
-        "address": diffAddressTEC.text,
-      };
-      orderBloodTest = OrderBloodTest(
-        email: emailTEC.text,
-        discount: 0,
-        sameAsShipping: isSameAddress.value,
-        shippingMethod: "Standard",
-        shippingAddress: shippingAddress,
-        secondAddress: secondAddress,
-      );
-    }
+
+    orderBloodTest = OrderBloodTest(
+      uid: firebaseAuth.currentUser?.uid,
+      email: emailTEC.text,
+      testType: testType,
+      testCategory: testCategory,
+      testSubCategory: testSubCategory,
+      shippingAddress: shippingAddress,
+    );
 
     await firestoreService.saveOrderBloodTest(orderBloodTest);
 
@@ -86,12 +94,6 @@ class OrderNewTestController extends BaseController {
     lastNameTEC.clear();
     phoneNumberTEC.clear();
     addressTEC.clear();
-
-    ///second address
-    diffFirstNameTEC.clear();
-    diffLastNameTEC.clear();
-    diffPhoneNumberTEC.clear();
-    diffAddressTEC.clear();
     super.dispose();
   }
 }

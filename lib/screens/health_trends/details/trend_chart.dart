@@ -21,35 +21,30 @@ class HealthTrendChart extends StatelessWidget {
             isStrokeCapRound: true,
             dotData: const FlDotData(
               show: true,
-              // dotColor: Colors.blue,
-              // dotSize: 8,
             ),
             belowBarData: BarAreaData(
               show: true,
-              // colors: [Colors.blue.withOpacity(0.2)],
             ),
             spots: [
-              const FlSpot(0, 10),
-              const FlSpot(1, 20),
-              const FlSpot(2, 40),
-              const FlSpot(3, 60),
-               FlSpot(4, score), // Peak point (corresponding to Wednesday)
-              const FlSpot(5, 85),
-              const FlSpot(6, 75),
+              FlSpot(0, score + 10),
+              FlSpot(1, score + 20),
+              FlSpot(2, score + 40),
+              FlSpot(3, score + 50),
+              FlSpot(4, score),
+              FlSpot(5, score + 85),
+              FlSpot(6, score + 75),
             ],
           ),
         ],
         titlesData: FlTitlesData(
           topTitles: const AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: false,
-            )
-          ),
+              sideTitles: SideTitles(
+            showTitles: false,
+          )),
           rightTitles: const AxisTitles(
               sideTitles: SideTitles(
-                showTitles: false,
-              )
-          ),
+            showTitles: false,
+          )),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -86,7 +81,7 @@ class HealthTrendChart extends StatelessWidget {
         minX: 0,
         maxX: 6,
         minY: 0,
-        maxY: score,
+        maxY: score + 100,
       ),
     );
   }

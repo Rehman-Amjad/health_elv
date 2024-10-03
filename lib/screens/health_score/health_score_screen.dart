@@ -81,9 +81,9 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                               color: AppColors.whiteColor,
                             ),
                           ),
-                          const Center(
+                           Center(
                               child: AppText(
-                            text: 'You are a healthy individual',
+                            text: controller.healthScore?.statusDesc??"--",
                             fontSize: 19,
                             fontWeight: FontWeight.w600,
                             color: AppColors.whiteColor,

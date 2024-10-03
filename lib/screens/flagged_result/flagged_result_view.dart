@@ -22,7 +22,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
           appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Blood Test Result",
+              title: "Flagged Result",
               marginTop: 20,
             ),
           ),
@@ -35,7 +35,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${controller.bloodTestResults?.title}',
+                          controller.bloodTestResults?.title??"",
                           style: GoogleFonts.inter(
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
@@ -71,7 +71,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                                   Row(
                                     children: [
                                       Text(
-                                        'Normal Range: ${controller.bloodTestResults?.normalRange} units${controller.bloodTestResults?.testUnit}',
+                                        'Normal Range: ${controller.bloodTestResults?.normalRange??""} units${controller.bloodTestResults?.testUnit??""}',
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
@@ -81,8 +81,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                                       const Spacer(),
                                       CustomButton(
                                         backgroundColor: AppColors.redColor,
-                                        text:
-                                            '${controller.bloodTestResults?.status}',
+                                        text: controller.bloodTestResults?.status??"",
                                         width: 74,
                                         height: 27,
                                         fontSize: 14,
@@ -91,7 +90,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    '${controller.bloodTestResults?.currentRange} ${controller.bloodTestResults?.testUnit}',
+                                    '${controller.bloodTestResults?.currentRange??""} ${controller.bloodTestResults?.testUnit??""}',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
@@ -135,31 +134,6 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                                 },
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 24.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Low',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.fieldColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    'High',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.fieldColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -174,35 +148,10 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${controller.bloodTestResults?.testDesc}',
+                      controller.bloodTestResults?.testDesc??"",
                       style: const TextStyle(fontSize: 16),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'What might a normal result mean?',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${controller.bloodTestResults?.highMeanDate}',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'What might a high result mean?',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${controller.bloodTestResults?.lowMeanDate}',
-                      style: const TextStyle(fontSize: 16),
-                    ),
                   ],
                 )
               : Center(

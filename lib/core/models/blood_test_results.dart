@@ -12,8 +12,8 @@ class BloodTestResults {
   final String? testDesc;
   final String? testUnit;
   final Timestamp? testDate;
-  final String? highMeanDate;
-  final String? lowMeanDate;
+  // final String? highMeanDate;
+  // final String? lowMeanDate;
 
   BloodTestResults({
     this.uid,
@@ -26,8 +26,8 @@ class BloodTestResults {
     this.testDesc,
     this.testUnit,
     this.testDate,
-    this.highMeanDate,
-    this.lowMeanDate,
+    // this.highMeanDate,
+    // this.lowMeanDate,
   });
 
   // Factory constructor to create an instance from a Firestore document snapshot
@@ -55,8 +55,8 @@ class BloodTestResults {
       title: data['title'],
       testDate : data['test_date'],
       testDesc: data['test_desc'],
-      highMeanDate: data['high_desc'],
-      lowMeanDate: data['low_desc'],
+      // highMeanDate: data['high_desc'],
+      // lowMeanDate: data['low_desc'],
     );
   }
 
@@ -85,8 +85,8 @@ class BloodTestResults {
       'title': title,
       'test_date': testDate,
       'test_desc': testDesc,
-      'high_desc': highMeanDate,
-      'low_desc': lowMeanDate,
+      // 'high_desc': highMeanDate,
+      // 'low_desc': lowMeanDate,
     };
   }
 }

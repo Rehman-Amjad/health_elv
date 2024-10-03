@@ -52,9 +52,9 @@ class ResultsView extends GetView<ResultsController> {
                         color: AppColors.redColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(06)),
                     alignment: Alignment.center,
-                    child: const Text(
-                      '0',
-                      style: TextStyle(
+                    child: Text(
+                      '${controller.bloodTestResults.length}',
+                      style: const TextStyle(
                         color: AppColors.redColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -123,51 +123,51 @@ class ResultsView extends GetView<ResultsController> {
             ),
           ),
         ),
-        const SizedBox(width: 20),
-        Expanded(
-          flex: 1,
-          child: GestureDetector(
-            onTap: () {
-              DatePickerBdaya.showDatePicker(
-                context,
-                showTitleActions: true,
-                minTime: DateTime(1900, 3, 5),
-                maxTime: DateTime(2500, 3, 5),
-                onConfirm: (DateTime date) {
-                  String selectedDate = DateFormat('dd, MMM, yyyy').format(date);
-                  controller.selectedDate = selectedDate;
-                  controller.isShowFirst.value = false;
-                  controller.getBloodTestResults(selectedDate: date);
-                  controller.update();
-                },
-                currentTime: DateTime.now(),
-              );
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height * 0.05,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: AppColors.blackColor,
-              )),
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppText(
-                    text: controller.selectedDate == ''
-                        ? 'Calendar'
-                        : controller.selectedDate,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Icon(Icons.keyboard_arrow_down_rounded),
-                ],
-              ),
-            ),
-          ),
-        ),
+        // const SizedBox(width: 20),
+        // Expanded(
+        //   flex: 1,
+        //   child: GestureDetector(
+        //     onTap: () {
+        //       DatePickerBdaya.showDatePicker(
+        //         context,
+        //         showTitleActions: true,
+        //         minTime: DateTime(1900, 3, 5),
+        //         maxTime: DateTime(2500, 3, 5),
+        //         onConfirm: (DateTime date) {
+        //           String selectedDate = DateFormat('dd, MMM, yyyy').format(date);
+        //           controller.selectedDate = selectedDate;
+        //           controller.isShowFirst.value = false;
+        //           controller.getBloodTestResults(selectedDate: date);
+        //           controller.update();
+        //         },
+        //         currentTime: DateTime.now(),
+        //       );
+        //     },
+        //     child: Container(
+        //       width: Get.width,
+        //       height: Get.height * 0.05,
+        //       decoration: BoxDecoration(
+        //           border: Border.all(
+        //         color: AppColors.blackColor,
+        //       )),
+        //       alignment: Alignment.center,
+        //       padding: const EdgeInsets.symmetric(horizontal: 10),
+        //       child: Row(
+        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //         children: [
+        //           AppText(
+        //             text: controller.selectedDate == ''
+        //                 ? 'Calendar'
+        //                 : controller.selectedDate,
+        //             fontSize: 14,
+        //             fontWeight: FontWeight.w500,
+        //           ),
+        //           const Icon(Icons.keyboard_arrow_down_rounded),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

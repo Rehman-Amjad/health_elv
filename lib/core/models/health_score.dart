@@ -14,10 +14,10 @@ class HealthScore {
 
   factory HealthScore.fromFirestore(Map<String, dynamic> data) {
     return HealthScore(
-      uid: data['uid'] as String,
-      score: data['score'] as String,
-      healthStatus: data['healthStatus'] as String,
-      statusDesc: data['statusDesc'] as String,
+      uid: data['uid'] ??"--",
+      score: data['score'] ??"--",
+      healthStatus: data['healthStatus'] ??"--",
+      statusDesc: data['statusDesc'] ??"--",
     );
   }
 

@@ -89,6 +89,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         selectionDecoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
+            width: 4,
             color: Theme.of(context).primaryColor,
           ),
         ),

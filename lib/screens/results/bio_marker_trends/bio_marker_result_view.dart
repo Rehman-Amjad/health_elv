@@ -184,30 +184,30 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                         //sliderValue = val;
                       }),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Low',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.fieldColor,
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        'High',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.fieldColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         'Low',
+                //         style: GoogleFonts.montserrat(
+                //           fontSize: 12,
+                //           fontWeight: FontWeight.w500,
+                //           color: AppColors.fieldColor,
+                //         ),
+                //       ),
+                //       const Spacer(),
+                //       Text(
+                //         'High',
+                //         style: GoogleFonts.montserrat(
+                //           fontSize: 12,
+                //           fontWeight: FontWeight.w500,
+                //           color: AppColors.fieldColor,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

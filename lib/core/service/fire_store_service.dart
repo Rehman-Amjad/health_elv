@@ -117,11 +117,60 @@ class FireStoreService {
   Future<List<HealthTrends>> getHealthTrendsList() async {
     List<HealthTrends> list = [];
 
-    final querySnapshot =
-        await _firestoreRef.collection(Collection.healthTrends.name).get();
+    final querySnapshot = await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.healthTrends.name)
+        .get();
 
     for (var doc in querySnapshot.docs) {
       list.add(HealthTrends.fromFirestore(doc.data()));
+    }
+    return list;
+  }
+
+  ///Add Tests
+  Future<List<TestTypeModel>> getTestTypes() async {
+    final snapshot =
+    await _firestoreRef.collection(Collection.testType.name).get();
+    List<TestTypeModel> list = [];
+    for (var doc in snapshot.docs) {
+      list.add(TestTypeModel.fromMap(doc.data()));
+    }
+    return list;
+  }
+
+  ///testCategory
+  Future<List<TestCategoryModel>> getTestCategory({testType}) async {
+    Query query = _firestoreRef.collection(Collection.testCategory.name);
+
+    if (testType.isNotEmpty) {
+      query = query.where('testType', isEqualTo: testType);
+    }
+
+    final snapshot = await query.get();
+
+    List<TestCategoryModel> list = [];
+    for (var doc in snapshot.docs) {
+      list.add(TestCategoryModel.fromMap(doc.data() as Map<String, dynamic>));
+    }
+    return list;
+  }
+
+  ///test-Sub-Category
+  Future<List<TestSubCategoryModel>> getTestSubCategory({testCategory}) async {
+    Query query = _firestoreRef.collection(Collection.testSubCategory.name);
+
+    if (testCategory.isNotEmpty) {
+      query = query.where('testCategory', isEqualTo: testCategory);
+    }
+
+    final snapshot = await query.get();
+
+    List<TestSubCategoryModel> list = [];
+    for (var doc in snapshot.docs) {
+      list.add(
+          TestSubCategoryModel.fromMap(doc.data() as Map<String, dynamic>));
     }
     return list;
   }
@@ -146,8 +195,9 @@ class FireStoreService {
   Future<void> saveOrderBloodTest(OrderBloodTest orderBloodTest) async {
     final ref = _firestoreRef
         .collection(Collection.orderBloodTest.name)
-        .doc(); // Generates a unique ID for each test
+        .doc();
 
+    orderBloodTest.docId=ref.id;
     await ref.set(orderBloodTest.toFirestore());
   }
 

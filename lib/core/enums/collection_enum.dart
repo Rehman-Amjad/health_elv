@@ -9,5 +9,8 @@ enum Collection {
   healthTrends,
   advices,
   orderBloodTest,
+  testType,
+  testCategory,
+  testSubCategory,
   faqs,
 }
