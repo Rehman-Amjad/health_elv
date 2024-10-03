@@ -6,7 +6,7 @@ import 'package:health_elev8_app/path_file.dart';
 class OrderNewTestController extends BaseController {
   var formKey = GlobalKey<FormState>();
 
-  RxBool isLoading=false.obs;
+  RxBool isLoading = false.obs;
 
   final firebaseAuth = FirebaseAuth.instance;
   final firestoreService = FireStoreService();
@@ -32,6 +32,8 @@ class OrderNewTestController extends BaseController {
   final phoneNumberTEC = TextEditingController();
   final addressTEC = TextEditingController();
 
+  Map<String, dynamic> shippingAddress = {};
+
   @override
   void onInit() {
     emailTEC = TextEditingController(text: firebaseAuth.currentUser?.email);
@@ -41,9 +43,9 @@ class OrderNewTestController extends BaseController {
 
   /// All Drop downs
   getTestsTypeDropDown() async {
-    isLoading=true.obs;
+    isLoading = true.obs;
     testTypeList = await firestoreService.getTestTypes();
-    isLoading=false.obs;
+    isLoading = false.obs;
     update();
   }
 
@@ -67,17 +69,21 @@ class OrderNewTestController extends BaseController {
     update();
   }
 
-  saveToDatabase(context) async{
+  saveToDatabase(context) async {
     AppUtils().showLoading(context);
-    OrderBloodTest orderBloodTest = OrderBloodTest();
-    Map<String, dynamic> shippingAddress = {};
-
-    orderBloodTest = OrderBloodTest(
+    shippingAddress = {
+      "firstName": firstNameTEC.text,
+      "lastName": lastNameTEC.text,
+      "phoneNumber": phoneNumberTEC.text,
+      "address": addressTEC.text,
+    };
+    OrderBloodTest orderBloodTest = OrderBloodTest(
       uid: firebaseAuth.currentUser?.uid,
       email: emailTEC.text,
       testType: testType,
       testCategory: testCategory,
       testSubCategory: testSubCategory,
+      testDate: testDateTEC.text,
       shippingAddress: shippingAddress,
     );
 

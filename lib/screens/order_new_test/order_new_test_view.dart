@@ -38,58 +38,47 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                         children: [
                           AppText(
                             text: 'Test Info',
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blackColor,
                           ),
                         ],
                       ),
-                      SizedBox(height: 01.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: getCustomDropDownTitle(
-                              title: 'Test Type',
-                              child: CustomDropdown<TestTypeModel>(
-                                hintText: 'Test Type',
-                                items: controller.testTypeList,
-                                onChanged: (testType) {
-                                  if (testType != null) {
-                                    controller.getTestsCategoryDropDown(
-                                        context, testType.name);
-                                    controller.testType = testType.name;
-                                  }
-                                  controller.update();
-                                },
-                                decoration: decoration(),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 02.w),
-                          Expanded(
-                            flex: 1,
-                            child: getCustomDropDownTitle(
-                              title: 'Test Category',
-                              child: CustomDropdown<TestCategoryModel>(
-                                hintText: 'Test Category',
-                                items: controller.testCategoryList,
-                                onChanged: (testCategory) {
-                                  if (testCategory != null) {
-                                    controller.getTestsSubCategoryDropDown(
-                                        context, testCategory.name);
-                                    controller.testCategory = testCategory.name;
-                                  }
-                                  controller.update();
-                                },
-                                decoration: decoration(),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                       SizedBox(height: 02.h),
+                      getCustomDropDownTitle(
+                        title: 'Test Type',
+                        child: CustomDropdown<TestTypeModel>(
+                          hintText: 'Test Type',
+                          items: controller.testTypeList,
+                          onChanged: (testType) {
+                            if (testType != null) {
+                              controller.getTestsCategoryDropDown(
+                                  context, testType.name);
+                              controller.testType = testType.name;
+                            }
+                            controller.update();
+                          },
+                          decoration: decoration(),
+                        ),
+                      ),
+                      SizedBox(height: 01.w),
+                      getCustomDropDownTitle(
+                        title: 'Test Category',
+                        child: CustomDropdown<TestCategoryModel>(
+                          hintText: 'Test Category',
+                          items: controller.testCategoryList,
+                          onChanged: (testCategory) {
+                            if (testCategory != null) {
+                              controller.getTestsSubCategoryDropDown(
+                                  context, testCategory.name);
+                              controller.testCategory = testCategory.name;
+                            }
+                            controller.update();
+                          },
+                          decoration: decoration(),
+                        ),
+                      ),
+                      SizedBox(height: 01.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,47 +100,50 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 02.h),
-                      CustomFormField(
-                        tec: controller.testDateTEC,
-                        readOnly: true,
-                        hint: 'Test Date',
-                        fontSize: 14,
-                        contentPadding: 20,
-                        borderRadius: 10,
-                        fillColor: AppColors.whiteColor,
-                        borderColor: AppColors.blackColor,
-                        textInputAction: TextInputAction.next,
-                        onFieldOnTap: () {
-                          DatePickerBdaya.showDatePicker(
-                            context,
-                            showTitleActions: true,
-                            minTime: DateTime.now(),
-                            maxTime: DateTime(2050, 3, 5),
-                            onConfirm: (DateTime date) {
-                              String selectedDate =
-                              DateFormat('dd, MMM, yyyy').format(date);
-                              controller.testDateTEC.text = selectedDate;
-                              controller.dobDateTime = date;
-                              controller.update();
-                            },
-                            currentTime: DateTime(2000, 3, 5),
-                          );
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter test date";
-                          }
-                          return null;
-                        },
+                      SizedBox(height: 01.h),
+                      getCustomDropDownTitle(
+                        title: 'Test Date',
+                        child: CustomFormField(
+                          tec: controller.testDateTEC,
+                          readOnly: true,
+                          hint: 'Test Date',
+                          fontSize: 14,
+                          contentPadding: 20,
+                          borderRadius: 10,
+                          fillColor: AppColors.whiteColor,
+                          borderColor: AppColors.blackColor,
+                          textInputAction: TextInputAction.next,
+                          onFieldOnTap: () {
+                            DatePickerBdaya.showDatePicker(
+                              context,
+                              showTitleActions: true,
+                              minTime: DateTime.now(),
+                              maxTime: DateTime(2050, 3, 5),
+                              onConfirm: (DateTime date) {
+                                String selectedDate =
+                                DateFormat('dd, MMM, yyyy').format(date);
+                                controller.testDateTEC.text = selectedDate;
+                                controller.dobDateTime = date;
+                                controller.update();
+                              },
+                              currentTime: DateTime(2000, 3, 5),
+                            );
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter test date";
+                            }
+                            return null;
+                          },
+                        ),
                       ),
-                      SizedBox(height: 02.h),
+                      SizedBox(height: 03.h),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AppText(
                             text: 'Contact',
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blackColor,
                           ),
@@ -172,14 +164,14 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 02.h),
-                      SizedBox(height: 02.h),
+                      SizedBox(height: 01.h),
+                      SizedBox(height: 01.h),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AppText(
                             text: 'Address Info',
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blackColor,
                           ),

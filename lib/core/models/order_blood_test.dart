@@ -5,6 +5,7 @@ class OrderBloodTest {
   final String? testType;
   final String? testCategory;
   final String? testSubCategory;
+  final String? testDate;
   Map<String, dynamic>? shippingAddress;
 
   OrderBloodTest({
@@ -14,6 +15,7 @@ class OrderBloodTest {
     this.testType,
     this.testCategory,
     this.testSubCategory,
+    this.testDate,
     this.shippingAddress,
   });
 
@@ -26,6 +28,7 @@ class OrderBloodTest {
       testType: json['testType'] as String?,
       testCategory: json['testCategory'] as String?,
       testSubCategory: json['testSubCategory'] as String?,
+      testDate: json['testDate'] as String?,
       shippingAddress: json['shippingAddress'] as Map<String, dynamic>?,
     );
   }
@@ -39,6 +42,7 @@ class OrderBloodTest {
       'testType': testType,
       'testCategory': testCategory,
       'testSubCategory': testSubCategory,
+      'testDate': testDate,
       'shippingAddress': shippingAddress,
     };
   }
