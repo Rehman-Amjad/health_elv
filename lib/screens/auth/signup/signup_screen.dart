@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
@@ -107,6 +108,27 @@ class SignupScreen extends GetView<SignupController> {
                   },
                 ),
                 SizedBox(height: 02.h),
+                CustomDropdown<String>(
+                  hintText: 'Gander',
+                  items: const ["Male", "Female"],
+                  onChanged: (gander) {
+                    controller.ganderTEC.text=gander!;
+                  },
+                  validateOnChange: true,
+                  validator: (value){
+                    if(value ==null){
+                      return "Select gander";
+                    }
+                    return null;
+                  },
+                  decoration: decoration(
+                    prefixIcon: const Icon(Icons.male),
+                    bolderColor: Colors.transparent,
+                    headerFontSize: 14.0,
+                    fillColor: AppColors.greyColor.withOpacity(0.1),
+                  ),
+                ),
+                SizedBox(height: 02.h),
                 CustomFormField(
                   borderColor: Colors.transparent,
                   tec: controller.dobTEC,
@@ -209,7 +231,7 @@ class SignupScreen extends GetView<SignupController> {
                     suffixIcon: IconButton(
                       highlightColor: Colors.transparent,
                       padding: const EdgeInsets.only(right: 10),
-                      icon:  Icon(
+                      icon: Icon(
                         controller.passwordConfirm.isTrue
                             ? Icons.visibility
                             : Icons.visibility_off,

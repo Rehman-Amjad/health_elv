@@ -4,6 +4,7 @@ class UserData {
   String? uid;
   String? fullName;
   String? imageUrl;
+  String? gander;
   String? dob;
   String? phoneNumber;
   String? email;
@@ -14,6 +15,7 @@ class UserData {
     this.uid,
     this.fullName,
     this.imageUrl = "https://i.postimg.cc/kg1yzFyb/User.jpg",
+    this.gander,
     this.dob,
     this.phoneNumber,
     this.email,
@@ -26,6 +28,7 @@ class UserData {
       'uid': uid,
       'fullName': fullName,
       'imageUrl': imageUrl,
+      'gander': gander,
       'dob': dob,
       'phoneNumber': phoneNumber,
       'email': email,
@@ -37,6 +40,7 @@ class UserData {
   Map<String, dynamic> updateUser() {
     return {
       'fullName': fullName,
+      'gander': gander,
       'dob': dob,
       'phoneNumber': phoneNumber,
     };
@@ -47,6 +51,7 @@ class UserData {
       uid: map['uid'],
       fullName: map['fullName'],
       imageUrl: map['imageUrl'],
+      gander: map['gander'],
       dob: map['dob'],
       phoneNumber: map['phoneNumber'],
       email: map['email'],

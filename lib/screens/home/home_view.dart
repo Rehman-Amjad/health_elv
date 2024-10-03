@@ -125,19 +125,16 @@ class HomeView extends GetView<HomeController> {
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: ImageHelper(
-                        image:
-                            controller.userData?.imageUrl ?? AppAssets.avatar,
-                        imageType: controller.userData?.imageUrl != null
-                            ? ImageType.network
-                            : ImageType.asset,
-                        boxFit: BoxFit.contain,
-                        imageShape: ImageShape.rectangle,
-                        width: 56,
-                        height: 56,
-                      ),
+                    ImageHelper(
+                      image:
+                          controller.userData?.imageUrl ?? AppAssets.avatar,
+                      imageType: controller.userData?.imageUrl != null
+                          ? ImageType.network
+                          : ImageType.asset,
+                      boxFit: BoxFit.cover,
+                      imageShape: ImageShape.circle,
+                      width: 56,
+                      height: 56,
                     ),
                     SizedBox(width: 1.h),
                     Column(

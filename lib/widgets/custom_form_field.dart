@@ -66,6 +66,7 @@ class CustomFormField extends StatelessWidget {
       obscureText: obscureText ?? false,
       maxLines: lines ?? 1,
       readOnly: readOnly ?? false,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       cursorColor: AppColors.blackColor,
       style: GoogleFonts.inter(
         color: AppColors.blackColor,

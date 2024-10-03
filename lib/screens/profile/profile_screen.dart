@@ -21,20 +21,19 @@ class ProfileScreen extends GetView<ProfileController> {
             padding: const EdgeInsets.all(8.0),
             children: [
               controller.isLoading.isFalse
-                  ? SizedBox(
-                      width: 126,
-                      height: 126,
-                      child: ClipOval(
-                        child: ImageHelper(
-                          image:
-                              controller.userData?.imageUrl ?? AppAssets.avatar,
-                          imageType: controller.userData?.imageUrl != null
-                              ? ImageType.network
-                              : ImageType.asset,
-                          boxBorder: Border.all(
-                            color: AppColors.blackColor,
-                          ),
-                        ),
+                  ? GestureDetector(
+                      onTap: () {
+                        controller.pickAndUpdateProfileImage(context);
+                      },
+                      child: ImageHelper(
+                        image: controller.userData?.imageUrl ??
+                            AppAssets.avatar,
+                        imageType: controller.userData?.imageUrl != null
+                            ? ImageType.network
+                            : ImageType.asset,
+                        imageShape: ImageShape.circle,
+                        height: 126,
+                        width: 126,
                       ),
                     )
                   : AppUtils.loader(),
@@ -42,6 +41,12 @@ class ProfileScreen extends GetView<ProfileController> {
               AppText(
                 text: controller.userData?.fullName ?? "",
                 fontSize: 32,
+                fontWeight: FontWeight.w700,
+              ),
+              const SizedBox(height: 10),
+              AppText(
+                text: controller.userData?.email ?? "",
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
               const SizedBox(height: 23),
@@ -67,24 +72,24 @@ class ProfileScreen extends GetView<ProfileController> {
                   },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 14),
-                child: ProfileDetailWidget(
-                  title: 'Subscription',
-                  imgPath: AppAssets.currencyIcon1,
-                ),
-              ),
-              const SizedBox(height: 15),
+              // const Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 14),
+              //   child: ProfileDetailWidget(
+              //     title: 'Subscription',
+              //     imgPath: AppAssets.currencyIcon1,
+              //   ),
+              // ),
+              //const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: ProfileDetailWidget(
-                  title: 'Term & Condition',
+                  title: 'Terms & Conditions',
                   isEnableIcon: true,
                   iconData: CupertinoIcons.news,
                   onTap: () {
                     Get.to(
                       () => const PrivacyAndTermsView(
-                        title: 'Term & Condition',
+                        title: 'Terms & Conditions',
                         content: AppStrings.termsAndCondition,
                       ),
                       binding: AppBinding(),
@@ -114,14 +119,14 @@ class ProfileScreen extends GetView<ProfileController> {
                   },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(14.0),
-                child: ProfileDetailWidget(
-                  title: 'Refer a Friend',
-                  imgPath: AppAssets.referIcon1,
-                ),
-              ),
-              const SizedBox(height: 25),
+              // const Padding(
+              //   padding: EdgeInsets.all(14.0),
+              //   child: ProfileDetailWidget(
+              //     title: 'Refer a Friend',
+              //     imgPath: AppAssets.referIcon1,
+              //   ),
+              // ),
+              const SizedBox(height: 100),
               _logout(),
             ],
           ),
@@ -188,17 +193,17 @@ class ProfileDetailWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData? iconData;
 
-  final bool isEnableIcon,isEnableText;
+  final bool isEnableIcon, isEnableText;
 
-  const ProfileDetailWidget(
-      {super.key,
-      required this.title,
-      this.onTap,
-      this.imgPath,
-      this.iconData,
-      this.isEnableIcon = false,
-      this.isEnableText = false,
-      });
+  const ProfileDetailWidget({
+    super.key,
+    required this.title,
+    this.onTap,
+    this.imgPath,
+    this.iconData,
+    this.isEnableIcon = false,
+    this.isEnableText = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -224,12 +229,12 @@ class ProfileDetailWidget extends StatelessWidget {
                         iconData,
                         color: Colors.white,
                       )
-                    : isEnableText ? 
-                AppText(text: "AED")
-                 :SvgPicture.asset(
-                        imgPath ?? '',
-                        color: AppColors.whiteColor,
-                      ),
+                    : isEnableText
+                        ? AppText(text: "AED")
+                        : SvgPicture.asset(
+                            imgPath ?? '',
+                            color: AppColors.whiteColor,
+                          ),
               ),
               AppText(
                 text: title,

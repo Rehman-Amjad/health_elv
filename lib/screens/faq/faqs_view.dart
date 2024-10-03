@@ -35,15 +35,6 @@ class FaqsView extends GetView<FaqsController> {
                     return _faqsItem(index);
                   }),
               const SizedBox(height: 10),
-              CustomButton(
-                margin: const EdgeInsets.symmetric(horizontal: 70),
-                isGradient: true,
-                text: 'Submit Now',
-                onTap: () {
-                  Get.back();
-                },
-                backgroundColor: AppColors.blackColor,
-              )
             ],
           ),
         );
@@ -75,7 +66,8 @@ class FaqsView extends GetView<FaqsController> {
                 ),
                 const SizedBox(height: 10),
                 CustomFormField(
-                  tec: controller.controllerList[index],
+                  tec: TextEditingController(text: '${title['answer']}'),
+                  readOnly: true,
                 ),
               ],
             ),

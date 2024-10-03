@@ -24,11 +24,12 @@ getCustomDropDownTitle({title, required Widget child}) {
   );
 }
 
-CustomDropdownDecoration? decoration() => CustomDropdownDecoration(
-      closedFillColor: AppColors.whiteColor,
+CustomDropdownDecoration? decoration({headerFontSize,prefixIcon,bolderColor,fillColor}) => CustomDropdownDecoration(
+      closedFillColor: fillColor?? AppColors.whiteColor,
       expandedFillColor: AppColors.whiteColor,
-      closedBorder: Border.all(color: AppColors.blackColor),
-      expandedBorder: Border.all(color: AppColors.blackColor),
+      closedBorder: Border.all(color: bolderColor?? AppColors.blackColor),
+      expandedBorder: Border.all(color: bolderColor ?? AppColors.blackColor),
+      prefixIcon: prefixIcon,
       closedSuffixIcon: const Icon(
         Icons.keyboard_arrow_down,
         color: AppColors.blackColor,
@@ -44,7 +45,7 @@ CustomDropdownDecoration? decoration() => CustomDropdownDecoration(
       ),
       headerStyle: GoogleFonts.poppins(
         color: AppColors.blackColor,
-        fontSize: 16,
+        fontSize: headerFontSize ?? 16,
         fontWeight: FontWeight.w500,
       ),
       listItemStyle: GoogleFonts.poppins(
