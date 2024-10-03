@@ -19,7 +19,6 @@ class OrderBloodTest {
     this.shippingAddress,
   });
 
-  // Convert JSON to OrderBloodTest object
   factory OrderBloodTest.toJson(Map<String, dynamic> json) {
     return OrderBloodTest(
       docId: json['docId'] as String?,
@@ -33,7 +32,6 @@ class OrderBloodTest {
     );
   }
 
-  // Convert OrderBloodTest object to JSON
   Map<String, dynamic> toFirestore() {
     return {
       'docId': docId,

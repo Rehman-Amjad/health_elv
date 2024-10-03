@@ -5,8 +5,6 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../flagged_result/export.dart';
-
 class UpcomingResultsView extends GetView<UpcomingResultsController> {
   UpcomingResultsView({super.key});
 
@@ -46,9 +44,9 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                         color: AppColors.redColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(06)),
                     alignment: Alignment.center,
-                    child: const Text(
-                      '0',
-                      style: TextStyle(
+                    child: Text(
+                      '${controller.bloodTestList.length}',
+                      style: const TextStyle(
                         color: AppColors.redColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -61,11 +59,11 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
               getCalendarFilter(context),
               const SizedBox(height: 16),
               ListView.builder(
-                itemCount: controller.bloodTestResults.length,
+                itemCount: controller.bloodTestList.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  BloodTestResults item = controller.bloodTestResults[index];
+                  OrderBloodTest item = controller.bloodTestList[index];
                   return resultItem(item);
                 },
               ),
@@ -120,10 +118,9 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
     );
   }
 
-  resultItem(BloodTestResults item) {
+  resultItem(OrderBloodTest item) {
     return Card(
       child: Container(
-        height: 140,
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -154,12 +151,17 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: '${item.title}',
+                      text: '${item.testType}',
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: '${item.subTitle}',
+                      text: '${item.testCategory}',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    AppText(
+                      text: '${item.testSubCategory}',
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     )
@@ -167,33 +169,17 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                 )
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(
-                  text: AppUtils().formatDateString(
-                    item.testDate!.toDate().toString(),
-                  ),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-                CustomButton(
-                  text: 'Check Result',
-                  width: 130,
-                  height: 44,
-                  isGradient: true,
-                  onTap: () {
-                    Get.to(
-                      () => const FlaggedResultView(),
-                      arguments: [true,item],
-                    );
-                  },
-                  backgroundColor: AppColors.blackColor,
-                  fontSize: 13,
-                  radios: 05,
-                  showSuffix: true,
-                ),
-              ],
+            SizedBox(height: 02.h),
+            AppText(
+              text: '${item.testDate}',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+            const SizedBox(height: 02),
+            AppText(
+              text: '${item.shippingAddress!["address"]}',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
             )
           ],
         ),

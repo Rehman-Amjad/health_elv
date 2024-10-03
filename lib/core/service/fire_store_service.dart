@@ -194,11 +194,28 @@ class FireStoreService {
   ///order new blood test
   Future<void> saveOrderBloodTest(OrderBloodTest orderBloodTest) async {
     final ref = _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.orderBloodTest.name)
         .doc();
 
     orderBloodTest.docId=ref.id;
     await ref.set(orderBloodTest.toFirestore());
+  }
+
+  Future<List<OrderBloodTest>> getAllOrderBloodTests() async {
+    List<OrderBloodTest> allOrders = [];
+    final snapshot = await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.orderBloodTest.name)
+        .get();
+
+    for (var doc in snapshot.docs) {
+      var testItem = OrderBloodTest.toJson(doc.data());
+      allOrders.add(testItem);
+    }
+    return allOrders;
   }
 
   ///get all faqs
