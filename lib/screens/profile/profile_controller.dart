@@ -19,7 +19,7 @@ class ProfileController extends BaseController {
   final emailTEC = TextEditingController();
   final phoneTEC = TextEditingController();
   final dobTEC = TextEditingController();
-  final ganderTEC = TextEditingController();
+  final genderTEC = TextEditingController();
   DateTime dobDateTime = DateTime.now();
 
   final firebase = FirebaseAuth.instance;
@@ -41,7 +41,7 @@ class ProfileController extends BaseController {
       nameTEC.text = userData?.fullName ?? "--";
       emailTEC.text = userData?.email ?? "--";
       phoneTEC.text = userData?.phoneNumber ?? "--";
-      ganderTEC.text = userData?.gander ?? "--";
+      genderTEC.text = userData?.gander ?? "--";
       dobTEC.text = userData?.dob ?? "--";
     }
     isLoading.value = false;
@@ -56,7 +56,7 @@ class ProfileController extends BaseController {
       dob: dobTEC.text.trim(),
       phoneNumber: phoneTEC.text.trim(),
       email: emailTEC.text.trim(),
-      gander: ganderTEC.text.trim(),
+      gander: genderTEC.text.trim(),
     );
 
     await authService.updateUserData(userData).then((isUpdate) {

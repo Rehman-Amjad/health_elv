@@ -8,7 +8,7 @@ class SignupController extends BaseController {
   final nameTEC = TextEditingController();
   final emailTEC = TextEditingController();
   final phoneTEC = TextEditingController();
-  final ganderTEC = TextEditingController();
+  final genderTEC = TextEditingController();
   final dobTEC = TextEditingController();
   final passwordTEC = TextEditingController();
   final confirmPasswordTEC = TextEditingController();
@@ -34,7 +34,7 @@ class SignupController extends BaseController {
         email: emailTEC.text.trim(),
         phoneNumber: phoneTEC.text.trim(),
         password: passwordTEC.text.trim(),
-        gander: ganderTEC.text.trim(),
+        gander: genderTEC.text.trim(),
         dob: dobTEC.text.trim(),
       );
      await authService.signInWithEmailAndPassword(

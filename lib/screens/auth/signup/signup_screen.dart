@@ -109,15 +109,15 @@ class SignupScreen extends GetView<SignupController> {
                 ),
                 SizedBox(height: 02.h),
                 CustomDropdown<String>(
-                  hintText: 'Gander',
+                  hintText: 'Gender',
                   items: const ["Male", "Female"],
                   onChanged: (gander) {
-                    controller.ganderTEC.text=gander!;
+                    controller.genderTEC.text=gander!;
                   },
                   validateOnChange: true,
                   validator: (value){
                     if(value ==null){
-                      return "Select gander";
+                      return "Select gender";
                     }
                     return null;
                   },

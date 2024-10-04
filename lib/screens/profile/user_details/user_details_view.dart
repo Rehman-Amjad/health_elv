@@ -160,16 +160,16 @@ class UserDetailsView extends GetView<ProfileController> {
                       ),
                       SizedBox(height: 02.h),
                       CustomDropdown<String>(
-                        initialItem: controller.ganderTEC.text,
-                        hintText: 'Gander',
+                        initialItem: controller.genderTEC.text,
+                        hintText: 'Gender',
                         items: const ["Male", "Female"],
                         onChanged: (gander) {
-                          controller.ganderTEC.text = gander!;
+                          controller.genderTEC.text = gander!;
                         },
                         validateOnChange: true,
                         validator: (value) {
                           if (value == null) {
-                            return "Select gander";
+                            return "Select gender";
                           }
                           return null;
                         },
