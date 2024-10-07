@@ -8,6 +8,8 @@ class FaqsController extends BaseController {
   List<TextEditingController> controllerList = [];
   RxBool isLoading = false.obs;
 
+  RxBool isExpand = false.obs;
+
   @override
   void onInit() {
     getFaqsList();

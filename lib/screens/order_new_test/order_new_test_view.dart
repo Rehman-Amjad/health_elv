@@ -52,8 +52,6 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                           items: controller.testTypeList,
                           onChanged: (testType) {
                             if (testType != null) {
-                              controller.getTestsCategoryDropDown(
-                                  context, testType.name);
                               controller.testType = testType.name;
                             }
                             controller.update();
@@ -62,45 +60,6 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                         ),
                       ),
                       SizedBox(height: 01.w),
-                      getCustomDropDownTitle(
-                        title: 'Test Category',
-                        child: CustomDropdown<TestCategoryModel>(
-                          hintText: 'Test Category',
-                          items: controller.testCategoryList,
-                          onChanged: (testCategory) {
-                            if (testCategory != null) {
-                              controller.getTestsSubCategoryDropDown(
-                                  context, testCategory.name);
-                              controller.testCategory = testCategory.name;
-                            }
-                            controller.update();
-                          },
-                          decoration: decoration(),
-                        ),
-                      ),
-                      SizedBox(height: 01.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: getCustomDropDownTitle(
-                              title: 'Test Sub-Category',
-                              child: CustomDropdown<TestSubCategoryModel>(
-                                hintText: 'Test Sub-Category',
-                                items: controller.testSubCategoryList,
-                                onChanged: (value) {
-                                  controller.testSubCategory = value!.name;
-                                  controller.update();
-                                },
-                                decoration: decoration(),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 01.h),
                       getCustomDropDownTitle(
                         title: 'Test Date',
                         child: CustomFormField(

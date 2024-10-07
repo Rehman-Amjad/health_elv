@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
             ) : const SizedBox.shrink(),
             Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   AppText(
                     text: title,

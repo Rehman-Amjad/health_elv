@@ -21,12 +21,6 @@ class OrderNewTestController extends BaseController {
   List<TestTypeModel> testTypeList = [];
   String testType = "";
 
-  List<TestCategoryModel> testCategoryList = [];
-  String testCategory = "";
-
-  List<TestSubCategoryModel> testSubCategoryList = [];
-  String testSubCategory = "";
-
   final firstNameTEC = TextEditingController();
   final lastNameTEC = TextEditingController();
   final phoneNumberTEC = TextEditingController();
@@ -49,25 +43,6 @@ class OrderNewTestController extends BaseController {
     update();
   }
 
-  getTestsCategoryDropDown(context, String testType) async {
-    AppUtils().showLoading(context);
-    testCategoryList.clear();
-    testCategoryList = await firestoreService.getTestCategory(
-      testType: testType,
-    );
-    AppUtils().dismissLoading();
-    update();
-  }
-
-  getTestsSubCategoryDropDown(context, String testCategory) async {
-    AppUtils().showLoading(context);
-    testCategoryList.clear();
-    testSubCategoryList = await firestoreService.getTestSubCategory(
-      testCategory: testCategory,
-    );
-    AppUtils().dismissLoading();
-    update();
-  }
 
   saveToDatabase(context) async {
     AppUtils().showLoading(context);
@@ -81,8 +56,6 @@ class OrderNewTestController extends BaseController {
       uid: firebaseAuth.currentUser?.uid,
       email: emailTEC.text,
       testType: testType,
-      testCategory: testCategory,
-      testSubCategory: testSubCategory,
       testDate: testDateTEC.text,
       shippingAddress: shippingAddress,
     );

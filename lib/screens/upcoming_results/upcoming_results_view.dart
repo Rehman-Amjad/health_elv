@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class UpcomingResultsView extends GetView<UpcomingResultsController> {
-  UpcomingResultsView({super.key});
+  const UpcomingResultsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -156,30 +156,25 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: '${item.testCategory}',
+                      text: '${item.shippingAddress!["firstName"]} ${item.shippingAddress!["lastName"]}',
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
-                    AppText(
-                      text: '${item.testSubCategory}',
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    )
                   ],
                 )
               ],
             ),
             SizedBox(height: 02.h),
             AppText(
-              text: '${item.testDate}',
+              text: 'Test Date: ${item.testDate}',
               fontSize: 12,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
             const SizedBox(height: 02),
             AppText(
-              text: '${item.shippingAddress!["address"]}',
+              text: 'Address: ${item.shippingAddress!["address"]}',
               fontSize: 12,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             )
           ],
         ),

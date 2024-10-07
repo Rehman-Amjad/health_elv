@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,51 +30,50 @@ class FaqsView extends GetView<FaqsController> {
             children: [
               SizedBox(height: 02.h),
               ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.stringList.length,
-                  itemBuilder: (context, int index) {
-                    return _faqsItem(index);
-                  }),
+                itemCount: controller.stringList.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ExpansionTile(
+                    trailing: Icon(
+                      controller.isExpand.isFalse
+                          ? Icons.arrow_circle_down_rounded
+                          : Icons.arrow_circle_up_rounded,
+                      color: Colors.black38,
+                    ),
+                    title: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.black38,
+                        // Background color for the question header
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: Text(
+                        controller.stringList[index]['question']!,
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          // Text color for the question header
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(controller.stringList[index]['answer']!),
+                      )
+                    ],
+                    onExpansionChanged: (value) {
+                      controller.isExpand.value = value;
+                      controller.update();
+                    },
+                  );
+                },
+              ),
               const SizedBox(height: 10),
             ],
           ),
         );
       },
-    );
-  }
-
-  _faqsItem(int index) {
-    Map<String, dynamic> title = controller.stringList[index];
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: Get.width,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
-        child: Card(
-          elevation: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  text: '${title['question']} ?',
-                  fontSize: 15,
-                  textAlign: TextAlign.left,
-                  fontWeight: FontWeight.w700,
-                ),
-                const SizedBox(height: 10),
-                CustomFormField(
-                  tec: TextEditingController(text: '${title['answer']}'),
-                  readOnly: true,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
