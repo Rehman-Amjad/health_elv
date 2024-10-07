@@ -94,6 +94,7 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                         ],
                       ),
                     ),
+                    CarouselWithLocalImages(),
                   ],
                 )
               : Center(

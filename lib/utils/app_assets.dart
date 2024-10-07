@@ -19,6 +19,18 @@ class AppAssets {
   static const String icPassword = '${base}auth/ic_password.png';
   static const String avatar = '${base}auth/avatar.png';
 
+  ///health score slider
+  static const String img86 = '${base}health_score/IMG_3586.PNG';
+  static const String img87 = '${base}health_score/IMG_3587.PNG';
+  static const String img88 = '${base}health_score/IMG_3588.PNG';
+  static const String img89 = '${base}health_score/IMG_3589.PNG';
+  static const String img90 = '${base}health_score/IMG_3590.PNG';
+  static const String img91 = '${base}health_score/IMG_3591.PNG';
+  static const String img92 = '${base}health_score/IMG_3592.PNG';
+  static const String img93 = '${base}health_score/IMG_3593.PNG';
+  static const String img94 = '${base}health_score/IMG_3594.PNG';
+
+
   ///blood result
   static const String icThumb = '${base}blood_result/ic_thumb.png';
   static const String icBloodTest = '${base}blood_result/ic_blood_test.png';
