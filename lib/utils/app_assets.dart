@@ -30,6 +30,8 @@ class AppAssets {
   static const String img93 = '${base}health_score/IMG_3593.PNG';
   static const String img94 = '${base}health_score/IMG_3594.PNG';
 
+  static const String healthScoreBanner = '${base}health_score/health_score_banner.jpeg';
+
 
   ///blood result
   static const String icThumb = '${base}blood_result/ic_thumb.png';

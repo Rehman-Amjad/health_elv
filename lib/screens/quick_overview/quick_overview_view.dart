@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-
-import 'export.dart';
 
 class QuickOverviewView extends GetView<QuickOverviewController> {
   const QuickOverviewView({super.key});
@@ -27,34 +24,32 @@ class QuickOverviewView extends GetView<QuickOverviewController> {
           body: ListView.builder(
             itemCount: controller.quickOverViewList.length,
             shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 14.0,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  const SizedBox(height: 05),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        AppAssets.doubleTickIcon,
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.circle_outlined,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: AppText(
+                        text: "${controller.quickOverViewList[index].overView?.capitalize}",
+                        fontSize: 17,
+                        softWrap: true,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.visible,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.fieldColor2,
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: AppText(
-                          text: "${controller.quickOverViewList[index].overView}",
-                          fontSize: 17,
-                          softWrap: true,
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.visible,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.fieldColor2,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 05),
-                ],
+                    ),
+                  ],
+                ),
               );
             },
           ),

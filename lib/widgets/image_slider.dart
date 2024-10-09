@@ -12,15 +12,7 @@ class CarouselWithLocalImages extends StatefulWidget {
 
 class _CarouselWithLocalImagesState extends State<CarouselWithLocalImages> {
   final List<String> imagePaths = [
-    AppAssets.img86,
-    AppAssets.img87,
-    AppAssets.img88,
-    AppAssets.img89,
-    AppAssets.img90,
-    AppAssets.img91,
-    AppAssets.img92,
-    AppAssets.img93,
-    AppAssets.img94,
+    AppAssets.healthScoreBanner,
   ];
 
   int _currentIndex = 0;

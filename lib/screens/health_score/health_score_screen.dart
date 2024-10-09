@@ -21,7 +21,7 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                   children: [
                     Container(
                       width: size.width,
-                      height: size.height * 0.4,
+                      // height: size.height * 0.4,
                       decoration: AppUtils.linearDecoration(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
@@ -65,7 +65,8 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                                     color: AppColors.secondryColor),
                                 alignment: Alignment.center,
                                 child: AppText(
-                                  text: controller.healthScore?.healthStatus??"N/A",
+                                  text: controller.healthScore?.healthStatus ??
+                                      "N/A",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
                                   color: AppColors.whiteColor,
@@ -81,16 +82,14 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                               color: AppColors.whiteColor,
                             ),
                           ),
-                           Center(
+                          Center(
                               child: AppText(
-                            text: controller.healthScore?.statusDesc??"--",
+                            text: controller.healthScore?.statusDesc ?? "--",
                             fontSize: 19,
                             fontWeight: FontWeight.w600,
                             color: AppColors.whiteColor,
                           )),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          )
+                          SizedBox(height: size.height * 0.02)
                         ],
                       ),
                     ),

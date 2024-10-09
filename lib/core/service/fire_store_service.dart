@@ -81,10 +81,9 @@ class FireStoreService {
       final ref = _firestoreRef
           .collection(Collection.allHealthScore.name)
           .doc(_firebaseAuth.currentUser!.uid);
-
       // Get the document snapshot
       DocumentSnapshot snapshot = await ref.get();
-      // Check if the document exists
+
       if (snapshot.exists) {
         return HealthScore.fromFirestore(
             snapshot.data() as Map<String, dynamic>);
@@ -101,7 +100,7 @@ class FireStoreService {
   Future<List<QuickOverview>> getQuickOverViewList() async {
     List<QuickOverview> list = [];
 
-    final querySnapshot =await _firestoreRef
+    final querySnapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.quickOverView.name)
@@ -114,13 +113,16 @@ class FireStoreService {
   }
 
   ///
-  Future<List<HealthTrends>> getHealthTrendsList() async {
+  Future<List<HealthTrends>> getHealthTrendsList({
+    required String trendCategory,
+  }) async {
     List<HealthTrends> list = [];
 
     final querySnapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.healthTrends.name)
+        .where('trendCategory', isEqualTo: trendCategory)
         .get();
 
     for (var doc in querySnapshot.docs) {
@@ -132,7 +134,7 @@ class FireStoreService {
   ///Add Tests
   Future<List<TestTypeModel>> getTestTypes() async {
     final snapshot =
-    await _firestoreRef.collection(Collection.testType.name).get();
+        await _firestoreRef.collection(Collection.testType.name).get();
     List<TestTypeModel> list = [];
     for (var doc in snapshot.docs) {
       list.add(TestTypeModel.fromMap(doc.data()));
@@ -199,7 +201,7 @@ class FireStoreService {
         .collection(Collection.orderBloodTest.name)
         .doc();
 
-    orderBloodTest.docId=ref.id;
+    orderBloodTest.docId = ref.id;
     await ref.set(orderBloodTest.toFirestore());
   }
 
