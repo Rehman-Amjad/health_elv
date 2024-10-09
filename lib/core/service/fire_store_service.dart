@@ -32,9 +32,6 @@ class FireStoreService {
       Timestamp startTimestamp = Timestamp.fromDate(startOfDay);
       Timestamp endTimestamp = Timestamp.fromDate(endOfDay);
 
-      print(startTimestamp);
-      print(endTimestamp);
-
       querySnapshot = await _firestoreRef
           .collection(Collection.user.name)
           .doc(_firebaseAuth.currentUser!.uid)
@@ -50,28 +47,20 @@ class FireStoreService {
     return list;
   }
 
-  Future<BloodTestResults?> getFlaggedData() async {
-    try {
-      // Reference to the document
-      final ref = FirebaseFirestore.instance
-          .collection(Collection.user.name)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.flaggedResult.name)
-          .doc(Collection.result.name);
+  ///flagged results
+  Future<List<BloodTestResults>> getFlaggedTestResults() async {
+    List<BloodTestResults> list = [];
 
-      // Get the document snapshot
-      DocumentSnapshot snapshot = await ref.get();
-      // Check if the document exists
-      if (snapshot.exists) {
-        return BloodTestResults.fromFlaggedResult(
-            snapshot.data() as Map<String, dynamic>);
-      } else {
-        return null;
-      }
-    } catch (e) {
-      debugPrint("Error getting document: $e");
+    final snapShot = await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.flaggedResult.name)
+        .get();
+
+    for (var doc in snapShot.docs) {
+      list.add(BloodTestResults.fromFirestore(doc.data()));
     }
-    return null;
+    return list;
   }
 
   ///

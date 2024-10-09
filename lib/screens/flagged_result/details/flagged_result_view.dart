@@ -5,7 +5,7 @@ import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import 'export.dart';
+import '../export.dart';
 
 class FlaggedResultView extends GetView<FlaggedResultController> {
   const FlaggedResultView({super.key});
@@ -71,7 +71,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                                   Row(
                                     children: [
                                       Text(
-                                        'Normal Range: ${controller.bloodTestResults?.normalRange??""} units${controller.bloodTestResults?.testUnit??""}',
+                                        'Normal Range: ${controller.bloodTestResults?.minRange??""} units${controller.bloodTestResults?.testUnit??""}',
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,

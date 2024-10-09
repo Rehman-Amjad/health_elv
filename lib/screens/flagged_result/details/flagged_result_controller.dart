@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
@@ -21,18 +19,12 @@ class FlaggedResultController extends BaseController
       bloodTestResults = Get.arguments[1];
       initAnimation();
     } else {
-      getFlaggedResults();
+      bloodTestResults = Get.arguments[1];
+      initAnimation();
     }
     super.onInit();
   }
 
-  getFlaggedResults() async {
-    isLoading.value = true;
-    bloodTestResults = await firestoreService.getFlaggedData();
-    initAnimation();
-    isLoading.value = false;
-    update();
-  }
 
   initAnimation() {
     _animationController = AnimationController(

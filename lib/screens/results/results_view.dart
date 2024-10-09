@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class ResultsView extends GetView<ResultsController> {

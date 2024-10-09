@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'export.dart';
+
 class BloodTestResults {
   final String? uid;
   final String? testType;
   final String? title;
   final String? subTitle;
   final String? currentRange;
-  final String? normalRange;
+  final String? minRange;
+  final String? maxRange;
   final String? status;
   final String? testDesc;
   final String? testUnit;
@@ -18,7 +21,8 @@ class BloodTestResults {
     this.title,
     this.subTitle,
     this.currentRange,
-    this.normalRange,
+    this.minRange,
+    this.maxRange,
     this.status,
     this.testDesc,
     this.testUnit,
@@ -29,7 +33,8 @@ class BloodTestResults {
     return BloodTestResults(
       uid: data['uid'] ?? "",
       currentRange: data['current_range'] as String,
-      normalRange: data['normal_range'] as String,
+      minRange: data['min_range'] as String,
+      maxRange: data['max_range'] as String,
       status: data['status'] as String,
       subTitle: data['sub_title'] as String,
       testDesc: data['test_desc'] as String,
@@ -42,40 +47,14 @@ class BloodTestResults {
   factory BloodTestResults.fromFlaggedResult(Map<String, dynamic> data) {
     return BloodTestResults(
       uid: data['uid'],
-      currentRange: data['current_range'],
-      normalRange: data['normal_range'],
+      currentRange: data['current_range'] as String,
+      minRange: data['min_range'] as String,
+      maxRange: data['max_range'] as String,
       status:data['status'],
       testUnit :data['test_unit'],
       title: data['title'],
       testDate : data['test_date'],
       testDesc: data['test_desc'],
     );
-  }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      'uid': uid,
-      'current_range': currentRange,
-      'normal_range': normalRange,
-      'status': status,
-      'sub_title': subTitle,
-      'test_desc': testDesc,
-      'test_unit': testUnit,
-      'title': title,
-      'test_date': testDate,
-    };
-  }
-
-  Map<String, dynamic> toFlaggedResults() {
-    return {
-      'uid': uid,
-      'current_range': currentRange,
-      'normal_range': normalRange,
-      'status': status,
-      'test_unit': testUnit,
-      'title': title,
-      'test_date': testDate,
-      'test_desc': testDesc,
-    };
   }
 }

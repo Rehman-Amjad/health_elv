@@ -120,8 +120,7 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                       Row(
                         children: [
                           Text(
-                            'Normal Range: ${controller.item.normalRange} ${controller.item.testUnit}',
-                            //'Normal Range: 140-280 units/L',
+                            'Normal Range: ${controller.item.minRange}-${controller.item.maxRange} ${controller.item.testUnit}',
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -178,36 +177,36 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                   inactiveTrackColor: Colors.black,
                   slider: Slider(
                       value: double.parse(controller.item.currentRange??"0"),
-                      min: 0,
-                      max: 100,
+                      min: double.parse(controller.item.minRange??"0"),
+                      max: double.parse(controller.item.maxRange??"0"),
                       onChanged: (val) {
                         //sliderValue = val;
                       }),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                //   child: Row(
-                //     children: [
-                //       Text(
-                //         'Low',
-                //         style: GoogleFonts.montserrat(
-                //           fontSize: 12,
-                //           fontWeight: FontWeight.w500,
-                //           color: AppColors.fieldColor,
-                //         ),
-                //       ),
-                //       const Spacer(),
-                //       Text(
-                //         'High',
-                //         style: GoogleFonts.montserrat(
-                //           fontSize: 12,
-                //           fontWeight: FontWeight.w500,
-                //           color: AppColors.fieldColor,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Min',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.fieldColor,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Max',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.fieldColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

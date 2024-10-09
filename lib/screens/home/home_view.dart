@@ -276,7 +276,7 @@ class HomeView extends GetView<HomeController> {
                       isGradient: true,
                       onTap: () {
                         Get.to(
-                          () => const FlaggedResultView(),
+                          () => const FlaggedListingView(),
                           binding: AppBinding(),
                           arguments: [
                             false,
