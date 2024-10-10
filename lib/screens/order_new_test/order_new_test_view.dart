@@ -82,7 +82,7 @@ class OrderNewTestView extends GetView<OrderNewTestController> {
                                 String selectedDate =
                                 DateFormat('dd, MMM, yyyy').format(date);
                                 controller.testDateTEC.text = selectedDate;
-                                controller.dobDateTime = date;
+                                controller.testDateTime = date;
                                 controller.update();
                               },
                               currentTime: DateTime(2000, 3, 5),

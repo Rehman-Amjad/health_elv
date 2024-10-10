@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class OrderNewTestController extends BaseController {
   ///
   var emailTEC = TextEditingController();
   final testDateTEC = TextEditingController();
-  DateTime dobDateTime = DateTime.now();
+  DateTime testDateTime = DateTime.now();
 
   ///for blood test
   ///drop downs lists
@@ -56,7 +57,7 @@ class OrderNewTestController extends BaseController {
       uid: firebaseAuth.currentUser?.uid,
       email: emailTEC.text,
       testType: testType,
-      testDate: testDateTEC.text,
+      testDate: Timestamp.fromDate(testDateTime),
       shippingAddress: shippingAddress,
     );
 

@@ -9,38 +9,16 @@ class FireStoreService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   ///get all drop down category
-  Future<List<BloodTestResults>> getBloodTestResults({DateTime? selectedDate}) async {
+  Future<List<BloodTestResults>> getBloodTestResults() async {
     List<BloodTestResults> list = [];
-    QuerySnapshot<Map<String, dynamic>> querySnapshot;
-    if (selectedDate == null) {
-      querySnapshot = await _firestoreRef
-          .collection(Collection.user.name)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.allBloodTestResults.name)
-          .get();
-      for (var doc in querySnapshot.docs) {
-        list.add(BloodTestResults.fromFirestore(doc.data()));
-      }
-    } else {
-      // Convert DateTime to the start of the day and end of the day for filtering
-      DateTime startOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-      DateTime endOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-
-      Timestamp startTimestamp = Timestamp.fromDate(startOfDay);
-      Timestamp endTimestamp = Timestamp.fromDate(endOfDay);
-
-      querySnapshot = await _firestoreRef
-          .collection(Collection.user.name)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(Collection.allBloodTestResults.name)
-          .where('testDate', isGreaterThanOrEqualTo: startTimestamp)
-          .where('testDate', isLessThanOrEqualTo: endTimestamp)
-          .get();
-      for (var doc in querySnapshot.docs) {
-        list.add(BloodTestResults.fromFirestore(doc.data()));
-      }
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestoreRef
+        .collection(Collection.user.name)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .collection(Collection.allBloodTestResults.name)
+        .get();
+    for (var doc in querySnapshot.docs) {
+      list.add(BloodTestResults.fromFirestore(doc.data()));
     }
-
     return list;
   }
 
@@ -191,20 +169,35 @@ class FireStoreService {
     await ref.set(orderBloodTest.toFirestore());
   }
 
-  Future<List<OrderBloodTest>> getAllOrderBloodTests() async {
-    List<OrderBloodTest> allOrders = [];
+  Future<List<OrderBloodTest>> getAllOrderBloodTests({
+    required DateTime filterDate,
+  }) async {
+    List<OrderBloodTest> filteredOrders = [];
+
+    // Create DateTime objects for the start and end of the day
+    DateTime startOfDay = DateTime(filterDate.year, filterDate.month, filterDate.day, 0, 0, 0);
+    DateTime endOfDay = DateTime(filterDate.year, filterDate.month, filterDate.day, 23, 59, 59);
+
+    // Convert DateTime to Timestamp for Firestore
+    Timestamp startTimestamp = Timestamp.fromDate(startOfDay);
+    Timestamp endTimestamp = Timestamp.fromDate(endOfDay);
+
     final snapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.orderBloodTest.name)
+        .where('testDate', isGreaterThanOrEqualTo: startTimestamp)
+        .where('testDate', isLessThanOrEqualTo: endTimestamp)
         .get();
 
     for (var doc in snapshot.docs) {
-      var testItem = OrderBloodTest.toJson(doc.data());
-      allOrders.add(testItem);
+      var testItem = OrderBloodTest.toJson(doc.data()); // Convert to your model
+      filteredOrders.add(testItem);
     }
-    return allOrders;
+
+    return filteredOrders;
   }
+
 
   ///get all faqs
   Future<List<Map<String, dynamic>>> getAllFaqs() async {

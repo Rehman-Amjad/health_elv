@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -58,15 +59,31 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
               SizedBox(height: 03.h),
               getCalendarFilter(context),
               const SizedBox(height: 16),
-              ListView.builder(
-                itemCount: controller.bloodTestList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  OrderBloodTest item = controller.bloodTestList[index];
-                  return resultItem(item);
-                },
-              ),
+              controller.isLoading.isFalse
+                  ? controller.bloodTestList.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: controller.bloodTestList.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            OrderBloodTest item =
+                                controller.bloodTestList[index];
+                            return resultItem(item);
+                          },
+                        )
+                      : Center(
+                          child: Text(
+                            "No UpComing Blood Test",
+                            style: GoogleFonts.poppins(
+                              color: AppColors.blackColor,
+                            ),
+                          ),
+                        )
+                  : Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
             ],
           ),
         );
@@ -111,7 +128,9 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.none,
         ),
-        onTap: (details) {},
+        onTap: (details) {
+          controller.getAllOrderBloodTests(filterDate: details.date!);
+        },
         onViewChanged: (details) {},
         onSelectionChanged: (details) {},
       ),
@@ -156,7 +175,8 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
                       fontWeight: FontWeight.w800,
                     ),
                     AppText(
-                      text: '${item.shippingAddress!["firstName"]} ${item.shippingAddress!["lastName"]}',
+                      text:
+                          '${item.shippingAddress!["firstName"]} ${item.shippingAddress!["lastName"]}',
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -166,7 +186,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
             ),
             SizedBox(height: 02.h),
             AppText(
-              text: 'Test Date: ${item.testDate}',
+              text: 'Test Date: ${formatDate(item.testDate!.toDate())}',
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -180,5 +200,9 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         ),
       ),
     );
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('MM/dd/yyyy').format(date);
   }
 }

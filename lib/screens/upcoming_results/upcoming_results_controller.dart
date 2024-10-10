@@ -2,29 +2,27 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class UpcomingResultsController extends BaseController{
+class UpcomingResultsController extends BaseController {
   final fireStoreService = FireStoreService();
   String selectedDate = '';
   final monthController = CalendarController();
-  DateTime tempDate = DateTime.now();
 
   RxBool isLoading = false.obs;
   List<OrderBloodTest> bloodTestList = [];
 
   @override
   void onInit() {
-    getAllOrderBloodTests();
+    getAllOrderBloodTests(filterDate: DateTime.now());
     super.onInit();
   }
 
-  getAllOrderBloodTests({search}) async {
-    bloodTestList.clear();
+  getAllOrderBloodTests({required DateTime filterDate}) async {
     isLoading = true.obs;
-    bloodTestList = await fireStoreService.getAllOrderBloodTests();
+    bloodTestList.clear();
+    bloodTestList = await fireStoreService.getAllOrderBloodTests(
+      filterDate: filterDate,
+    );
     isLoading = false.obs;
     update();
   }
-
-
-
 }

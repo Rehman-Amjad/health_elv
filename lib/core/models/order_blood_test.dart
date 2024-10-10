@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class OrderBloodTest {
   String? docId;
   String? uid;
   String? email;
   final String? testType;
-  final String? testDate;
+  final Timestamp? testDate;
   Map<String, dynamic>? shippingAddress;
 
   OrderBloodTest({
@@ -21,7 +23,7 @@ class OrderBloodTest {
       uid: json['uid'] as String?,
       email: json['email'] as String?,
       testType: json['testType'] as String?,
-      testDate: json['testDate'] as String?,
+      testDate: json['testDate'] as Timestamp,
       shippingAddress: json['shippingAddress'] as Map<String, dynamic>?,
     );
   }

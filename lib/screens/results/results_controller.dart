@@ -15,11 +15,9 @@ class ResultsController extends BaseController {
     super.onInit();
   }
 
-  getBloodTestResults({DateTime? selectedDate}) async {
+  getBloodTestResults() async {
     isLoading.value = true;
-    bloodTestResults = await fireStoreService.getBloodTestResults(
-      selectedDate: selectedDate,
-    );
+    bloodTestResults = await fireStoreService.getBloodTestResults();
     isLoading.value = false;
     update();
   }
