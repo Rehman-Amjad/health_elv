@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
-class BioMarkerResultView extends GetView<BloodTestDetailsController> {
-  const BioMarkerResultView({super.key});
+class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
+  const BloodTestDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -232,21 +233,13 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
   }
 
   _getComparisonTab() {
-    return Container(
-      height: Get.height * 0.5,
-      child: const Center(
-        child: AppText(
-          text: "No Relevant Data Were Found",
-          fontSize: 16,
-        ),
-      ),
-    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 8),
         const Text(
-          'Parameter Result',
+          'Last Results',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -256,39 +249,28 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
         Card(
           color: AppColors.whiteColor,
           child: Container(
-            // height: 185,
             padding: const EdgeInsets.symmetric(vertical: 24),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Text(
-                    'Normal Range:  70-100 mg/dL',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.fieldColor,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 02),
                 Container(
                   height: 50,
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: ListView.builder(
-                      itemCount: 4,
+                      itemCount: controller.comparisonList.length,
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
+                        BloodTestResults item=controller.comparisonList[index];
                         return Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'No ${index + 1}',
+                                'Test No${index + 1}',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -297,7 +279,8 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                               ),
                               const SizedBox(height: 03),
                               Text(
-                                '02/01/2024',
+                                formatDate(item.testDate!.toDate()),
+                                //'02/01/2024',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w500,
@@ -309,108 +292,44 @@ class BioMarkerResultView extends GetView<BloodTestDetailsController> {
                         );
                       }),
                 ),
-                CustomLineChart(),
+                 CustomLineChart(testResults: controller.comparisonList),
                 const SizedBox(height: 06),
-                Padding(
+                Container(
+                  height: 50,
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          '${160}',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.fieldColor,
+                  child: ListView.builder(
+                      itemCount: controller.comparisonList.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        BloodTestResults item=controller.comparisonList[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${item.currentRange}',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.fieldColor,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          '${200}',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.fieldColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          '${150}',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.fieldColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          '${250}',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.fieldColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                        );
+                      }),
                 ),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 16),
-        const Text(
-          'Description',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          'LDH (Lactate Dehydrogenase) is an enzyme found in many body tissues. A blood test measures its level to assess potential cell or tissue damage. Normal LDH levels vary slightly based on age and lab, but typically range from 140 to 280 units per liter (U/L) for adults.',
-          style: TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'What might a normal result mean?',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          "While reassuring, a normal LDH doesn't necessarily rule out all potential tissue damage. Your doctor might recommend additional tests based on your symptoms and medical history.",
-          style: TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'What might a high result mean?',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          "High LDH (above normal range): This can indicate damage to various tissues, including muscles, liver, kidneys, red blood cells, or the heart. It's important to note that a high LDH alone doesn't pinpoint the source of the damage. Further tests are needed for diagnosis.",
-          style: TextStyle(fontSize: 16),
-        ),
       ],
     );
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('MM/dd/yyyy').format(date);
   }
 }

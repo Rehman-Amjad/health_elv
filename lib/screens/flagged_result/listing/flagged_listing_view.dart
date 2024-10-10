@@ -117,9 +117,12 @@ class FlaggedListingView extends GetView<FlaggedListingController> {
                   isGradient: true,
                   onTap: () {
                     Get.to(
-                      const BioMarkerResultView(),
+                      const BloodTestDetailsView(),
                       binding: AppBinding(),
-                      arguments: item,
+                      arguments: [
+                        "FlaggedTest",
+                        item
+                      ],
                     );
                   },
                   backgroundColor: AppColors.blackColor,

@@ -159,28 +159,6 @@ class UserDetailsView extends GetView<ProfileController> {
                         ],
                       ),
                       SizedBox(height: 02.h),
-                      CustomDropdown<String>(
-                        initialItem: controller.genderTEC.text,
-                        hintText: 'Gender',
-                        items: const ["Male", "Female"],
-                        onChanged: (gander) {
-                          controller.genderTEC.text = gander!;
-                        },
-                        validateOnChange: true,
-                        validator: (value) {
-                          if (value == null) {
-                            return "Select gender";
-                          }
-                          return null;
-                        },
-                        decoration: decoration(
-                          prefixIcon: const Icon(Icons.male),
-                          bolderColor: Colors.transparent,
-                          headerFontSize: 14.0,
-                          fillColor: AppColors.greyColor.withOpacity(0.1),
-                        ),
-                      ),
-                      SizedBox(height: 02.h),
                       CustomFormField(
                         borderColor: Colors.transparent,
                         tec: controller.dobTEC,
@@ -220,6 +198,37 @@ class UserDetailsView extends GetView<ProfileController> {
                           }
                           return null;
                         },
+                      ),
+                      SizedBox(height: 02.h),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          AppText(
+                            text: 'Gender',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                      CustomDropdown<String>(
+                        hintText: controller.genderTEC.text,
+                        items: const ["Male", "Female"],
+                        onChanged: (gander) {
+                          controller.genderTEC.text = gander!;
+                        },
+                        validateOnChange: true,
+                        validator: (value) {
+                          if (value == null) {
+                            return "Select gender";
+                          }
+                          return null;
+                        },
+                        decoration: decoration(
+                          prefixIcon: const Icon(Icons.male),
+                          bolderColor: Colors.transparent,
+                          headerFontSize: 14.0,
+                          fillColor: AppColors.greyColor.withOpacity(0.1),
+                        ),
                       ),
                       SizedBox(height: 02.h),
                       _updateButton(context),

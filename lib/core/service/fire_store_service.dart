@@ -9,8 +9,7 @@ class FireStoreService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   ///get all drop down category
-  Future<List<BloodTestResults>> getBloodTestResults(
-      {DateTime? selectedDate}) async {
+  Future<List<BloodTestResults>> getBloodTestResults({DateTime? selectedDate}) async {
     List<BloodTestResults> list = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot;
     if (selectedDate == null) {
@@ -24,10 +23,8 @@ class FireStoreService {
       }
     } else {
       // Convert DateTime to the start of the day and end of the day for filtering
-      DateTime startOfDay =
-          DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-      DateTime endOfDay =
-          DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+      DateTime startOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+      DateTime endOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
 
       Timestamp startTimestamp = Timestamp.fromDate(startOfDay);
       Timestamp endTimestamp = Timestamp.fromDate(endOfDay);

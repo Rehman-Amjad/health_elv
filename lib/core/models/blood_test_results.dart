@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'export.dart';
 
 class BloodTestResults {
   final String? uid;
