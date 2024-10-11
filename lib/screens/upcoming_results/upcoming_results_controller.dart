@@ -9,9 +9,11 @@ class UpcomingResultsController extends BaseController {
 
   RxBool isLoading = false.obs;
   List<OrderBloodTest> bloodTestList = [];
+  List<OrderBloodTest> dotsBloodTestList = [];
 
   @override
   void onInit() {
+    getDotsBloodTests();
     getAllOrderBloodTests(filterDate: DateTime.now());
     super.onInit();
   }
@@ -22,6 +24,14 @@ class UpcomingResultsController extends BaseController {
     bloodTestList = await fireStoreService.getAllOrderBloodTests(
       filterDate: filterDate,
     );
+    isLoading = false.obs;
+    update();
+  }
+
+  getDotsBloodTests() async {
+    isLoading = true.obs;
+    dotsBloodTestList.clear();
+    dotsBloodTestList = await fireStoreService.getAllOrderBloodTests();
     isLoading = false.obs;
     update();
   }

@@ -27,7 +27,7 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
-              SizedBox(height: 04.h),
+              SizedBox(height: 02.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -101,15 +101,15 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         showNavigationArrow: true,
         showDatePickerButton: false,
         cellBorderColor: Colors.transparent,
+        initialSelectedDate: DateTime.now(),
         selectionDecoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            width: 4,
+            width: 2,
             color: Theme.of(context).primaryColor,
           ),
         ),
-        //monthCellBuilder: _monthCellBuilder,
-        todayTextStyle: GoogleFonts.inter(
+        todayTextStyle: GoogleFonts.poppins(
           color: AppColors.whiteColor,
           fontWeight: FontWeight.w500,
           fontSize: 16,
@@ -118,8 +118,8 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         headerStyle: CalendarHeaderStyle(
           textAlign: TextAlign.center,
           backgroundColor: Colors.white,
-          textStyle: GoogleFonts.inter(
-            color: AppColors.fieldColor,
+          textStyle: GoogleFonts.poppins(
+            color: AppColors.blackColor,
             fontWeight: FontWeight.w700,
             fontSize: 16,
           ),
@@ -128,6 +128,44 @@ class UpcomingResultsView extends GetView<UpcomingResultsController> {
         monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.none,
         ),
+        monthCellBuilder: (BuildContext context, MonthCellDetails details) {
+          bool hasTest = controller.dotsBloodTestList.any((test) {
+            DateTime testDate = test.testDate!.toDate();
+            DateTime calendarDate = details.date;
+            return testDate.year == calendarDate.year &&
+                testDate.month == calendarDate.month &&
+                testDate.day == calendarDate.day;
+          });
+
+          return Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.transparent),
+            ),
+            child: Stack(
+              children: [
+                Center(
+                  child: Text(
+                    '${details.date.day}',
+                    style: TextStyle(
+                      color: hasTest ? Colors.red : Colors.black,
+                      fontWeight: hasTest ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                if (hasTest)
+                  const Positioned(
+                    bottom: 5,
+                    right: 5,
+                    child: Icon(
+                      Icons.circle,
+                      size: 8,
+                      color: Colors.red, // Customize the dot color
+                    ),
+                  ),
+              ],
+            ),
+          );
+        },
         onTap: (details) {
           controller.getAllOrderBloodTests(filterDate: details.date!);
         },
