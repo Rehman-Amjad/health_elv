@@ -17,7 +17,6 @@ class OrderNewTestController extends BaseController {
   final testDateTEC = TextEditingController();
   DateTime testDateTime = DateTime.now();
 
-  ///for blood test
   ///drop downs lists
   List<TestTypeModel> testTypeList = [];
   String testType = "";

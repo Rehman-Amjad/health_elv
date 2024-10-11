@@ -5,27 +5,21 @@ import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
 class ResultsView extends GetView<ResultsController> {
-  final bool fromNew;
-
-  const ResultsView({
-    super.key,
-    this.fromNew = false,
-  });
+  const ResultsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ResultsController>(
       initState: (_) {
         Get.put(ResultsController());
-        controller.getBloodTestResults();
       },
       builder: (_) {
         return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size(double.infinity, 60),
+          appBar: const PreferredSize(
+            preferredSize: Size(double.infinity, 60),
             child: CustomAppBar(
               title: "Health Elev8 Results",
-              showArrow: fromNew,
+              showArrow: true,
               marginTop: 20,
             ),
           ),
@@ -93,7 +87,6 @@ class ResultsView extends GetView<ResultsController> {
           child: GestureDetector(
             onTap: () {
               controller.isShowFirst.value = true;
-              controller.selectedDate = "";
               controller.getBloodTestResults();
               controller.update();
             },
@@ -176,7 +169,8 @@ class ResultsView extends GetView<ResultsController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: AppUtils().formatDateString(item.testDate!.toDate().toString()),
+                  text: AppUtils()
+                      .formatDateString(item.testDate!.toDate().toString()),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -189,10 +183,7 @@ class ResultsView extends GetView<ResultsController> {
                     Get.to(
                       const BloodTestDetailsView(),
                       binding: AppBinding(),
-                      arguments: [
-                        "BloodTest",
-                        item
-                      ],
+                      arguments: ["BloodTest", item],
                     );
                   },
                   backgroundColor: AppColors.blackColor,

@@ -47,7 +47,7 @@ class HomeView extends GetView<HomeController> {
                       imgPath: AppAssets.icBloodTest,
                       onTap: () {
                         Get.to(
-                          () => const ResultsView(fromNew: true),
+                          () => const TestTypeView(fromNew: true),
                           binding: AppBinding(),
                         );
                       },
