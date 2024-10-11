@@ -22,6 +22,7 @@ class AppBinding extends Bindings {
 
     Get.lazyPut(() => TestTypeController());
     Get.lazyPut(() => TestCategoryController());
+    Get.lazyPut(() => TestSubCategoryController());
     Get.lazyPut(() => ResultsController());
     Get.lazyPut(() => FlaggedListingController());
     Get.lazyPut(() => FlaggedResultController());

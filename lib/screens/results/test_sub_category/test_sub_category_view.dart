@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class TestCategoryView extends GetView<TestCategoryController> {
-  const TestCategoryView({super.key});
+class TestSubCategoryView extends GetView<TestSubCategoryController> {
+  const TestSubCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TestCategoryController>(
+    return GetBuilder<TestSubCategoryController>(
       initState: (_) {
-        Get.put(TestCategoryController());
+        Get.put(TestSubCategoryController());
       },
       builder: (_) {
         return Scaffold(
           appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Test Categories",
+              title: "Test Sub Categories",
               showArrow: true,
               marginTop: 20,
             ),
@@ -41,11 +41,11 @@ class TestCategoryView extends GetView<TestCategoryController> {
     );
   }
 
-  testTypeItem(TestCategoryModel item) {
+  testTypeItem(TestSubCategoryModel item) {
     return GestureDetector(
       onTap: (){
         Get.to(
-              () => const TestSubCategoryView(),
+              () => const ResultsView(),
           arguments: item.name,
           transition: Transition.circularReveal,
           duration: const Duration(milliseconds: 500),

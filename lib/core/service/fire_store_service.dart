@@ -9,12 +9,13 @@ class FireStoreService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   ///get all drop down category
-  Future<List<BloodTestResults>> getBloodTestResults() async {
+  Future<List<BloodTestResults>> getBloodTestResults({required testSubCategory}) async {
     List<BloodTestResults> list = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.allBloodTestResults.name)
+        .where('sub_title', isEqualTo: testSubCategory)
         .get();
     for (var doc in querySnapshot.docs) {
       list.add(BloodTestResults.fromFirestore(doc.data()));

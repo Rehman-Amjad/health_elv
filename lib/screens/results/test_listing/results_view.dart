@@ -26,7 +26,7 @@ class ResultsView extends GetView<ResultsController> {
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
-              SizedBox(height: 04.h),
+              SizedBox(height: 02.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -55,8 +55,6 @@ class ResultsView extends GetView<ResultsController> {
                   ),
                 ],
               ),
-              SizedBox(height: 03.h),
-              getFilterButtons(context),
               const SizedBox(height: 16),
               controller.isLoading.isFalse
                   ? ListView.builder(
@@ -75,46 +73,6 @@ class ResultsView extends GetView<ResultsController> {
           ),
         );
       },
-    );
-  }
-
-  getFilterButtons(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 1,
-          child: GestureDetector(
-            onTap: () {
-              controller.isShowFirst.value = true;
-              controller.getBloodTestResults();
-              controller.update();
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height * 0.05,
-              decoration: BoxDecoration(
-                color: controller.isShowFirst.isTrue
-                    ? AppColors.blackColor
-                    : AppColors.whiteColor,
-                border: Border.all(
-                  color: AppColors.blackColor,
-                ),
-              ),
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: AppText(
-                text: 'Show Latest First',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: controller.isShowFirst.isTrue
-                    ? AppColors.whiteColor
-                    : AppColors.blackColor,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 
