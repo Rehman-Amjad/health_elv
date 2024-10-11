@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
@@ -31,90 +29,33 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
               Card(
                 color: AppColors.whiteColor,
                 child: Container(
-                  height: 185,
+                  height: 300,
                   alignment: Alignment.center,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Center(
+                      Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             AppText(
-                              //text: '${controller.data?.score}',
-                              text: 'controller.data?.score',
+                              text: controller.trendCategory,
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
                             ),
-                            SizedBox(height: 10),
-                            AppText(
-                              // text: '${controller.data?.trendName} Health Score',
-                              text: 'controller.data?.trendName} Health Score',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            )
                           ],
                         ),
                       ),
                       SizedBox(height: 02.h),
-                      GradientSlider(
-                        thumbAsset: AppAssets.icThumb,
-                        thumbHeight: 24,
-                        thumbWidth: 24,
-                        trackHeight: 10,
-                        trackBorder: 0,
-                        trackBorderColor: Colors.white,
-                        activeTrackGradient: const LinearGradient(
-                          colors: [
-                            Color(0xFFC5B630),
-                            Color(0xFF9FC042),
-                            Color(0xFF6EB86D),
-                            Color(0xFF31B736),
-                            Color(0xFFAB6938),
-                            Color(0xFFE30505),
-                          ],
-                        ),
-                        inactiveTrackGradient: LinearGradient(
-                          colors: [
-                            AppColors.fieldColor.withOpacity(0.3),
-                            AppColors.fieldColor.withOpacity(0.3),
-                          ],
-                        ),
-                        inactiveTrackColor: Colors.black,
-                        slider: Slider(
-                          //value: double.parse(controller.data!.score ?? "0"),
-                          value: 500,
-                          min: 0,
-                          max: 1000,
-                          onChanged: (val) {
-                            //sliderValue = val;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '0',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.fieldColor,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              '1000',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.fieldColor,
-                              ),
-                            ),
-                          ],
-                        ),
+                      Container(
+                        height: 200,
+                        padding: const EdgeInsets.only(left: 16),
+                        child: controller.isLoading.isFalse
+                            ? HealthTrendsChart(
+                                healthTrendsList: controller.healthTrendsList,
+                              )
+                            : AppUtils.loader(),
                       ),
                     ],
                   ),
