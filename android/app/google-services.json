@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "713165074152",
-    "project_id": "healthelev8-9ac29",
-    "storage_bucket": "healthelev8-9ac29.appspot.com"
+    "project_number": "204934760605",
+    "project_id": "health8-pro",
+    "storage_bucket": "health8-pro.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:713165074152:android:25b0f5f77cc207de89635d",
+        "mobilesdk_app_id": "1:204934760605:android:e51fe609d06c7e7e256c74",
         "android_client_info": {
           "package_name": "com.health.elev8.medical"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD8gsD6z6ddlCoDvajDUQ7aJAcBut5j3PI"
+          "current_key": "AIzaSyB-puyYlAj0UsNKAHbglR9dfqbw99AmGmM"
         }
       ],
       "services": {

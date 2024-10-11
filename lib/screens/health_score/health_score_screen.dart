@@ -21,7 +21,6 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                   children: [
                     Container(
                       width: size.width,
-                      // height: size.height * 0.4,
                       decoration: AppUtils.linearDecoration(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
@@ -53,16 +52,16 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                                 onTap: () => Get.back(),
                               ),
                               Container(
-                                padding: const EdgeInsets.only(
-                                  left: 4,
-                                  right: 4,
-                                  top: 2,
-                                  bottom: 2,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                  vertical: 2,
                                 ),
                                 decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    color: AppColors.secondryColor),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                  color: AppColors.secondryColor,
+                                ),
                                 alignment: Alignment.center,
                                 child: AppText(
                                   text: controller.healthScore?.healthStatus ??
@@ -93,7 +92,19 @@ class HealthScoreScreen extends GetView<HealthScoreController> {
                         ],
                       ),
                     ),
-                    CarouselWithLocalImages(),
+                    Expanded(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            color: AppColors.primaryColor.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          AppAssets.healthScoreBanner,
+                          fit: BoxFit.cover, // Ensure the image fits properly
+                        ),
+                      ),
+                    ),
                   ],
                 )
               : Center(

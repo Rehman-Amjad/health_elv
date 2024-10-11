@@ -141,7 +141,6 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                       const SizedBox(height: 8),
                       Text(
                         '${controller.item.currentRange} ${controller.item.testUnit}',
-                        // '400 U/L',
                         style: GoogleFonts.montserrat(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -189,7 +188,7 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                   child: Row(
                     children: [
                       Text(
-                        'Min',
+                        '${controller.item.minRange}',
                         style: GoogleFonts.montserrat(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -198,7 +197,7 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                       ),
                       const Spacer(),
                       Text(
-                        'Max',
+                        '${controller.item.maxRange}',
                         style: GoogleFonts.montserrat(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

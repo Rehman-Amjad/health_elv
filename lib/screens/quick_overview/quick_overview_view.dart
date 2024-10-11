@@ -21,38 +21,48 @@ class QuickOverviewView extends GetView<QuickOverviewController> {
               marginTop: 30,
             ),
           ),
-          body: ListView.builder(
-            itemCount: controller.quickOverViewList.length,
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
-            itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.symmetric(vertical: 05),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.circle_outlined,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
+          body: controller.isLoading.isFalse
+              ? controller.quickOverViewList.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: controller.quickOverViewList.length,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14.0, vertical: 10),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 05),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.circle_outlined,
+                                size: 16,
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: AppText(
+                                  text:
+                                      "${controller.quickOverViewList[index].overView?.capitalize}",
+                                  fontSize: 17,
+                                  softWrap: true,
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.visible,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.fieldColor2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    )
+                  : const Center(
                       child: AppText(
-                        text: "${controller.quickOverViewList[index].overView?.capitalize}",
-                        fontSize: 17,
-                        softWrap: true,
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.visible,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.fieldColor2,
+                        text: "No Relevant Data were found",
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+                    )
+              : AppUtils.loader(),
         );
       },
     );

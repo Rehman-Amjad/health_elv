@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD8gsD6z6ddlCoDvajDUQ7aJAcBut5j3PI',
-    appId: '1:713165074152:android:25b0f5f77cc207de89635d',
-    messagingSenderId: '713165074152',
-    projectId: 'healthelev8-9ac29',
-    storageBucket: 'healthelev8-9ac29.appspot.com',
+    apiKey: 'AIzaSyB-puyYlAj0UsNKAHbglR9dfqbw99AmGmM',
+    appId: '1:204934760605:android:e51fe609d06c7e7e256c74',
+    messagingSenderId: '204934760605',
+    projectId: 'health8-pro',
+    storageBucket: 'health8-pro.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDWEof-3rOud-hRCIiCglkdXD6cehCwSYk',
-    appId: '1:713165074152:ios:b845201c692e73bf89635d',
-    messagingSenderId: '713165074152',
-    projectId: 'healthelev8-9ac29',
-    storageBucket: 'healthelev8-9ac29.appspot.com',
+    apiKey: 'AIzaSyB2nmokS8mhVPczS6mRNGnRmW5mC0mkY9A',
+    appId: '1:204934760605:ios:b32b2564bf6294cb256c74',
+    messagingSenderId: '204934760605',
+    projectId: 'health8-pro',
+    storageBucket: 'health8-pro.appspot.com',
     iosBundleId: 'com.health.elev8.medical',
   );
 

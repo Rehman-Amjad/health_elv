@@ -72,14 +72,6 @@ class ProfileScreen extends GetView<ProfileController> {
                   },
                 ),
               ),
-              // const Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 14),
-              //   child: ProfileDetailWidget(
-              //     title: 'Subscription',
-              //     imgPath: AppAssets.currencyIcon1,
-              //   ),
-              // ),
-              //const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: ProfileDetailWidget(

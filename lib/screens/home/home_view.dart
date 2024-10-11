@@ -63,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                       },
                     ),
                     HealthCardWidget(
-                      title: 'Health Trends',
+                      title: 'Health Score',
                       imgPath: AppAssets.trendsIcon,
                       scale: 0.8,
                       onTap: () {
@@ -249,7 +249,7 @@ class HomeView extends GetView<HomeController> {
                   Align(
                     alignment: AlignmentDirectional.center,
                     child: CustomButton(
-                      text: 'Quick Overview',
+                      text: 'Doctors Notes',
                       fontSize: 16,
                       height: 60,
                       width: 200.0,
