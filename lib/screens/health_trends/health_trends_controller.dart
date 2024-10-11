@@ -12,14 +12,6 @@ class HealthTrendsController extends BaseController {
     super.onInit();
   }
 
-  getHealthTrends({trendCategory}) async {
-    isLoading.value = true;
-    healthTrendsList = await firestoreService.getHealthTrendsList(
-      trendCategory: trendCategory,
-    );
-    isLoading.value = false;
-    update();
-  }
 
   List<CategoryModel> getCategoryList() {
     return [
