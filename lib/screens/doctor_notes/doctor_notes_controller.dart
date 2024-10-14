@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class QuickOverviewController extends BaseController{
+class DoctorNotesController extends BaseController{
 
   final fireStoreService = FireStoreService();
   RxBool isLoading = false.obs;

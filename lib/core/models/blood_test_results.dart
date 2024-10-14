@@ -32,6 +32,7 @@ class BloodTestResults {
     return BloodTestResults(
       uid: data['uid'] ?? "",
       currentRange: data['current_range'] as String,
+      testType: data['testType'] as String,
       minRange: data['min_range'] as String,
       maxRange: data['max_range'] as String,
       status: data['status'] as String,
@@ -47,6 +48,7 @@ class BloodTestResults {
     return BloodTestResults(
       uid: data['uid'],
       currentRange: data['current_range'] as String,
+      testType: data['testType'] as String,
       minRange: data['min_range'] as String,
       maxRange: data['max_range'] as String,
       status:data['status'],

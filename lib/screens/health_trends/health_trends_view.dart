@@ -17,7 +17,7 @@ class HealthTrendsView extends GetView<HealthTrendsController> {
           appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 70),
             child: CustomAppBar(
-              title: "Health Trends",
+              title: "Health Score",
               marginTop: 30,
             ),
           ),

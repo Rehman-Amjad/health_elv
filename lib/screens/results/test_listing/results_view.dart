@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,54 +22,23 @@ class ResultsView extends GetView<ResultsController> {
               marginTop: 20,
             ),
           ),
-          body: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: [
-              SizedBox(height: 02.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'My Blood Tests ',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+          body: controller.isLoading.isFalse
+              ? ListView.builder(
+                  itemCount: controller.bloodTestResults.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 02.h,
                   ),
-                  Container(
-                    height: 32,
-                    width: 32,
-                    decoration: BoxDecoration(
-                        color: AppColors.redColor.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(06)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      '${controller.bloodTestResults.length}',
-                      style: const TextStyle(
-                        color: AppColors.redColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              controller.isLoading.isFalse
-                  ? ListView.builder(
-                      itemCount: controller.bloodTestResults.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return resultItem(controller.bloodTestResults[index]);
-                      },
-                    )
-                  : SizedBox(
-                      height: Get.height * 0.5,
-                      child: AppUtils.loader(),
-                    ),
-            ],
-          ),
+                  itemBuilder: (context, index) {
+                    return resultItem(controller.bloodTestResults[index]);
+                  },
+                )
+              : SizedBox(
+                  height: Get.height * 0.5,
+                  child: AppUtils.loader(),
+                ),
         );
       },
     );

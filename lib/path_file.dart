@@ -15,7 +15,7 @@ export 'screens/on_boarding/on_boarding_screen.dart';
 export 'screens/splash/splash_controller.dart';
 export 'screens/splash/splash_screen.dart';
 export 'screens/bottom_nav/export.dart';
-export 'screens/quick_overview/export.dart';
+export 'screens/doctor_notes/export.dart';
 
 export 'screens/home/export.dart';
 export 'screens/notifications/export.dart';

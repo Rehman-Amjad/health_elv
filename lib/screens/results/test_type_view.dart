@@ -46,12 +46,12 @@ class TestTypeView extends GetView<TestTypeController> {
     );
   }
 
-  testTypeItem(TestTypeModel item) {
+  testTypeItem(String item) {
     return GestureDetector(
       onTap: () {
         Get.to(
           () => const TestCategoryView(),
-          arguments: item.name,
+          arguments: item,
           transition: Transition.circularReveal,
           duration: const Duration(milliseconds: 500),
         );
@@ -83,7 +83,7 @@ class TestTypeView extends GetView<TestTypeController> {
                   ),
                   const SizedBox(width: 10),
                   AppText(
-                    text: item.name,
+                    text: item,
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                   )

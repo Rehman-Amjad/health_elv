@@ -14,7 +14,6 @@ class HealthTrendsController extends BaseController {
     return [
       CategoryModel(title: "Hormonal Health", image: AppAssets.img86),
       CategoryModel(title: "Vitamin Health", image: AppAssets.img87),
-      CategoryModel(title: "Urine Health", image: AppAssets.img88),
       CategoryModel(title: "Heart Health", image: AppAssets.img89),
       CategoryModel(title: "Thyroid Health", image: AppAssets.img90),
       CategoryModel(title: "Lipid Health", image: AppAssets.img91),

@@ -23,13 +23,13 @@ class TestCategoryView extends GetView<TestCategoryController> {
           ),
           body: controller.isLoading.isFalse
               ? ListView.builder(
-                  itemCount: controller.testTypeList.length,
+                  itemCount: controller.testCategoriesList.length,
                   shrinkWrap: true,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return testTypeItem(controller.testTypeList[index]);
+                    return testCategoryItem(controller.testCategoriesList[index]);
                   },
                 )
               : SizedBox(
@@ -41,12 +41,12 @@ class TestCategoryView extends GetView<TestCategoryController> {
     );
   }
 
-  testTypeItem(TestCategoryModel item) {
+  testCategoryItem(String item) {
     return GestureDetector(
       onTap: (){
         Get.to(
               () => const TestSubCategoryView(),
-          arguments: item.name,
+          arguments: item,
           transition: Transition.circularReveal,
           duration: const Duration(milliseconds: 500),
         );
@@ -78,7 +78,7 @@ class TestCategoryView extends GetView<TestCategoryController> {
                   ),
                   const SizedBox(width: 10),
                   AppText(
-                    text: item.name,
+                    text: item,
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                   )

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
@@ -6,20 +7,21 @@ class TestSubCategoryController extends BaseController {
   RxBool isLoading = false.obs;
   final fireStoreService = FireStoreService();
 
-  List<TestSubCategoryModel> testTypeList = [];
+  List<String> testSubCategoriesList = [];
   String testCategory=Get.arguments;
 
   @override
   void onInit() {
-    getTestsTypeDropDown();
+    testSubCategories();
     super.onInit();
   }
 
-
-  getTestsTypeDropDown() async {
-    isLoading = true.obs;
-    testTypeList = await fireStoreService.getTestSubCategory(testCategory: testCategory);
-    isLoading = false.obs;
+  Future<void> testSubCategories() async {
+    isLoading.value=true;
+    final bloodTestResults = await fireStoreService.getBloodDropDownLists();
+    testSubCategoriesList = bloodTestResults['testSubCategories'] ?? [];
+    debugPrint('Test Subcategories: $testSubCategoriesList');
+    isLoading.value=false;
     update();
   }
 }

@@ -16,7 +16,7 @@ class AppBinding extends Bindings {
 
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => NotificationController());
-    Get.lazyPut(() => QuickOverviewController());
+    Get.lazyPut(() => DoctorNotesController());
     Get.lazyPut(() => FaqsController());
     Get.lazyPut(() => OrderNewTestController());
 

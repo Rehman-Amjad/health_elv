@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-class QuickOverviewView extends GetView<QuickOverviewController> {
-  const QuickOverviewView({super.key});
+class DoctorNotesView extends GetView<DoctorNotesController> {
+  const DoctorNotesView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<QuickOverviewController>(
+    return GetBuilder<DoctorNotesController>(
       initState: (_) {
-        Get.put(QuickOverviewController());
+        Get.put(DoctorNotesController());
       },
       builder: (_) {
         return Scaffold(
@@ -17,7 +17,7 @@ class QuickOverviewView extends GetView<QuickOverviewController> {
           appBar: const PreferredSize(
             preferredSize: Size(double.infinity, 70),
             child: CustomAppBar(
-              title: 'Health Overview',
+              title: 'Doctor Notes',
               marginTop: 30,
             ),
           ),
@@ -33,11 +33,14 @@ class QuickOverviewView extends GetView<QuickOverviewController> {
                           margin: const EdgeInsets.symmetric(vertical: 05),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Icon(
-                                Icons.circle_outlined,
-                                size: 16,
+                              const Padding(
+                                padding: EdgeInsets.only(top: 5.0),
+                                child: Icon(
+                                  Icons.circle,
+                                  size: 16,
+                                ),
                               ),
                               const SizedBox(width: 10),
                               Expanded(

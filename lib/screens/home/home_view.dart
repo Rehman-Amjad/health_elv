@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 02.h),
               _healthCard(),
               SizedBox(height: 02.h),
-              _quickSummary(),
+              _doctorNotes(),
               SizedBox(height: 02.h),
               Container(
                 padding: const EdgeInsets.all(10),
@@ -49,6 +49,8 @@ class HomeView extends GetView<HomeController> {
                         Get.to(
                           () => const TestTypeView(fromNew: true),
                           binding: AppBinding(),
+                          transition: Transition.circularReveal,
+                          duration: const Duration(milliseconds: 500),
                         );
                       },
                     ),
@@ -57,8 +59,10 @@ class HomeView extends GetView<HomeController> {
                       imgPath: AppAssets.upcommingBloodTestIcon,
                       onTap: () {
                         Get.to(
-                          () => UpcomingResultsView(),
+                          () => const UpcomingResultsView(),
                           binding: AppBinding(),
+                          transition: Transition.circularReveal,
+                          duration: const Duration(milliseconds: 500),
                         );
                       },
                     ),
@@ -70,6 +74,8 @@ class HomeView extends GetView<HomeController> {
                         Get.to(
                           () => const HealthTrendsView(),
                           binding: AppBinding(),
+                          transition: Transition.circularReveal,
+                          duration: const Duration(milliseconds: 500),
                         );
                       },
                     ),
@@ -126,8 +132,7 @@ class HomeView extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ImageHelper(
-                      image:
-                          controller.userData?.imageUrl ?? AppAssets.avatar,
+                      image: controller.userData?.imageUrl ?? AppAssets.avatar,
                       imageType: controller.userData?.imageUrl != null
                           ? ImageType.network
                           : ImageType.asset,
@@ -187,6 +192,8 @@ class HomeView extends GetView<HomeController> {
         Get.to(
           () => const HealthScoreScreen(),
           binding: AppBinding(),
+          transition: Transition.circularReveal,
+          duration: const Duration(milliseconds: 500),
         );
       },
       child: Card(
@@ -213,7 +220,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  _quickSummary() {
+  _doctorNotes() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -258,8 +265,10 @@ class HomeView extends GetView<HomeController> {
                       backgroundColor: AppColors.primaryColor,
                       onTap: () {
                         Get.to(
-                          () => const QuickOverviewView(),
+                          () => const DoctorNotesView(),
                           binding: AppBinding(),
+                          transition: Transition.circularReveal,
+                          duration: const Duration(milliseconds: 500),
                         );
                       },
                     ),
@@ -278,9 +287,9 @@ class HomeView extends GetView<HomeController> {
                         Get.to(
                           () => const FlaggedListingView(),
                           binding: AppBinding(),
-                          arguments: [
-                            false,
-                          ]
+                          transition: Transition.circularReveal,
+                          duration: const Duration(milliseconds: 500),
+                          arguments: [false],
                         );
                       },
                       backgroundColor: AppColors.primaryColor,
