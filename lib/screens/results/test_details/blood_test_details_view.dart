@@ -104,112 +104,12 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
           ),
         ),
         const SizedBox(height: 8),
-        Card(
-          color: AppColors.whiteColor,
-          child: Container(
-            height: 185,
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Normal Range: ${controller.item.minRange}-${controller.item.maxRange} ${controller.item.testUnit}',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.fieldColor,
-                            ),
-                          ),
-                          const Spacer(),
-                          CustomButton(
-                            backgroundColor: AppColors.redColor,
-                            text: controller.item.status!,
-                            width: 74,
-                            height: 27,
-                            fontSize: 14,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '${controller.item.currentRange} ${controller.item.testUnit}',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.blackColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                GradientSlider(
-                  thumbAsset: AppAssets.icThumb,
-                  thumbHeight: 24,
-                  thumbWidth: 24,
-                  trackHeight: 10,
-                  trackBorder: 0,
-                  trackBorderColor: Colors.white,
-                  activeTrackGradient: const LinearGradient(
-                    colors: [
-                      Color(0xFFC5B630),
-                      Color(0xFF9FC042),
-                      Color(0xFF6EB86D),
-                      Color(0xFF31B736),
-                      Color(0xFFAB6938),
-                      Color(0xFFE30505),
-                    ],
-                  ),
-                  inactiveTrackGradient: LinearGradient(
-                    colors: [
-                      AppColors.fieldColor.withOpacity(0.3),
-                      AppColors.fieldColor.withOpacity(0.3),
-                    ],
-                  ),
-                  inactiveTrackColor: Colors.black,
-                  slider: Slider(
-                      value: double.parse(controller.item.currentRange??"0"),
-                      min: double.parse(controller.item.minRange??"0"),
-                      max: double.parse(controller.item.maxRange??"0"),
-                      onChanged: (val) {
-                        //sliderValue = val;
-                      }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        '${controller.item.minRange}',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.fieldColor,
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        '${controller.item.maxRange}',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.fieldColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+        CustomRangeSlider(
+          testUnit: controller.item.testUnit,
+          status: controller.item.status,
+          currentValue: double.parse(controller.item.currentRange ?? "0"),
+          normalMinValue: double.parse(controller.item.minRange ?? "0"),
+          normalMaxValue: double.parse(controller.item.maxRange ?? "0"),
         ),
         const SizedBox(height: 16),
         const Text(
@@ -262,7 +162,8 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        BloodTestResults item=controller.comparisonList[index];
+                        BloodTestResults item =
+                            controller.comparisonList[index];
                         return Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Column(
@@ -291,7 +192,7 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                         );
                       }),
                 ),
-                 CustomLineChart(testResults: controller.comparisonList),
+                CustomLineChart(testResults: controller.comparisonList),
                 const SizedBox(height: 06),
                 Container(
                   height: 50,
@@ -301,7 +202,8 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        BloodTestResults item=controller.comparisonList[index];
+                        BloodTestResults item =
+                            controller.comparisonList[index];
                         return Padding(
                           padding: const EdgeInsets.only(right: 16.0),
                           child: Column(

@@ -873,7 +873,7 @@
         <entry key="syncfusion_flutter_core">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-26.2.7/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-26.2.14/lib" />
             </list>
           </value>
         </entry>
@@ -881,6 +881,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_datepicker-26.2.7/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="syncfusion_flutter_sliders">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_sliders-26.2.14/lib" />
             </list>
           </value>
         </entry>
@@ -1174,8 +1181,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_calendar-26.2.7/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-26.2.7/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-26.2.14/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_datepicker-26.2.7/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/syncfusion_flutter_sliders-26.2.14/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/synchronized-3.1.0+1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/term_glyph-1.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.7.2/lib" />

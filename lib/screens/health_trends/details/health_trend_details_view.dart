@@ -39,7 +39,7 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                     children: [
                       AppText(
                         text:
-                            'Health Score: ${controller.healthTrends.value.score}',
+                            'Health Score: ${controller.healthTrends.value.score ?? 0}',
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
@@ -69,8 +69,8 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                         ),
                         inactiveTrackColor: Colors.black,
                         slider: Slider(
-                          //value: double.parse(controller.data!.score ?? "0"),
-                          value: 500,
+                          value: double.parse(
+                              controller.healthTrends.value.score ?? "0"),
                           min: 0,
                           max: 1000,
                           onChanged: (val) {
@@ -131,7 +131,7 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: AppText(
-                  text: '${controller.healthTrends.value.description}',
+                  text: controller.healthTrends.value.description ?? "",
                   fontSize: 16,
                   textAlign: TextAlign.start,
                   fontWeight: FontWeight.w500,
