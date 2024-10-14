@@ -107,22 +107,18 @@ class FireStoreService {
   }
 
   ///
-  Future<List<HealthTrends>> getHealthTrendsList({
+  Future<HealthTrends> getHealthTrendsList({
     required String trendCategory,
   }) async {
-    List<HealthTrends> list = [];
 
     final querySnapshot = await _firestoreRef
         .collection(Collection.user.name)
         .doc(_firebaseAuth.currentUser!.uid)
         .collection(Collection.healthTrends.name)
-        .where('trendCategory', isEqualTo: trendCategory)
+         .doc(trendCategory)
         .get();
 
-    for (var doc in querySnapshot.docs) {
-      list.add(HealthTrends.fromFirestore(doc.data()));
-    }
-    return list;
+    return HealthTrends.fromFirestore(querySnapshot.data() as Map<String, dynamic>);
   }
 
   ///Add Tests

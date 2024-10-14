@@ -3,7 +3,7 @@ import '../../../path_file.dart';
 
 class HealthTrendDetailsController extends BaseController {
   final firestoreService = FireStoreService();
-  List<HealthTrends> healthTrendsList = [];
+  final healthTrends = HealthTrends().obs;
   RxBool isLoading = false.obs;
   String trendCategory = Get.arguments;
 
@@ -15,7 +15,7 @@ class HealthTrendDetailsController extends BaseController {
 
   getHealthTrends() async {
     isLoading.value = true;
-    healthTrendsList = await firestoreService.getHealthTrendsList(
+    healthTrends.value = await firestoreService.getHealthTrendsList(
       trendCategory: trendCategory,
     );
     isLoading.value = false;

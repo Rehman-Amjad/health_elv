@@ -26,7 +26,7 @@ class HealthTrendsChart extends StatelessWidget {
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 int index = value.toInt();
-                return Text(healthTrendsList[index].trendName ?? '');
+                return const Text("trendName");
               },
               reservedSize: 42,
             ),
@@ -48,7 +48,7 @@ class HealthTrendsChart extends StatelessWidget {
             },
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               return BarTooltipItem(
-                '${healthTrendsList[group.x].trendName}: ${rod.toY}',
+                'trendName: ${rod.toY}',
                 const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
