@@ -11,7 +11,6 @@ class FaqsView extends GetView<FaqsController> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
     return GetBuilder<FaqsController>(
       initState: (_) {
         Get.put(FaqsController());

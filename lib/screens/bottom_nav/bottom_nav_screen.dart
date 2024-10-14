@@ -3,8 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../advices/export.dart';
-
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});
 

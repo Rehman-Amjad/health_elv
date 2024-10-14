@@ -2,8 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../../../core/export.dart';
-
 class HealthTrendsChart extends StatelessWidget {
   final List<HealthTrends> healthTrendsList;
 

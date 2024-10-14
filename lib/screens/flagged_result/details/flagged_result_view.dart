@@ -12,7 +12,6 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
     return GetBuilder<FlaggedResultController>(
       initState: (_) {
         Get.put(FlaggedResultController());

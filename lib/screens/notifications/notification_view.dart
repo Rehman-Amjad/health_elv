@@ -27,7 +27,7 @@ class NotificationView extends GetView<NotificationController> {
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemBuilder: (context, index) {
-                    return NotificationCard();
+                    return const NotificationCard();
                   },
                 )
               : const Center(

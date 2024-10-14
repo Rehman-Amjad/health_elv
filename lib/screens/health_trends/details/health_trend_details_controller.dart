@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../../../path_file.dart';
 
 class HealthTrendDetailsController extends BaseController {
@@ -20,7 +19,6 @@ class HealthTrendDetailsController extends BaseController {
       trendCategory: trendCategory,
     );
     isLoading.value = false;
-    print(healthTrendsList.length);
     update();
   }
 }

@@ -16,7 +16,6 @@ class ResultsController extends BaseController {
 
   getBloodTestResults() async {
     isLoading.value = true;
-    print(testSubCategory);
     bloodTestResults = await fireStoreService.getBloodTestResults(
       testSubCategory: testSubCategory,
     );

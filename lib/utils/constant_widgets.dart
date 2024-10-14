@@ -1,8 +1,6 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../core/export.dart';
 import 'export.dart';
 
 getCustomDropDownTitle({title, required Widget child}) {
@@ -11,7 +9,7 @@ getCustomDropDownTitle({title, required Widget child}) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        '${title}',
+        '$title',
         style: GoogleFonts.poppins(
           color: AppColors.blackColor,
           fontSize: 12,

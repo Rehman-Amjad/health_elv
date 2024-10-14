@@ -94,7 +94,7 @@ class ProfileController extends BaseController {
       String downloadURL = await storageRef.getDownloadURL();
       return downloadURL;
     } catch (e) {
-      print("Error uploading image: $e");
+      debugPrint("Error uploading image: $e");
       return null;
     }
   }
@@ -112,7 +112,7 @@ class ProfileController extends BaseController {
         getProfileInfo();
       });
     } catch (e) {
-      print("Error updating Firestore: $e");
+      debugPrint("Error updating Firestore: $e");
     }
   }
 

@@ -304,7 +304,6 @@ class _QuestionAirViewState extends State<QuestionAirView> with CacheManager {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              print(checkBoxList);
               if (checkBoxList.isNotEmpty) {
                 answers.insert(queIndex, {question: checkBoxList});
                 if (queIndex < 3) {

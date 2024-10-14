@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:health_elev8_app/utils/theme_data.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';

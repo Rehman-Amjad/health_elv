@@ -7,7 +7,6 @@ class HealthTrendsView extends GetView<HealthTrendsController> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
     return GetBuilder<HealthTrendsController>(
       initState: (_) {
         Get.put(HealthTrendsController());
@@ -40,7 +39,7 @@ class HealthTrendsView extends GetView<HealthTrendsController> {
     return GestureDetector(
       onTap: () {
         Get.to(
-          () => HealthTrendDetailsView(),
+          () => const HealthTrendDetailsView(),
           arguments: item.title,
           transition: Transition.circularReveal,
           duration: const Duration(milliseconds: 500),

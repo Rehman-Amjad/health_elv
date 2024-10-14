@@ -222,7 +222,7 @@ class ProfileDetailWidget extends StatelessWidget {
                         color: Colors.white,
                       )
                     : isEnableText
-                        ? AppText(text: "AED")
+                        ? const AppText(text: "AED")
                         : SvgPicture.asset(
                             imgPath ?? '',
                             color: AppColors.whiteColor,

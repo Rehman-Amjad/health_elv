@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
-import 'package:sizer/sizer.dart';
 
 import '../export.dart';
 
@@ -12,7 +9,6 @@ class FlaggedListingView extends GetView<FlaggedListingController> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
     return GetBuilder<FlaggedListingController>(
       initState: (_) {
         Get.put(FlaggedListingController());
