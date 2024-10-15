@@ -13,10 +13,10 @@ class TestCategoryView extends GetView<TestCategoryController> {
       },
       builder: (_) {
         return Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 60),
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 60),
             child: CustomAppBar(
-              title: "Test Categories",
+              title: controller.testType,
               showArrow: true,
               marginTop: 20,
             ),

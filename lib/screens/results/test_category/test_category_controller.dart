@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
 class TestCategoryController extends BaseController {
-
   RxBool isLoading = false.obs;
   final fireStoreService = FireStoreService();
 
   List<String> testCategoriesList = [];
-  String testType=Get.arguments;
+  String testType = Get.arguments;
 
   @override
   void onInit() {
@@ -17,11 +16,12 @@ class TestCategoryController extends BaseController {
   }
 
   Future<void> testCategories() async {
-    isLoading.value=true;
-    final bloodTestResults = await fireStoreService.getBloodDropDownLists();
-    testCategoriesList = bloodTestResults['testCategories'] ?? [];
+    isLoading.value = true;
+    testCategoriesList = await fireStoreService.getTestCategoryLists(
+      testType: testType,
+    );
     debugPrint('Test Categories: $testCategoriesList');
-    isLoading.value=false;
+    isLoading.value = false;
     update();
   }
 }

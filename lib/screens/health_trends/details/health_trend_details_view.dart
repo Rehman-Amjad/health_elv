@@ -72,7 +72,7 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                           value: double.parse(
                               controller.healthTrends.value.score ?? "0"),
                           min: 0,
-                          max: 1000,
+                          max: 100,
                           onChanged: (val) {
                             //sliderValue = val;
                           },
@@ -92,7 +92,7 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                             ),
                             const Spacer(),
                             Text(
-                              '1000',
+                              '100',
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -121,20 +121,15 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                 ],
               ),
               SizedBox(height: 01.h),
-              const AppText(
-                text: 'Doctor Prescription',
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: AppColors.blackColor,
-              ),
-              SizedBox(height: 01.h),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: AppText(
-                  text: controller.healthTrends.value.description ?? "",
-                  fontSize: 16,
+                child: Text(
+                  controller.healthTrends.value.description ?? "",
                   textAlign: TextAlign.start,
-                  fontWeight: FontWeight.w500,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               )
             ],
