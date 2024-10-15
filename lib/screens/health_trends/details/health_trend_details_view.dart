@@ -113,7 +113,7 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                   Icon(Icons.info),
                   SizedBox(width: 10),
                   AppText(
-                    text: 'Trends Score Based On Doctor Reviews',
+                    text: 'Health Score Based On Test Results',
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.blackColor,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
@@ -34,7 +33,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          controller.bloodTestResults?.title??"",
+                          controller.bloodTestResults?.title ?? "",
                           style: GoogleFonts.inter(
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
@@ -52,90 +51,15 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Card(
-                      color: AppColors.whiteColor,
-                      child: Container(
-                        height: 185,
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 24.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Normal Range: ${controller.bloodTestResults?.minRange??""} units${controller.bloodTestResults?.testUnit??""}',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.fieldColor,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      CustomButton(
-                                        backgroundColor: AppColors.redColor,
-                                        text: controller.bloodTestResults?.status??"",
-                                        width: 74,
-                                        height: 27,
-                                        fontSize: 14,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    '${controller.bloodTestResults?.currentRange??""} ${controller.bloodTestResults?.testUnit??""}',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.blackColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            GradientSlider(
-                              thumbAsset: AppAssets.icThumb,
-                              thumbHeight: 24,
-                              thumbWidth: 24,
-                              trackHeight: 10,
-                              trackBorder: 0,
-                              trackBorderColor: Colors.white,
-                              activeTrackGradient: const LinearGradient(
-                                colors: [
-                                  Color(0xFFC5B630),
-                                  Color(0xFF9FC042),
-                                  Color(0xFF6EB86D),
-                                  Color(0xFF31B736),
-                                  Color(0xFFAB6938),
-                                  Color(0xFFE30505),
-                                ],
-                              ),
-                              inactiveTrackGradient: LinearGradient(
-                                colors: [
-                                  AppColors.fieldColor.withOpacity(0.3),
-                                  AppColors.fieldColor.withOpacity(0.3),
-                                ],
-                              ),
-                              inactiveTrackColor: Colors.black,
-                              slider: Slider(
-                                value: controller.animation.value,
-                                min: 0,
-                                max: 100,
-                                onChanged: (val) {
-                                  //sliderValue = val;
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    CustomRangeSlider(
+                      testUnit: controller.bloodTestResults?.testUnit,
+                      status: controller.bloodTestResults?.status,
+                      currentValue: double.parse(
+                          controller.bloodTestResults?.currentRange ?? "0"),
+                      normalMinValue: double.parse(
+                          controller.bloodTestResults?.minRange ?? "0"),
+                      normalMaxValue: double.parse(
+                          controller.bloodTestResults?.maxRange ?? "0"),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -147,7 +71,7 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      controller.bloodTestResults?.testDesc??"",
+                      controller.bloodTestResults?.testDesc ?? "",
                       style: const TextStyle(fontSize: 16),
                     ),
                     const SizedBox(height: 16),

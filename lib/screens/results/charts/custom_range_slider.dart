@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../path_file.dart';
 
@@ -50,8 +48,17 @@ class CustomRangeSlider extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 50),
-            _priceSlider(),
+            const SizedBox(height: 20),
+            AppText(
+              text: 'Current Score: ${currentValue.toStringAsFixed(1)}',
+              color: getRangeColor(currentValue),
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+            const SizedBox(height: 25),
+            CustomSeekBar(
+              currentValue: currentValue,
+            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,65 +66,18 @@ class CustomRangeSlider extends StatelessWidget {
                 AppText(
                   text: 'Low: < $normalMinValue',
                   color: Colors.red,
-                  fontSize: 12,
-                ),
-                AppText(
-                  text: 'Current Score: ${currentValue.toStringAsFixed(1)}',
-                  color: getRangeColor(currentValue),
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
                 AppText(
                   text: 'High: > $normalMaxValue',
                   color: Colors.amber,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ],
             ),
           ],
         ),
       ),
-    );
-  }
-
-  _priceSlider() {
-    return Column(
-      children: [
-        SfSliderTheme(
-          data: SfRangeSliderThemeData(
-            tooltipBackgroundColor: AppColors.whiteColor,
-            tooltipTextStyle: GoogleFonts.sora(
-              color: AppColors.whiteColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-            activeTrackHeight: 12,
-            inactiveTrackHeight: 8,
-            activeLabelStyle: GoogleFonts.sora(
-              color: AppColors.blackColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-            inactiveLabelStyle: GoogleFonts.sora(
-              color: AppColors.greyColor,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: SfRangeSlider(
-            min: 0,
-            max: 500,
-            enableTooltip: true,
-            shouldAlwaysShowTooltip: true,
-            activeColor: getRangeColor(currentValue),
-            inactiveColor: AppColors.greyColor.withOpacity(0.5),
-            onChanged: (dynamic value) {},
-            values: SfRangeValues(
-              normalMinValue,
-              normalMaxValue,
-            ),
-          ),
-        ),
-      ],
     );
   }
 

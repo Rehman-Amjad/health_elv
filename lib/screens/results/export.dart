@@ -16,3 +16,4 @@ export 'test_details/blood_test_details_view.dart';
 
 export 'charts/custom_line_chart.dart';
 export 'charts/custom_range_slider.dart';
+export 'charts/custom_seek_bar.dart';
