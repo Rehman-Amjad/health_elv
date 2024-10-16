@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../path_file.dart';
+
 class CustomSeekBar extends StatelessWidget {
   final double currentValue;
+  final double normalMinValue;
+  final double normalMaxValue;
 
   const CustomSeekBar({
     super.key,
     required this.currentValue,
+    required this.normalMinValue,
+    required this.normalMaxValue,
   });
 
   @override
@@ -66,28 +72,48 @@ class CustomSeekBar extends StatelessWidget {
             thumbShape: CustomSliderThumbCircle(
               thumbRadius: 12,
               showValue: currentValue,
+              normalMinValue: normalMinValue,
+              normalMaxValue: normalMaxValue,
             ),
           ),
           child: Slider(
-            value: currentValue,
+            value: checkCurrentValue(),
             min: 0,
-            max: 100,
-            divisions: 100,
+            max: 500,
+            divisions: 500,
             onChanged: (value) {},
           ),
         ),
       ],
     );
   }
+
+  double checkCurrentValue() {
+    // 31.5  < 34.1
+    if (normalMinValue  < currentValue) {
+      //34.5 > 34.1
+      if (normalMaxValue  > currentValue) {
+        return 333.0 + currentValue;
+      } else {
+        return 165.0 + currentValue;
+      }
+    } else {
+      return currentValue;
+    }
+  }
 }
 
 class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
   final double showValue;
+  final double normalMinValue;
+  final double normalMaxValue;
 
   CustomSliderThumbCircle({
     required this.thumbRadius,
     required this.showValue,
+    required this.normalMinValue,
+    required this.normalMaxValue,
   });
 
   @override
@@ -112,29 +138,25 @@ class CustomSliderThumbCircle extends SliderComponentShape {
   }) {
     final Canvas canvas = context.canvas;
 
-    Color thumbColor;
-    if (showValue <= 33) {
-      thumbColor = Colors.red;
-    } else if (showValue <= 66) {
-      thumbColor = Colors.green;
-    } else {
-      thumbColor = Colors.yellow;
-    }
-
-    // Draw the thumb with the selected color
+    // Draw the vertical line for the thumb
     final Paint thumbPaint = Paint()
-      ..color = thumbColor;
-    canvas.drawCircle(center, thumbRadius, thumbPaint);
-
+      ..color =
+          AppColors.blackColor // You can use AppColors.blackColor if needed
+      ..strokeWidth = 05; // Width of the line
+    canvas.drawLine(
+      Offset(center.dx, center.dy - thumbRadius), // Start point
+      Offset(center.dx, center.dy + thumbRadius), // End point
+      thumbPaint,
+    );
 
     // Draw the value tooltip above the thumb
     final TextSpan span = new TextSpan(
       style: GoogleFonts.poppins(
         fontSize: thumbRadius * 0.8,
         fontWeight: FontWeight.w700,
-        color: thumbColor,
+        color: AppColors.blackColor,
       ),
-      text: '${showValue.toInt()}',
+      text: '$showValue',
     );
 
     final TextPainter tp = TextPainter(
@@ -161,7 +183,7 @@ class CustomSliderThumbCircle extends SliderComponentShape {
 
     // Tooltip border
     final Paint borderPaint = Paint()
-      ..color = thumbColor
+      ..color = AppColors.blackColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
     canvas.drawRect(tooltipRect, borderPaint);

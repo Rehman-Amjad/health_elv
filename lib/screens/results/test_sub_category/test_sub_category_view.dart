@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 
-import '../charts/custom_seek_bar.dart';
-
 class TestSubCategoryView extends GetView<TestSubCategoryController> {
   const TestSubCategoryView({super.key});
 

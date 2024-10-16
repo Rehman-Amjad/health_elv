@@ -16,10 +16,10 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
       },
       builder: (_) {
         return Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 70),
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 70),
             child: CustomAppBar(
-              title: "Health Trends Details",
+              title: "${controller.trendCategory} Details",
               marginTop: 30,
             ),
           ),
@@ -39,9 +39,9 @@ class HealthTrendDetailsView extends GetView<HealthTrendDetailsController> {
                     children: [
                       AppText(
                         text:
-                            'Health Score: ${controller.healthTrends.value.score ?? 0}',
+                            '${controller.trendCategory} Score: ${controller.healthTrends.value.score ?? 0}',
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                       SizedBox(height: 02.h),
                       GradientSlider(

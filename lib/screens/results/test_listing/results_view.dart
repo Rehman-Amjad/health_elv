@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../widgets/charts/test.dart';
+
 class ResultsView extends GetView<ResultsController> {
   const ResultsView({super.key});
 
@@ -47,7 +49,6 @@ class ResultsView extends GetView<ResultsController> {
   resultItem(BloodTestResults item) {
     return Card(
       child: Container(
-        height: 140,
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,21 +74,25 @@ class ResultsView extends GetView<ResultsController> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText(
-                      text: '${item.title}',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                    AppText(
-                      text: '${item.subTitle}',
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    )
-                  ],
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppText(
+                        text: '${item.title}',
+                        fontSize: 14,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w800,
+                      ),
+                      AppText(
+                        text: '${item.subTitle}',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
@@ -108,6 +113,7 @@ class ResultsView extends GetView<ResultsController> {
                   onTap: () {
                     Get.to(
                       const BloodTestDetailsView(),
+                      //const BloodTestSeekBar(),
                       binding: AppBinding(),
                       arguments: ["BloodTest", item],
                     );

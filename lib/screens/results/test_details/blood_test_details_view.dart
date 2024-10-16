@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_slider/gradient_slider.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -107,9 +106,9 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
         CustomRangeSlider(
           testUnit: controller.item.testUnit,
           status: controller.item.status,
-          currentValue: double.parse(controller.item.currentRange ?? "0"),
-          normalMinValue: double.parse(controller.item.minRange ?? "0"),
-          normalMaxValue: double.parse(controller.item.maxRange ?? "0"),
+          currentValue: tooDouble(controller.item.currentRange),
+          normalMinValue: tooDouble(controller.item.minRange),
+          normalMaxValue: tooDouble(controller.item.maxRange),
         ),
         const SizedBox(height: 16),
         const Text(
@@ -232,5 +231,9 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
 
   String formatDate(DateTime date) {
     return DateFormat('MM/dd/yyyy').format(date);
+  }
+
+  tooDouble(String? value) {
+    return double.parse(value ?? "0");
   }
 }

@@ -58,6 +58,8 @@ class CustomRangeSlider extends StatelessWidget {
             const SizedBox(height: 25),
             CustomSeekBar(
               currentValue: currentValue,
+              normalMinValue: normalMinValue,
+              normalMaxValue: normalMaxValue,
             ),
             const SizedBox(height: 20),
             Row(
