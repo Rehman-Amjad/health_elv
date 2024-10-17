@@ -9,6 +9,7 @@ class CustomRangeSlider extends StatelessWidget {
   final double currentValue;
   final double normalMinValue;
   final double normalMaxValue;
+  final double seekBarMaxRange;
 
   const CustomRangeSlider({
     super.key,
@@ -17,6 +18,7 @@ class CustomRangeSlider extends StatelessWidget {
     required this.currentValue,
     required this.normalMinValue,
     required this.normalMaxValue,
+    this.seekBarMaxRange = 100,
   });
 
   @override
@@ -60,6 +62,7 @@ class CustomRangeSlider extends StatelessWidget {
               currentValue: currentValue,
               normalMinValue: normalMinValue,
               normalMaxValue: normalMaxValue,
+              seekBarMaxRange: seekBarMaxRange,
             ),
             const SizedBox(height: 20),
             Row(

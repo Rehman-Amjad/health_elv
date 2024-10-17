@@ -102,13 +102,13 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
         CustomRangeSlider(
           testUnit: controller.item.testUnit,
           status: controller.item.status,
           currentValue: tooDouble(controller.item.currentRange),
           normalMinValue: tooDouble(controller.item.minRange),
           normalMaxValue: tooDouble(controller.item.maxRange),
+          seekBarMaxRange: tooDouble(controller.item.maxSeekbarRange),
         ),
         const SizedBox(height: 16),
         const Text(

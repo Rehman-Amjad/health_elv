@@ -53,11 +53,11 @@ dependencies:
   firebase_storage: ^12.1.1
   flutter_datetime_picker_bdaya: ^3.0.2
   fluttertoast: ^8.2.6
-  shadcn_ui: ^0.6.4
+  shadcn_ui: ^0.13.1
   flutter_advanced_avatar: ^1.5.0
   gradient_slider: ^1.0.2
-  fl_chart: ^0.68.0
-  syncfusion_flutter_calendar: ^26.2.7
+  fl_chart: ^0.69.0
+  syncfusion_flutter_calendar: ^27.1.53
   rename: ^3.0.2
   animated_custom_dropdown: ^3.1.1
   flutter_quill: ^10.8.2
@@ -74,7 +74,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

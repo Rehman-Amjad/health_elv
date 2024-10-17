@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:health_elev8_app/path_file.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../widgets/charts/test.dart';
-
 class ResultsView extends GetView<ResultsController> {
   const ResultsView({super.key});
 
@@ -113,7 +111,6 @@ class ResultsView extends GetView<ResultsController> {
                   onTap: () {
                     Get.to(
                       const BloodTestDetailsView(),
-                      //const BloodTestSeekBar(),
                       binding: AppBinding(),
                       arguments: ["BloodTest", item],
                     );

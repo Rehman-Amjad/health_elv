@@ -1151,7 +1151,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.36):
     - BoringSSL-GRPC/Interface (= 0.0.36)
   - BoringSSL-GRPC/Interface (0.0.36)
-  - cloud_firestore (5.1.0):
+  - cloud_firestore (5.4.4):
     - Firebase/Firestore (= 11.2.0)
     - firebase_core
     - Flutter
@@ -1166,14 +1166,14 @@ PODS:
   - Firebase/Storage (11.2.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 11.2.0)
-  - firebase_auth (5.1.2):
+  - firebase_auth (5.3.1):
     - Firebase/Auth (= 11.2.0)
     - firebase_core
     - Flutter
   - firebase_core (3.6.0):
     - Firebase/CoreOnly (= 11.2.0)
     - Flutter
-  - firebase_storage (12.1.1):
+  - firebase_storage (12.3.3):
     - Firebase/Storage (= 11.2.0)
     - firebase_core
     - Flutter
@@ -1353,13 +1353,13 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - quill_native_bridge (0.0.1):
+  - quill_native_bridge_ios (0.0.1):
     - Flutter
   - RecaptchaInterop (100.0.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqflite (0.0.3):
+  - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
   - Toast (4.1.1)
@@ -1376,9 +1376,9 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - quill_native_bridge (from `.symlinks/plugins/quill_native_bridge/ios`)
+  - quill_native_bridge_ios (from `.symlinks/plugins/quill_native_bridge_ios/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -1424,23 +1424,23 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  quill_native_bridge:
-    :path: ".symlinks/plugins/quill_native_bridge/ios"
+  quill_native_bridge_ios:
+    :path: ".symlinks/plugins/quill_native_bridge_ios/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
-  sqflite:
-    :path: ".symlinks/plugins/sqflite/darwin"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   BoringSSL-GRPC: ca6a8e5d04812fce8ffd6437810c2d46f925eaeb
-  cloud_firestore: 0a16f6efe18c2597e80938e2fe9021a4cb6eab90
+  cloud_firestore: 5cb927f1a8c9d748d6fdbf16c6b267956cb82c53
   Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c
-  firebase_auth: 9dde22f7fb45e701fbc09586baf9edfa8f6e7647
+  firebase_auth: 0c77e299a8f2d1c74d1b1f6b78b3d4d802c19f47
   firebase_core: 2bedc3136ec7c7b8561c6123ed0239387b53f2af
-  firebase_storage: 583957c61f23220ff9911fe8c53c28489b72554a
+  firebase_storage: 65d4aea1e6a42b153b738412f7ac8b1c9bfa6206
   FirebaseAppCheckInterop: 7789a8adfb09e905ce02a76540b94b059029ea81
   FirebaseAuth: 2a198b8cdbbbd457f08d74df7040feb0a0e7777a
   FirebaseAuthInterop: c453b7ba7c49b88b2f519bb8d2e29edf7ada4a2a
@@ -1462,10 +1462,10 @@ SPEC CHECKSUMS:
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  quill_native_bridge: e5afa7d49c08cf68c52a5e23bc272eba6925c622
+  quill_native_bridge_ios: 277bdf5bf0fa5d7a12999556b415a5c63dd76ec4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  sqflite_darwin: a553b1fd6fe66f53bbb0fe5b4f5bab93f08d7a13
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 

@@ -60,6 +60,8 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                           controller.bloodTestResults?.minRange ?? "0"),
                       normalMaxValue: double.parse(
                           controller.bloodTestResults?.maxRange ?? "0"),
+                      seekBarMaxRange: double.parse(
+                          controller.bloodTestResults?.maxSeekbarRange ?? "0"),
                     ),
                     const SizedBox(height: 16),
                     const Text(
