@@ -108,7 +108,7 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
           currentValue: tooDouble(controller.item.currentRange),
           normalMinValue: tooDouble(controller.item.minRange),
           normalMaxValue: tooDouble(controller.item.maxRange),
-          seekBarMaxRange: tooDouble(controller.item.maxSeekbarRange),
+          seekbarValue: tooDouble(controller.item.seekbarValue),
         ),
         const SizedBox(height: 16),
         const Text(
@@ -231,9 +231,5 @@ class BloodTestDetailsView extends GetView<BloodTestDetailsController> {
 
   String formatDate(DateTime date) {
     return DateFormat('MM/dd/yyyy').format(date);
-  }
-
-  tooDouble(String? value) {
-    return double.parse(value ?? "0");
   }
 }

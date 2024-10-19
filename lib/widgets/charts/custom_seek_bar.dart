@@ -7,19 +7,18 @@ class CustomSeekBar extends StatelessWidget {
   final double currentValue;
   final double normalMinValue;
   final double normalMaxValue;
-  final double seekBarMaxRange;
+  final double seekbarValue;
 
   const CustomSeekBar({
     super.key,
     required this.currentValue,
     required this.normalMinValue,
     required this.normalMaxValue,
-    required this.seekBarMaxRange,
+    required this.seekbarValue,
   });
 
   @override
   Widget build(BuildContext context) {
-   // print('Current Value => ${checkCurrentValue()}');
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -80,29 +79,14 @@ class CustomSeekBar extends StatelessWidget {
             ),
           ),
           child: Slider(
-            value: currentValue.clamp(0, seekBarMaxRange),
+            value: seekbarValue,
             min: 0,
-            max: seekBarMaxRange,
+            max: 100,
             onChanged: (value) {},
           ),
         ),
       ],
     );
-  }
-
-  double checkCurrentValue() {
-    // 33.9  < 27.0
-    if (currentValue < normalMinValue) {
-      return 165.0 - currentValue;
-    } else if (currentValue < normalMaxValue) {
-      return 333.0 - currentValue;
-    } else if (currentValue > normalMinValue) {
-      return 165.0 + currentValue;
-    } else if (currentValue > normalMaxValue) {
-      return 333.0 + currentValue;
-    } else {
-      return 0.0;
-    }
   }
 }
 

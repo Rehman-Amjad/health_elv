@@ -80,3 +80,7 @@ class AppUtils {
     return formattedDate;
   }
 }
+
+tooDouble(String? value) {
+  return double.parse(value ?? "0");
+}

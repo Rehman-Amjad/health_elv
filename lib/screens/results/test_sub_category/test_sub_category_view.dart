@@ -54,43 +54,33 @@ class TestSubCategoryView extends GetView<TestSubCategoryController> {
         );
       },
       child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 30,
-                    height: 30,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: AppColors.primaryColor.withOpacity(0.80),
-                    ),
-                    child: ImageHelper(
-                      image: AppAssets.icTestTube,
-                      imageType: ImageType.asset,
-                      color: AppColors.whiteColor,
-                      height: 20,
-                      width: 20,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  AppText(
-                    text: item,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  )
-                ],
-              ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: AppColors.blackColor,
-              )
-            ],
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(10),
+          leading: Container(
+            width: 30,
+            height: 30,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
+              color: AppColors.primaryColor.withOpacity(0.80),
+            ),
+            child: ImageHelper(
+              image: AppAssets.icTestTube,
+              imageType: ImageType.asset,
+              color: AppColors.whiteColor,
+              height: 20,
+              width: 20,
+            ),
+          ),
+          title: AppText(
+            text: item,
+            overflow: TextOverflow.ellipsis,
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+          ),
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            color: AppColors.blackColor,
           ),
         ),
       ),

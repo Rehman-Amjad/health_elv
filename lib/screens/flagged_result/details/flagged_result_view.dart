@@ -54,14 +54,10 @@ class FlaggedResultView extends GetView<FlaggedResultController> {
                     CustomRangeSlider(
                       testUnit: controller.bloodTestResults?.testUnit,
                       status: controller.bloodTestResults?.status,
-                      currentValue: double.parse(
-                          controller.bloodTestResults?.currentRange ?? "0"),
-                      normalMinValue: double.parse(
-                          controller.bloodTestResults?.minRange ?? "0"),
-                      normalMaxValue: double.parse(
-                          controller.bloodTestResults?.maxRange ?? "0"),
-                      seekBarMaxRange: double.parse(
-                          controller.bloodTestResults?.maxSeekbarRange ?? "0"),
+                      currentValue: tooDouble(controller.bloodTestResults?.currentRange),
+                      normalMinValue: tooDouble(controller.bloodTestResults?.minRange),
+                      normalMaxValue: tooDouble(controller.bloodTestResults?.maxRange),
+                      seekbarValue: tooDouble(controller.bloodTestResults?.seekbarValue),
                     ),
                     const SizedBox(height: 16),
                     const Text(

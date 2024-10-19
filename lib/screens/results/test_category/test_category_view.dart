@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:health_elev8_app/path_file.dart';
 
 class TestCategoryView extends GetView<TestCategoryController> {
@@ -29,7 +30,8 @@ class TestCategoryView extends GetView<TestCategoryController> {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return testCategoryItem(controller.testCategoriesList[index]);
+                    return testCategoryItem(
+                        controller.testCategoriesList[index]);
                   },
                 )
               : SizedBox(
@@ -43,9 +45,9 @@ class TestCategoryView extends GetView<TestCategoryController> {
 
   testCategoryItem(String item) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Get.to(
-              () => const TestSubCategoryView(),
+          () => const TestSubCategoryView(),
           arguments: item,
           transition: Transition.circularReveal,
           duration: const Duration(milliseconds: 500),

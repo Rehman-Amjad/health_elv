@@ -9,7 +9,7 @@ class BloodTestResults {
   final String? currentRange;
   final String? minRange;
   final String? maxRange;
-  final String? maxSeekbarRange;
+  final String? seekbarValue;
   final String? status;
   final String? testDesc;
   final String? testUnit;
@@ -23,7 +23,7 @@ class BloodTestResults {
     this.currentRange,
     this.minRange,
     this.maxRange,
-    this.maxSeekbarRange,
+    this.seekbarValue,
     this.status,
     this.testDesc,
     this.testUnit,
@@ -37,7 +37,7 @@ class BloodTestResults {
       testType: data['testType'] as String,
       minRange: data['min_range'] as String,
       maxRange: data['max_range'] as String,
-      maxSeekbarRange: data['max_seek_bar_range'] as String,
+      seekbarValue: data['seek_bar_value'] as String,
       status: data['status'] as String,
       subTitle: data['sub_title'] as String,
       testDesc: data['test_desc'] as String,
@@ -54,7 +54,7 @@ class BloodTestResults {
       testType: data['testType'] as String,
       minRange: data['min_range'] as String,
       maxRange: data['max_range'] as String,
-      maxSeekbarRange: data['max_seek_bar_range'] as String,
+      seekbarValue: data['seek_bar_value'] as String,
       status:data['status'],
       testUnit :data['test_unit'],
       title: data['title'],

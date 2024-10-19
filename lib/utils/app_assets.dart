@@ -3,7 +3,7 @@ class AppAssets {
 
   ///splash
   static const String splashBgImage = '${base}splash_bg_image.png';
-  static const String logoImage = '${base}logo.png';
+  static const String logoImage = 'assets/splash/splash_logo.png';
 
   ///on-boarding
   static const String introOne = '${base}onboarding/intro_one.jpeg';
